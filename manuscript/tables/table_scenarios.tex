@@ -1,0 +1,36 @@
+\renewcommand{\arraystretch}{1.2}
+% results table
+\begin{table}[htp]
+\centering
+\begin{threeparttable}
+\setlength{\tabcolsep}{5pt}
+\scriptsize
+\caption{Siena Specifications}
+\label{siena_spec}
+\begin{tabular}{llcccc}
+\hline
+\addlinespace
+SIENA Specification & Structural Network Effects (N) & Selection (S) & Influence (I) & Radius (R) & Distance (D) \\
+\addlinespace
+\hline
+\addlinespace
+ N+S & Various & Yes & No & No  & No  \\
+ N+I & Various & No & Yes & No  & No  \\
+ N+S+I & Various & Yes & Yes & No & No \\
+ N+S+I+R & Various & Yes & Yes & Yes & No  \\
+ N+S+I+D & Various & Yes & Yes & No &  Yes \\
+ S+I+R+D & Density Only & Yes & Yes & Yes & Yes \\
+ N+S+I+R+D & Various & Yes & Yes & Yes & Yes \\
+\addlinespace
+\hline
+\end{tabular}
+   \begin{tablenotes}
+      \scriptsize
+       \item
+    \end{tablenotes}
+  \end{threeparttable}
+\end{table}
+
+
+
+

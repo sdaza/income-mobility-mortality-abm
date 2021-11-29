@@ -1,0 +1,41 @@
+
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1}
+\begin{table}[htp]
+\caption{Mortality on income mobility (IM) with $\beta_{m_{f}}= 0.0$ by $w_k$ values} \label{ch04:endogenous_experiment}
+\footnotesize
+\centering
+\begin{threeparttable}
+\begin{tabular}{l D{.}{.}{3.9} D{.}{.}{3.9} D{.}{.}{3.8}}
+\hline
+\addlinespace
+& \multicolumn{1}{c}{$w_k = 0.0$} & \multicolumn{1}{c}{$w_k = 0.5$} & \multicolumn{1}{c}{$w_k$} \\
+\addlinespace
+\hline
+\addlinespace[10pt]
+Individual mortality \& Total IM exposure (Cox) & -0.06^{*}      & 0.05          & 0.15^{*}     \\
+                                                & [-0.11; -0.01] & [-0.01; 0.10] & [0.11; 0.19] \\
+\addlinespace[10pt]
+
+Individual Mortality \& County IM (Cox) & -0.01         & 0.01          & 0.06^{*}     \\
+                                        & [-0.05; 0.03] & [-0.04; 0.06] & [0.02; 0.09] \\
+\addlinespace[10pt]
+
+County LE \& IM (GLM) & -0.17         & 0.13          & -1.54^{*}      \\
+                      & [-0.35; 0.01] & [-0.03; 0.30] & [-1.70; -1.38] \\
+\addlinespace[10pt]
+\hline
+\addlinespace
+Replicates per scenario (3)                     & 100           & 100           & 100            \\
+\addlinespace
+\hline
+\addlinespace
+\end{tabular}
+    \begin{tablenotes}
+      \scriptsize
+      \item $^*$ Null hypothesis value outside the 95\% confidence interval. Each coefficient comes from a random-effects model pooling replicate estimates. The total number of replicates is 300, 100 for each $w_k$ scenario. 
+      \item The $W_k$ vector for the last scenario is $[0.8,0.7,0.3,0.1,0.05]$. 
+      \item GLM = generalized linear model. LE = Life expectancy.
+    \end{tablenotes}
+\end{threeparttable}
+\end{table}

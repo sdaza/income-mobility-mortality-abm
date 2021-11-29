@@ -1,0 +1,134 @@
+\singlespacing
+\renewcommand{\arraystretch}{1.0}
+\setlength{\tabcolsep}{1.2pt}
+% \begin{ThreePartTable}
+\begin{scriptsize}
+\begin{longtable}{p{4cm}lllp{5cm}}
+\caption{MIA Parameters} \label{ch04:abm_parameters} \\
+
+\hline
+\addlinespace
+Parameter & Anylogic Name &  Symbol & Baseline value & Description \\
+\addlinespace
+\hline
+\endfirsthead
+
+
+\multicolumn{5}{l}{\textit{Continued from previous page}} \\
+\addlinespace[8pt]
+\hline
+\addlinespace
+Parameter & Anylogic Name &  Symbol & Baseline value & Description \\
+\addlinespace
+\hline
+\endhead
+\addlinespace
+\hline
+\addlinespace[8pt]
+\multicolumn{5}{r}{\textit{Continued on next page}} \\
+\addlinespace[12pt]
+\endfoot
+
+\endlastfoot
+
+\addlinespace[12pt]
+\multicolumn{5}{l}{\textbf{Mortality}} \\
+\addlinespace[12pt]
+ Mortality rate & \texttt{f\_baselineMortalityRate} & $m_{x}$ & See Table \ref{ch04:rates} & Age-specific mortality rates per year. \\
+\addlinespace[12pt]
+ Income type & \texttt{p\_mortalityCoeffIncType} & $\beta_{m_{k}}$ & \makecell[tl]{$[0.1, 0.05, 0.0,$ \\  $-0.05, -0.1]$} & Coefficients of income group $k$ on mortality risk.\\
+\addlinespace[12pt]
+ Smoking status & \texttt{p\_mortalityCoeffSmoking} & $\beta_{m_{smk}}$ & 1.030 (SE = 0.05) &  Coefficient of the effect of smoking on the mortality risk for all causes of death among men: Hazard Ratio 2.8 (99\% CI = 2.4 to 3.1) \citep[Table 2, pg. 346]{jha2013}. The coefficient comes from male models adjusting for age, educational level, alcohol consumption, and body mass index. The standard error was computed using the formula: \texttt{(log(3.1) - log(2.4))/ (qnorm(0.995)*2)} in the software R.\\
+ \addlinespace[12pt]
+ Income exposure & \texttt{p\_mortalityCoeffIncExpZ} & $\beta_{m_{ie}}$ & -0.1 & Coefficient of the effect of standardized county's income exposure on mortality risk.\\
+\addlinespace[12pt]
+ Income mobility exposure & \texttt{p\_mortalityFakeCoeffRankSlope} & $\beta_{m_{f}}$ & 0.0 & Fictitious coefficient of the effect of county's income mobility exposure on mortality risks.\\
+\addlinespace[12pt]
+
+\multicolumn{5}{l}{\textbf{Fertility}} \\
+\addlinespace[12pt]
+ Fertility rate & \texttt{f\_baselineFertilityRate} & $f_{x}$ & See Table \ref{ch04:rates} & Age-specific fertility rates per year. \\
+ \addlinespace[12pt]
+ Fertility adjustment factor & \texttt{p\_fertilityAdjustment} & $f_{\text{adj}}$ & 1.69 & Age-specific fertility rates per year are divided by  $f_{\text{adj}}$ to emulate a stationary population (zero growth rate). \\
+ \addlinespace[12pt]
+ Income group fertility adjustment  & \texttt{p\_fertilityCoeffIncType} & $f_{i_{\text{adj}}}$ & \makecell[tl]{$[0.3, -0.10, -0.10,$ \\ $-0.10, -0.10]$} & Fertility income group adjustment to avoid unbalance of income groups' population.\\
+\addlinespace[24pt]
+
+\multicolumn{5}{l}{\textbf{Residential mobility}} \\
+\addlinespace[12pt]
+ Moving decision rate & \texttt{p\_movingDecisionRate} & $mob_{r}$	& 0.10	& Average number of decisions to move per year when agents are eighteen years old or older. Younger agents (age $<$ 18) would move only if parents do.\\
+ \addlinespace[12pt]
+ Move randomly &	\texttt{p\_randomMobilityProb}	& $mob_{rand}$		& 0.01				&  Probability agents move to a random county that has not reached its population limit.\\
+ \addlinespace[12pt]
+ Moving threshold &	\texttt{p\_movingThreshold}	& $mob_{thr}$		& 0.22				&  The lowest proportion of agents with the same agent's income category $k$ before moving to a different county. \\
+ \addlinespace[12pt]
+ Population limit ratio &	\texttt{p\_populationMaxRatio} & $pop_{limit}$	 & 1.10 & Ratio at which counties can grow with respect to the expected population. To compute the maximum population of a county at time $t$, the population at time $t$ is divided by the number of counties and multiplied by 1.10. \\
+ \addlinespace[30pt]
+\multicolumn{5}{l}{\textbf{Income}} \\
+\addlinespace[12pt]
+Income type & \texttt{p\_incomeType}& $k$		& 1-5				& Agents' income quintile. \\
+\addlinespace[12pt]
+Income & \texttt{p\_income}	& $income_{k}$	& 0 -- 1,953,700	& Agents' income. It is defined by sampling from the IPUMS micro-data family income distribution by quintile \citep{ruggles2020}. \\
+\addlinespace[12pt]
+Parent income type & \texttt{p\_parentIncomeType}	& $parent_{k}$		& 1-5	& Parent's income  quintile.\\
+\addlinespace[12pt]
+Parent's income & \texttt{p\_parentIncome} & $pincome_{k}$	& 0 -- 1,953,700			& Parent's agent income.\\
+\addlinespace[12pt]
+County's transition matrix & \texttt{v\_incomeTransitionMatrix} & $I_{b}$	& Matrix			& Transition matrix used to assign income type to agent $i$ at age 18 and county $c$. When income mobility is exogenous, the transition matrix comes from a sample of  commuting zone transition matrices  \citep{chetty2014}. \\
+\addlinespace[12pt]
+% County's transition matrix & \texttt{v_incomeTransitionMatrix} & $I_{b}$ & Matrix &  test. \\
+% \addlinespace[12pt]
+% Threshold to combine income and income exposure vectors & \texttt{p\_minProbMaxIncTypeExp} & $kmax_{thr}$ & 0.45 & Minimum average proportion of the highest income group at which an agent has been exposed to adjust the baseline income group probabilities ($p_k$).\\
+Relative importance of county's income exposure  & \texttt{p\_weightVectorCountyIncExp} & $W_k$ & \makecell[tl]{$[0.0, 0.0, 0.0,0.0, 0.0]$} & Weight to combine the  transition matrix $I_b$ and vector $C_k$ (see main text for details). When $w_k = 0.5$, the estimate is equivalent to the arithmetic mean.\\
+\addlinespace[12pt]
+Endogenous income mobility & \texttt{p\_endogenousIncomeMob} & $\text{endg}$ & \texttt{false} & Whether individual transition matrices are defined exogenously (by sampling from observed transition matrices) or endogenously by the parameters and dynamic of the model.\\
+\addlinespace[12pt]
+Baseline probability in the diagonal of the transition matrix & \texttt{p\_baselineSameIncomeProb} & $p_k$ & 0.20 & When the individual transition matrices are endogenous, the diagonal of the transition matrix is equal to $p_k$.\\
+\addlinespace[12pt]
+Empirical distribution of out-of-diagonal transition probabilities  & \texttt{p\_empiricalDistributionTransMob} & $p_{k_{\text{dist}}} $ & \texttt{false} & When the individual transition matrices are endogenous, the out-of-diagonal values follow an empirical distribution (e.g., equation \ref{ch04:eq_matrices}), not the default value $(1 - p_k) / (k-1)$.\\
+\addlinespace[12pt]
+\multicolumn{5}{l}{\textbf{Smoking}} \\
+\addlinespace[12pt]
+%  Smoking initiation & \texttt{f\_baselineSmokingInit} & $s_{x}$ & See Table \ref{ch04:rates} & Age-specific smoking initiation rates per year. \\
+ Income type & \texttt{p\_smokingCoeffIncType} & $\beta_{s_{k}}$ & \makecell[tl]{$[-0.91,-1.25, -1.69,$ \\ $-2.10, -2.86]$} &  Coefficients of income group on smoking. These coefficients where estimated using the National Health Interview Survey 2019 (NHIS). When running micro-simulations the values used were $[-1.27,-1.65,-2.13,-2.51,-3.29]$. \\
+ \addlinespace[12pt]
+ Income mobility & \texttt{p\_smokingCoeffRankSlope} & $\beta_{s_{imob}}$ & 1.395 (SE = 0.58)&  Defined by dividing the z-score coefficient reported in \citet{daza2021} (Table 1, adjusted models) by the standard deviation of relative income mobility (rank-rank slope) across counties (SD = 0.086): \texttt{0.12 / 0.086 = 1.395}.\\
+\addlinespace[12pt]
+ Income exposure & \texttt{p\_smokingCoeffIncExpZ} & $\beta_{s_{ie}}$ & -0.2 & Coefficient of the effect of standardized county's income exposure on smoking status.\\
+\addlinespace[12pt]
+ Parent smoking status & \texttt{p\_smokingCoeffSmkParent} & $\beta_{s_{psmk}}$ & 0.54 (SE = 0.04) & Agent's parent smoking coefficient comes from \cite{leonardi-bee2011}'s meta-analysis: Odds ratio = 1.72 (95\% CI 1.59 to 1.86). The standard error was computed using: \texttt{(log(1.86) - log(1.59))/ (qnorm(0.975)*2)}. \\
+\addlinespace[12pt]
+
+\addlinespace[12pt]
+\multicolumn{5}{l}{\textbf{Other}} \\
+\addlinespace[12pt]
+Population per county	& \texttt{p\_peoplePerCounty}			& $pop$			& 100		& Initial number of agents per county\\
+\addlinespace[12pt]
+Number of counties	& \texttt{p\_numberCounties}			& $cty$ & 30		& Total number of counties.\\
+\addlinespace[12pt]
+Last complete generation & \texttt{p\_lastGeneration}					& $G$			& 30  & Last generation before stopping the simulation.\\
+\addlinespace[12pt]
+Mortality cohort size & \texttt{p\_mortalityCohortSize}			& $m_{coht}$			& 40		& Number of years used to define the cohort in which life expectancy is computed by county. \\
+\addlinespace[12pt]
+Mobility cohort size & \texttt{p\_mobilityCohortSize}			& $mob_{coht}$			& 60		& Number of years used to define the cohort in which income mobility indicators are computed. \\
+\addlinespace[12pt]
+Recurrent time of cohort measurements & \texttt{p\_measurementCohortWindow}			& $T_w$			& 10			& Years between mortality and income mobility measurements.  \\
+\addlinespace[12pt]
+Recurrent time of heavy computations & \texttt{p\_recurrentTimeHeavyComp}			& $T_h$	& 10			& Years between computationally heavy measurements (.e.g, Gini coefficient). \\
+\addlinespace
+\addlinespace
+\addlinespace[12pt]
+\hline
+\addlinespace
+\multicolumn{4}{l}{SD = Standard deviation; SE = Standard error.} \\
+%\multicolumn{4}{l}{Initial social network is created by connecting each agent to 2 other randomly chosen agents.} \\
+%\multicolumn{4}{l}{\texttt{uni(x,y)} = a sample from a uniform distribution between x and y; \texttt{rand(x)} = true with a probability of x.}
+\end{longtable}
+\end{scriptsize}
+% \renewcommand{\arraystretch}{0.3}
+% \begin{tablenotes}[flushleft]
+% \scriptsize
+% \item
+% \item
+% \end{tablenotes}
+% \end{ThreePartTable}
