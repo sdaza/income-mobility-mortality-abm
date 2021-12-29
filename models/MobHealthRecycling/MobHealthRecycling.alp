@@ -189,7 +189,7 @@ import javax.print.attribute.standard.MediaName;
 				<Variable Class="PlainVariable">
 					<Id>1517447068430</Id>
 					<Name><![CDATA[v_iteration]]></Name>
-					<X>240</X><Y>1400</Y>
+					<X>240</X><Y>1390</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -201,7 +201,7 @@ import javax.print.attribute.standard.MediaName;
 				<Variable Class="PlainVariable">
 					<Id>1517447076951</Id>
 					<Name><![CDATA[v_replicate]]></Name>
-					<X>240</X><Y>1420</Y>
+					<X>240</X><Y>1410</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1987,6 +1987,21 @@ Ln(2.8) = Hazard for men all cause of death]]></Description>
 					</Properties>
 
 				</Variable>
+				<Variable Class="CollectionVariable">
+					<Id>1640775140561</Id>
+					<Name><![CDATA[col_fileSelection]]></Name>
+					<X>240</X><Y>1430</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
+						<CollectionClass><![CDATA[LinkedHashMap]]></CollectionClass>
+						<ElementClass><![CDATA[String]]></ElementClass>
+						<ValueElementClass><![CDATA[Boolean]]></ValueElementClass>
+					</Properties>
+
+				</Variable>
 			</Variables>
 			<Events>
 				<Event>
@@ -2166,28 +2181,6 @@ for (County c : counties) {
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
-					<Id>1566891077818</Id>
-					<Name><![CDATA[f_rankRankCorrelation]]></Name>
-					<X>50</X><Y>1660</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Parameter>
-						<Name><![CDATA[income]]></Name>
-						<Type><![CDATA[ArrayList<IncomeParentKid>]]></Type>
-					</Parameter>
-					<Body><![CDATA[if (income.size() > 1) {
-	double[] parent = income.stream().mapToDouble(p -> p.incomeParent).toArray();
-	double[] kid = income.stream().mapToDouble( p-> p.incomeKid).toArray();
-	double output = new SpearmansCorrelation().correlation(parent, kid);
-	return output;
-} 
-else { return 0.0; }]]></Body>
-				</Function>
-				<Function AccessType="default" StaticFunction="false">
-					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
-					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1567592807886</Id>
 					<Name><![CDATA[f_randomPositionX]]></Name>
 					<X>50</X><Y>1640</Y>
@@ -2236,7 +2229,7 @@ return uniform(y, (y + p_sizeRectangle));]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1602228308295</Id>
 					<Name><![CDATA[f_absoluteMobility]]></Name>
-					<X>50</X><Y>1680</Y>
+					<X>50</X><Y>1660</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2295,7 +2288,7 @@ if (col_incomeParentKid.size() > 0) {
 	}
 }
 
-traceln(f_rankRankCorrelation(col_incomeParentKid));]]></Body>
+//traceln(f_rankRankCorrelation(col_incomeParentKid));]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
@@ -2529,7 +2522,8 @@ if (v_incomeSD > 0) {
 
 if (v_lastGeneration >= p_exportSinceGeneration
 		& (round(time())
-				% p_recurrentTimeCountyData == 0)) {
+			      p_recurrentTimeCountyData == 0)
+	) {
 
 	ExportOutput c = col_dataExport.get("county");
 	for (County i : counties) {
@@ -3066,7 +3060,14 @@ for (int i=0; i < p_numIncomeGroups; i++) {
 						<Name><![CDATA[path]]></Name>
 						<Type><![CDATA[String]]></Type>
 					</Parameter>
-					<Body><![CDATA[// parameter data
+					<Body><![CDATA[// define files to export
+col_fileSelection.put("parameters", true);
+col_fileSelection.put("mortality", false);
+col_fileSelection.put("county", false);
+col_fileSelection.put("environment", false);
+col_fileSelection.put("agents", false);
+
+// parameter data
 ExportOutput p = new ExportOutput(path, "parameters", v_iteration, v_replicate, 
 	new String[] {"model_date", "iteration","replicate", "counties", 
 		"people_per_county", "fertility_adjustment", "max_generation", "mortality_cohort_size", 
@@ -3165,7 +3166,7 @@ ExportOutput c = new ExportOutput(path, "county", v_iteration, v_replicate,
 	new String[] {"iteration", "replicate", "model_time", "cz_transition_matrix", 
 		"county", "population", 
 		"mean_income", "median_income", "income_sd",
-		"rank_slope", "rank_correlation", "rank_absolute_mob", "absolute_mob", "gini", "le", "age", 
+		"rank_slope", "rank_correlation", "rank_absolute_mob", "gini", "le", "age", 
     	"nsi", "mortality_cohort_size", "im_cohort_size", "prop_income_groups"}, 
 	new String[] {
 		"main.v_iteration", 
@@ -3176,18 +3177,17 @@ ExportOutput c = new ExportOutput(path, "county", v_iteration, v_replicate,
 		"col_peopleAlive.size()", 
 		"v_meanIncome", 
 		"v_medianIncome", 
-		"v_meanIncomeSD", 
+		"v_incomeSD", 
 		"v_rankSlope", 
 		"v_rankCorrelation", 
-		"v_rankAbsoluteMob", 
-		"v_absoluteMob", 
+		"v_rankAbsolute", 
 		"v_gini", 
-		"v_lifeExpectanc", 
+		"v_lifeExpectancy", 
 		"v_age", 
 		"main.v_NSI", 
 		"v_cohortMortality", 
 		"v_cohortIM", 
-		"Arrays.toString(c.v_proportionIncomeType)"});
+		"Arrays.toString(v_proportionIncomeGroup)"});
 c.initiateFile(col_textFiles);
 col_dataExport.put("county", c);
 
@@ -7463,7 +7463,8 @@ if (p_fertilityControl == false) {
 // export mortality data
 boolean selectedGeneration = Arrays.stream(main.p_selectedGenerations)
 	.anyMatch(x -> x == p_generation);
-if (main.p_exportData && selectedGeneration) {
+if (main.p_exportData && selectedGeneration &&
+		main.col_fileSelection.get("mortality")) {
 	ExportOutput m = main.col_dataExport.get("mortality");
 	m.writeFile(main.col_textFiles.get("mortality"), m.getValues(this));
 }
@@ -14790,6 +14791,9 @@ getExperimentHost().setPresentable( getEngine().getRoot() );]]></ActionCode>
 				</Parameter>
 				<Parameter>
 					<ParameterName><![CDATA[p_exportData]]></ParameterName>
+					<ParameterValue Class="CodeValue">
+						<Code><![CDATA[true]]></Code>
+					</ParameterValue>
 				</Parameter>
 				<Parameter>
 					<ParameterName><![CDATA[p_outputPath]]></ParameterName>
@@ -14891,11 +14895,7 @@ root.p_randomMobilityProb = v_propMovingRandom[currentIteration];
 
 //root.p_weightVectorCountyIncExp = f_arrayRepeatedValues(v_weightingFactor[currentIteration], 
 //	root.p_numIncomeTypes);]]></BeforeSimulationRunCode>
-			<AfterSimulationRunCode><![CDATA[vr_replicates++;
-
-if (vr_replicates % 10 == 0) {
-	traceln("Number of replicates: " + vr_replicates);
-}]]></AfterSimulationRunCode>
+			<AfterSimulationRunCode><![CDATA[vr_replicates++;]]></AfterSimulationRunCode>
 			<SeedValue>1</SeedValue>
 			<SelectionModeForSimultaneousEvents>LIFO</SelectionModeForSimultaneousEvents>
 			<VmArgs><![CDATA[]]></VmArgs>
@@ -14933,7 +14933,7 @@ if (vr_replicates % 10 == 0) {
 				</Variable>
 				<Variable Class="PlainVariable">
 					<Id>1607006483147</Id>
-					<Name><![CDATA[vr_replicates]]></Name>
+					<Name><![CDATA[v_replicates]]></Name>
 					<X>60</X><Y>140</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -15008,65 +15008,6 @@ if (vr_replicates % 10 == 0) {
 				</Variable>
 			</Variables>
 			<Functions>
-				<Function AccessType="default" StaticFunction="false">
-					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
-					<ReturnType><![CDATA[String]]></ReturnType>
-					<Id>1607006483111</Id>
-					<Name><![CDATA[f_systemDate]]></Name>
-					<X>280</X><Y>60</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
-Date date = new Date(System.currentTimeMillis());
-return formatter.format(date);]]></Body>
-				</Function>
-				<Function AccessType="default" StaticFunction="false">
-					<ReturnModificator>VOID</ReturnModificator>
-					<ReturnType><![CDATA[double]]></ReturnType>
-					<Id>1607006483113</Id>
-					<Name><![CDATA[f_sendSlackMessage]]></Name>
-					<X>280</X><Y>80</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[Slack slack = Slack.getInstance();
-String token = f_readSlackFile();;
-MethodsClient methods = slack.methods(token);
-try {
-  ChatPostMessageResponse response = slack.methods(token).chatPostMessage(req -> req
-    .channel("#slack-from-simulations")
-    .text("Anylogic simulation experiment finished at " + f_systemDate() + " :wink:"));
-  if (response.isOk()) {
-    Message postedMessage = response.getMessage();
-  } else {
-    String errorCode = response.getError(); // e.g., "invalid_auth", "channel_not_found"
-  }
-} catch (SlackApiException requestFailure) {
-} catch (IOException connectivityIssue) {
-}]]></Body>
-				</Function>
-				<Function AccessType="default" StaticFunction="false">
-					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
-					<ReturnType><![CDATA[String]]></ReturnType>
-					<Id>1607006483115</Id>
-					<Name><![CDATA[f_readSlackFile]]></Name>
-					<X>280</X><Y>100</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[String filePath = "slack.txt";
-String token = "";
-try (BufferedReader reader = new BufferedReader(new FileReader(new File(filePath)))) {
-	token = reader.readLine();
-} catch (IOException e) {
-	e.printStackTrace();
-}
-return token;]]></Body>
-				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
@@ -15264,9 +15205,6 @@ traceln(":::::: end simulation ::::::");]]></AfterExperimentCode>
 			</FreeformParamValue>
 			<FreeformParamValue>	
 				<Id>1597044700978</Id>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[1.67]]></Code>
-				</Expression>
 			</FreeformParamValue>
 			<FreeformParamValue>	
 				<Id>1597069674406</Id>
@@ -15369,6 +15307,9 @@ traceln(":::::: end simulation ::::::");]]></AfterExperimentCode>
 			</FreeformParamValue>
 			<FreeformParamValue>	
 				<Id>1607083288394</Id>
+				<Expression Class="CodeValue">
+					<Code><![CDATA[0.20]]></Code>
+				</Expression>
 			</FreeformParamValue>
 			<FreeformParamValue>	
 				<Id>1607695381501</Id>
@@ -15406,11 +15347,14 @@ traceln(":::::: end simulation ::::::");]]></AfterExperimentCode>
 			<FreeformParamValue>	
 				<Id>1608212159308</Id>
 				<Expression Class="CodeValue">
-					<Code><![CDATA[{0.3, -0.10, -0.10, -0.10, -0.10}]]></Code>
+					<Code><![CDATA[{0.0, 0.10, 0.10, -0.10, -0.10}]]></Code>
 				</Expression>
 			</FreeformParamValue>
 			<FreeformParamValue>	
 				<Id>1609362347773</Id>
+				<Expression Class="CodeValue">
+					<Code><![CDATA[false]]></Code>
+				</Expression>
 			</FreeformParamValue>
 			<FreeformParamValue>	
 				<Id>1640074062287</Id>
