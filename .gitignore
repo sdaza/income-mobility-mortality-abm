@@ -1,4 +1,4 @@
 .DS_Store
 /data
-/models/MobHealthRecycling/output
+/models/MobHealthRecycling/output/*.csv
 /models/MobHealthRecycling/slack.txt

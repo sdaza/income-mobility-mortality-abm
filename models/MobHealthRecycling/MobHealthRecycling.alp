@@ -4,7 +4,7 @@
 	         AnyLogic Project File 
 *************************************************	         
 -->
-<AnyLogicWorkspace WorkspaceVersion="1.9" AnyLogicVersion="8.7.6.202107211757" AlpVersion="8.7.2">
+<AnyLogicWorkspace WorkspaceVersion="1.9" AnyLogicVersion="8.7.5.202106081839" AlpVersion="8.7.2">
 <Model>
 	<Id>1516978677334</Id>
 	<Name><![CDATA[MobHealthRecycling]]></Name>
@@ -478,7 +478,7 @@ import javax.print.attribute.standard.MediaName;
 				</Variable>
 				<Variable Class="PlainVariable">
 					<Id>1609170671696</Id>
-					<Name><![CDATA[v_lifeExpectancyIncType]]></Name>
+					<Name><![CDATA[v_lifeExpectancyIncomeGroup]]></Name>
 					<X>460</X><Y>1080</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -2686,7 +2686,7 @@ if (peopleInCohort == 0 & col_deaths.size() > 100) {
 	/// life expectancy by income group
 	for (int j=0; j < p_numIncomeGroups; j++) {
 		int incomeIndex = j; 
-		v_lifeExpectancyIncType[j] = deaths.stream()
+		v_lifeExpectancyIncomeGroup[j] = deaths.stream()
 			.filter(p -> p.incomeType == incomeIndex+1)
 			.mapToDouble(p -> p.age).average().orElse(0.0);	
 	}
@@ -3075,7 +3075,7 @@ for (int i=0; i < p_numIncomeGroups; i++) {
 					<Body><![CDATA[// define files to export
 col_fileSelection.put("parameters", true);
 col_fileSelection.put("mortality", true);
-col_fileSelection.put("county", false);
+col_fileSelection.put("county", true);
 col_fileSelection.put("environment", false);
 col_fileSelection.put("agents", false);
 
@@ -3153,13 +3153,12 @@ if (p_exportData && col_fileSelection.get("parameters")) {
 
 // mortality data
 if (p_exportData && col_fileSelection.get("mortality")) {
-
 	ExportOutput m = new ExportOutput(path, "mortality",
 			v_iteration, v_replicate,
 			new String[]{"iteration", "replicate",
 					"model_time", "id", "parent_id",
 					"generation", "birthdate", "age",
-					"income_type", "income",
+					"income_group", "income",
 					"parent_income_type", "parent_income",
 					"county", "nkids", "nmoves",
 					"nmoves_kid", "smoker", "parent_smoker",
@@ -3195,11 +3194,10 @@ if (p_exportData && col_fileSelection.get("mortality")) {
 
 // county data
 if (p_exportData && col_fileSelection.get("county")) {
-
 	ExportOutput c = new ExportOutput(path, "county",
 			v_iteration, v_replicate,
 			new String[]{"iteration", "replicate",
-					"model_time", "cz_transition_matrix",
+					"model_time", "cz",
 					"county", "population", "mean_income",
 					"median_income", "income_sd",
 					"rank_slope", "rank_correlation",
@@ -3231,13 +3229,13 @@ if (p_exportData && col_fileSelection.get("environment")) {
 					"rank_correlation", "income_mean", "le",
 					"nsi", "moves", "moves_kid",
 					"last_generation", "population",
-					"smokers", "prop_income_type",
-					"le_income_type",
+					"smokers", "prop_income_group",
+					"le_income_group",
 					"smoking_income_type"},
 			new String[]{"v_iteration", "v_replicate",
 					"time()", "v_gini", "v_rankSlope",
 					"v_countyRankSlope",
-					"f_standardDeviation(col_countyRankSlope, v_countyRankSlope)",
+					"new StatUtils().getStandardDeviationn(col_countyRankSlope)",
 					"v_rankCorrelation", "v_meanIncome",
 					"v_lifeExpectancy", "v_NSI",
 					"v_averageNumberMoves",
@@ -3245,8 +3243,8 @@ if (p_exportData && col_fileSelection.get("environment")) {
 					"v_lastGeneration",
 					"col_peopleAlive.size()", "v_smokers",
 					"Arrays.toString(v_propIncType)",
-					"Arrays.toString(v_lifeExpectancyIncType)",
-					"Arrays.toString(v_propSmokersIncType)"});
+					"Arrays.toString(v_lifeExpectancyIncomeGroup)",
+					"Arrays.toString(v_propSmokersIncomeGroup)"});
 	e.initiateFile(col_textFiles);
 	col_dataExport.put("environment", e);
 }
@@ -13619,7 +13617,7 @@ root.v_replicate = 1;]]></BeforeSimulationRunCode>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[String]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA["output/"]]></Code>
+							<Code><![CDATA["output/testing/"]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -14811,6 +14809,9 @@ getExperimentHost().setPresentable( getEngine().getRoot() );]]></ActionCode>
 				</Parameter>
 				<Parameter>
 					<ParameterName><![CDATA[p_outputPath]]></ParameterName>
+					<ParameterValue Class="CodeValue">
+						<Code><![CDATA[v_filePath]]></Code>
+					</ParameterValue>
 				</Parameter>
 				<Parameter>
 					<ParameterName><![CDATA[p_populationLimit]]></ParameterName>
