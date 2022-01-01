@@ -2,20 +2,8 @@
     "jupyter.jupyterServerType": "local",
     "jupyter.kernels.filter": [
         {
-            "path": "~/.julia/conda/3/bin/python",
+            "path": "C:\\ProgramData\\Miniconda3\\python.exe",
             "type": "pythonEnvironment"
-        },
-        {
-            "path": "/usr/bin/python",
-            "type": "pythonEnvironment"
-        },
-        {
-            "path": "/usr/bin/python3",
-            "type": "pythonEnvironment"
-        },
-        {
-            "path": "~/Library/Jupyter/kernels/ir/kernel.json",
-            "type": "jupyterKernelspec"
         }
     ]
 }
