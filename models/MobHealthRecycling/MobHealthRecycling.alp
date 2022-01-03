@@ -4,7 +4,7 @@
 	         AnyLogic Project File 
 *************************************************	         
 -->
-<AnyLogicWorkspace WorkspaceVersion="1.9" AnyLogicVersion="8.7.5.202106081839" AlpVersion="8.7.2">
+<AnyLogicWorkspace WorkspaceVersion="1.9" AnyLogicVersion="8.7.6.202107211757" AlpVersion="8.7.2">
 <Model>
 	<Id>1516978677334</Id>
 	<Name><![CDATA[MobHealthRecycling]]></Name>
@@ -2094,7 +2094,7 @@ if (p_updateStats) {
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1517176383314</Id>
 					<Name><![CDATA[f_initialSetup]]></Name>
-					<X>670</X><Y>690</Y>
+					<X>670</X><Y>700</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2295,10 +2295,30 @@ if (time() % p_recurrentTimeHeavyComp == 0) {
 }
 
 // smoking
+if (time() > 18) {
+	v_propIncomeGroup = f_proportionIncomeGroup(col_peopleAlive.stream()
+		.filter(p -> p.p_economicallyActive == true)
+		.collect(Collectors.toCollection(ArrayList::new)));
+}
+
+// smoking by income group
 v_smokers = f_proportionSmokers(col_peopleAlive);
-v_propIncomeGroup = f_proportionIncomeGroup(col_peopleAlive.stream()
-	.filter(p -> p.p_economicallyActive == true)
-	.collect(Collectors.toCollection(ArrayList::new)));]]></Body>
+for (int i = 0; i < p_numIncomeGroups; i++) {
+	int incomeIndex = i;
+	double num = col_peopleAlive.stream()
+			.filter(p -> p.p_incomeGroup == incomeIndex + 1
+					&& p.p_age >= 30 && p.v_smoker)
+			.count();
+	double den = col_peopleAlive.stream()
+			.filter(p -> p.p_incomeGroup == incomeIndex + 1
+					&& p.p_age >= 30)
+			.count();
+	if (den > 0) {
+		v_propSmokersIncomeGroup[i] = num / den;
+	}
+}
+
+]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
@@ -2381,22 +2401,6 @@ for (County c : counties) {
 					<ShowLabel>true</ShowLabel>
 					<Body><![CDATA[v_lastCompleteGeneration = col_peopleAlive.stream()
 		.mapToInt(p -> p.p_generation).min().getAsInt() - 1;
-
-// smoking by income group
-for (int j = 0; j < p_numIncomeGroups; j++) {
-	int incomeIndex = j;
-	double num = col_peopleAlive.stream()
-			.filter(p -> p.p_incomeGroup == incomeIndex + 1
-					&& p.p_age >= 30 && p.v_smoker)
-			.count();
-	double den = col_peopleAlive.stream()
-			.filter(p -> p.p_incomeGroup == incomeIndex + 1
-					&& p.p_age >= 30)
-			.count();
-	if (den > 0) {
-		v_propSmokersIncomeGroup[j] = num / den;
-	}
-}
 
 // stop simulation after N generation
 if (v_lastCompleteGeneration >= p_lastGeneration) {
@@ -6237,7 +6241,8 @@ import java.util.stream.Collectors;
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double[]]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[new StatUtils().repeatValuesArray(1.0/main.p_numIncomeGroups, main.p_numIncomeGroups)]]></Code>
+							<Code><![CDATA[new StatUtils().repeatValuesArray(1.0/ (double) main.p_numIncomeGroups, 
+	main.p_numIncomeGroups)]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -6290,6 +6295,7 @@ import java.util.stream.Collectors;
 				<Variable Class="PlainVariable">
 					<Id>1605791021049</Id>
 					<Name><![CDATA[v_incomeExposureIncomeGroup]]></Name>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
 					<X>260</X><Y>990</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -6351,6 +6357,7 @@ import java.util.stream.Collectors;
 				<Variable Class="PlainVariable">
 					<Id>1609522765923</Id>
 					<Name><![CDATA[v_incomeExposureIncomeGroup18]]></Name>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
 					<X>260</X><Y>1010</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -6366,7 +6373,8 @@ import java.util.stream.Collectors;
 				<Variable Class="PlainVariable">
 					<Id>1609523163846</Id>
 					<Name><![CDATA[v_incomeExposure18]]></Name>
-					<X>260</X><Y>1040</Y>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
+					<X>260</X><Y>1030</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6865,7 +6873,7 @@ import java.util.stream.Collectors;
 				</Variable>
 				<Variable Class="CollectionVariable">
 					<Id>1640087178971</Id>
-					<Name><![CDATA[col_countyTransitionProbExp]]></Name>
+					<Name><![CDATA[col_exposure]]></Name>
 					<X>740</X><Y>710</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -6873,7 +6881,7 @@ import java.util.stream.Collectors;
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
 						<CollectionClass><![CDATA[ArrayList]]></CollectionClass>
-						<ElementClass><![CDATA[TransitionProbExposure]]></ElementClass>
+						<ElementClass><![CDATA[Exposure]]></ElementClass>
 						<ValueElementClass><![CDATA[String]]></ValueElementClass>
 					</Properties>
 
@@ -7183,13 +7191,13 @@ f_moveKids();]]></Action>
 					<Action><![CDATA[p_age = floor(f_currentAge());
 
 // record exposure 
-if (p_generation > 0 & time()> 0)  {
+if (p_generation > 0 & time() > 0)  {
 	f_recordExposure();
 	f_estimteExposure();
 }
 
 // start working
-if (Math.floor(p_age) == 18 & p_economicallyActive == false) {
+if (Math.floor(p_age) == 18 && p_economicallyActive == false) {
 	send("time to work", this);
 }
 
@@ -7197,7 +7205,9 @@ if (Math.floor(p_age) == 18 & p_economicallyActive == false) {
 if (p_age > 110) send("you should die", this);
 
 // start smoking
-if (Math.floor(p_age) == 30 & v_smoker == false) send("start smoking?", this);
+if (Math.floor(p_age) == 30 & v_smoker == false) {
+	send("start smoking?", this);
+}
 
 // collect income mobility for testing
 //if (p_age % main.p_recurrentTimeHeavyComp == 0) {
@@ -7353,8 +7363,8 @@ main.col_deadPeople.add(this);
 if (p_fertilityControl == false) {
 	main.col_deaths.add(new Death(this.p_id, this.county.getIndex(), this.p_generation,
 		this.p_incomeGroup, this.p_birthTime, this.p_age, 
-		new TransitionProbExposure().getAverageExposure("countyRankSlope", col_countyTransitionProbExp), 
-		new TransitionProbExposure().getAverageExposure("countyRankCorrelation", col_countyTransitionProbExp)));
+		new Exposure().getAverageExposure("countyRankSlope", col_exposure), 
+		new Exposure().getAverageExposure("countyRankCorrelation", col_exposure)));
 }
 
 //county.col_deaths.add(new Deaths(this.p_id, this.county.getIndex(), this.p_generation, 
@@ -7379,7 +7389,7 @@ if (main.p_exportData && selectedGeneration && !p_fertilityControl &&
 //col_incomeMobility.clear();
 //col_countyIncomeExpZ.clear();
 //col_countyIncomeGroupExp.clear();
-col_countyTransitionProbExp.clear();
+col_exposure.clear();
 
 // reset exposure variables
 v_rankSlopeExp = 0.0;
@@ -7391,8 +7401,8 @@ v_incomeExposureZ30 = 0.0;
 v_absoluteMobClass = 0;
 
 v_incomeTransitionProbs = st.repeatValuesArray(1.0/main.p_numIncomeGroups, main.p_numIncomeGroups);
-v_incomeExposureIncomeGroup = st.repeatValuesArray(1.0/main.p_numIncomeGroups, main.p_numIncomeGroups);
-v_incomeExposureIncomeGroup18 = st.repeatValuesArray(1.0/main.p_numIncomeGroups, main.p_numIncomeGroups);
+//v_incomeExposureIncomeGroup = st.repeatValuesArray(1.0/main.p_numIncomeGroups, main.p_numIncomeGroups);
+//v_incomeExposureIncomeGroup18 = st.repeatValuesArray(1.0/main.p_numIncomeGroups, main.p_numIncomeGroups);
 
 // other variables
 v_numberKids = 0;
@@ -7647,24 +7657,7 @@ if (col_kids.size() > 0) {
 		p.p_parentSmoker = smoker;
 	}
 }
-return smoker;
-
-// rates
-/*
-double value = main.f_baselineSmokingInit(p_age) * main.p_smokingAdjustment *
-	exp(
-		// income effect = parent for people < 18, own income for people >=  19
-		main.p_smokingCoeffIncType[p_incomeType-1] + 
-	   // network effect
-       // 0.3 * f_smokingConnections +
-       // income average exposure
-       main.p_smokingCoeffIncExp * v_averageIncomeExposure + 
-       // income mobility average exposure
-       main.p_smokingCoeffMobExp * v_averageIncomeMobilityExposure
-     );
-// traceln(value);
-return value;
-*/]]></Body>
+return smoker;]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
@@ -7691,7 +7684,7 @@ double[] probs = county.col_transitionMatrixData.stream()
 //traceln(values);
 //traceln(probs);
 
-col_countyTransitionProbExp.add(new TransitionProbExposure(main.p_numIncomeGroups, 
+col_exposure.add(new Exposure(main.p_numIncomeGroups, 
 	timediff, values, probs, county.v_proportionIncomeGroup, 
 	 county.v_meanIncome, county.v_meanIncomeZ, 
 	 county.v_rankSlope,  
@@ -7785,8 +7778,8 @@ if (p_generation > 0) {
 	f_recordExposure();
 	f_estimteExposure();
 	// update income type probabilities
-	TransitionProbExposure t = new TransitionProbExposure();
-	v_incomeTransitionProbs = t.getAverageExposureTransMob(col_countyTransitionProbExp, 
+	Exposure t = new Exposure();
+	v_incomeTransitionProbs = t.getAverageExposureTransMob(col_exposure, 
 		main.p_numIncomeGroups, main.p_weightVectorCountyIncExp);
 	double[] quintile ={1,2,3,4,5};
 	p_incomeGroup = (int) new StatUtils().weightedSampling(
@@ -7819,7 +7812,11 @@ county.col_income.add(i);
 // add income mobility data
 IncomeParentKid t = new IncomeParentKid(p_id, county.getIndex(), p_generation, 
 	p_birthTime, p_parentIncome, p_income, p_parentIncomeGroup, p_incomeGroup);
-main.col_incomeParentKid.add(t);]]></Body>
+main.col_incomeParentKid.add(t);
+
+// exposure at age 18
+v_rankSlopeExp18 = new Exposure()
+	.getAverageExposure("countyRankSlope", col_exposure);]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
@@ -7831,14 +7828,13 @@ main.col_incomeParentKid.add(t);]]></Body>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[TransitionProbExposure t = new TransitionProbExposure();
+					<Body><![CDATA[Exposure t = new Exposure();
 
-v_incomeExposure = t.getAverageExposure("countyIncome", col_countyTransitionProbExp);
-v_incomeExposureZ = t.getAverageExposure("countyIncomeZ", col_countyTransitionProbExp);
-v_rankSlopeExp = t.getAverageExposure("countyRankSlope", col_countyTransitionProbExp);
-if (!p_economicallyActive) v_rankSlopeExp18 = t.getAverageExposure("countyRankSlope", col_countyTransitionProbExp);
-v_rankCorrelationExp = t.getAverageExposure("countyRankCorrelation", col_countyTransitionProbExp);
-//if (!p_economicallyActive) v_incomeExposureIncomeGroup18 = f_estimateIncomeExposureType(col_countyIncomeGroupExp);
+v_incomeExposure = t.getAverageExposure("countyIncome", col_exposure);
+v_incomeExposureZ = t.getAverageExposure("countyIncomeZ", col_exposure);
+v_rankSlopeExp = t.getAverageExposure("countyRankSlope", col_exposure); 
+v_rankCorrelationExp = t.getAverageExposure("countyRankCorrelation", col_exposure);
+//if (!p_economicallyActive) v_incomeExposureIncomeGroup18 = t.getAverageExposure("countyIncome", col_countyTransitionProbExp);
 //v_incomeExposureIncomeGroup = f_estimateIncomeExposureType(col_countyIncomeGroupExp);
 ]]></Body>
 				</Function>
@@ -9791,15 +9787,15 @@ v_rankCorrelationExp = t.getAverageExposure("countyRankCorrelation", col_countyT
 						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
 					</RecurrenceCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
-					<Width>330</Width>
-					<Height>200</Height>
+					<Width>350</Width>
+					<Height>210</Height>
 					<BackgroundColor/>
 					<BorderColor/>
 					<ChartArea>
 						<XOffset>50</XOffset>
 						<YOffset>0</YOffset>
-						<Width>250</Width>
-						<Height>130</Height>
+						<Width>280</Width>
+						<Height>150</Height>
 						<BackgroundColor>-1</BackgroundColor>
 						<BorderColor>-16777216</BorderColor>
 						<GridColor>-12566464</GridColor>
@@ -9863,10 +9859,10 @@ v_rankCorrelationExp = t.getAverageExposure("countyRankCorrelation", col_countyT
 					<VerScaleType>HUNDRED_PERCENTS</VerScaleType>
 					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
     			</TimeStackChart>
-    			<TimeStackChart>
-					<Id>1641043651563</Id>
-					<Name><![CDATA[incomeGroup1]]></Name>
-					<X>680</X><Y>290</Y>
+    			<TimePlot>
+					<Id>1641044240568</Id>
+					<Name><![CDATA[plot]]></Name>
+					<X>630</X><Y>300</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -9884,15 +9880,15 @@ v_rankCorrelationExp = t.getAverageExposure("countyRankCorrelation", col_countyT
 						<Unit Class="TimeUnits"><![CDATA[YEAR]]></Unit>
 					</RecurrenceCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
-					<Width>330</Width>
-					<Height>200</Height>
+					<Width>360</Width>
+					<Height>240</Height>
 					<BackgroundColor/>
 					<BorderColor/>
 					<ChartArea>
 						<XOffset>50</XOffset>
-						<YOffset>0</YOffset>
-						<Width>250</Width>
-						<Height>130</Height>
+						<YOffset>30</YOffset>
+						<Width>280</Width>
+						<Height>150</Height>
 						<BackgroundColor>-1</BackgroundColor>
 						<BorderColor>-16777216</BorderColor>
 						<GridColor>-12566464</GridColor>
@@ -9910,52 +9906,76 @@ v_rankCorrelationExp = t.getAverageExposure("countyRankCorrelation", col_countyT
 					<ShowLegend>true</ShowLegend>
 					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
 					<TimeWindowUnits>MODEL_TIME_UNIT</TimeWindowUnits>
-					<TimeWindowExpression><![CDATA[100]]></TimeWindowExpression>
-					<DatasetExpression>
-					<Id>1641043651556</Id>
+					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
+					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
+					<VerScaleType>AUTO</VerScaleType>
+					<DrawLine>true</DrawLine>
+					<Interpolation>LINEAR</Interpolation>
+					<DatasetExpression>  
+						<Title><![CDATA[1]]></Title>
+					<Id>0</Id>
 					<Expression><![CDATA[my_dataset]]></Expression>
 					<Color>-2354116</Color>
-					<Expression2><![CDATA[main.v_propIncomeGroup[0]]]></Expression2>
-					<Expression2Flag>true</Expression2Flag>  
-							<Title><![CDATA[1]]></Title>
+					<Expression2><![CDATA[main.v_propSmokersIncomeGroup[0]]]></Expression2>
+					<Expression2Flag>true</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.0</LineWidth>
 					</DatasetExpression>
-					<DatasetExpression>
-					<Id>1641043651557</Id>
-					<Expression><![CDATA[my_dataset]]></Expression>
+					<DatasetExpression>  
+						<Title><![CDATA[2]]></Title>
+					<Id>0</Id>
+					<Expression><![CDATA[my_dataset1]]></Expression>
 					<Color>-10496</Color>
-					<Expression2><![CDATA[main.v_propIncomeGroup[1]]]></Expression2>
-					<Expression2Flag>true</Expression2Flag>  
-							<Title><![CDATA[2]]></Title>
+					<Expression2><![CDATA[main.v_propSmokersIncomeGroup[1]]]></Expression2>
+					<Expression2Flag>true</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.0</LineWidth>
 					</DatasetExpression>
-					<DatasetExpression>
-					<Id>1641043651558</Id>
-					<Expression><![CDATA[my_dataset]]></Expression>
+					<DatasetExpression>  
+						<Title><![CDATA[3]]></Title>
+					<Id>0</Id>
+					<Expression><![CDATA[my_dataset2]]></Expression>
 					<Color>-6632142</Color>
-					<Expression2><![CDATA[main.v_propIncomeGroup[2]]]></Expression2>
-					<Expression2Flag>true</Expression2Flag>  
-							<Title><![CDATA[3]]></Title>
+					<Expression2><![CDATA[main.v_propSmokersIncomeGroup[2]]]></Expression2>
+					<Expression2Flag>true</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.0</LineWidth>
 					</DatasetExpression>
-					<DatasetExpression>
-					<Id>1641043651559</Id>
-					<Expression><![CDATA[my_dataset]]></Expression>
+					<DatasetExpression>  
+						<Title><![CDATA[4]]></Title>
+					<Id>0</Id>
+					<Expression><![CDATA[my_dataset3]]></Expression>
 					<Color>-14774017</Color>
-					<Expression2><![CDATA[main.v_propIncomeGroup[3]]]></Expression2>
-					<Expression2Flag>true</Expression2Flag>  
-							<Title><![CDATA[4]]></Title>
+					<Expression2><![CDATA[main.v_propSmokersIncomeGroup[3]]]></Expression2>
+					<Expression2Flag>true</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.0</LineWidth>
 					</DatasetExpression>
-					<DatasetExpression>
-					<Id>1641043651560</Id>
-					<Expression><![CDATA[my_dataset]]></Expression>
-					<Color>-3137392</Color>
-					<Expression2><![CDATA[main.v_propIncomeGroup[4]]]></Expression2>
-					<Expression2Flag>true</Expression2Flag>  
-							<Title><![CDATA[5]]></Title>
+					<DatasetExpression>  
+						<Title><![CDATA[5]]></Title>
+					<Id>0</Id>
+					<Expression><![CDATA[my_dataset4]]></Expression>
+					<Color>-7722014</Color>
+					<Expression2><![CDATA[main.v_propSmokersIncomeGroup[4]]]></Expression2>
+					<Expression2Flag>true</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.0</LineWidth>
+					</DatasetExpression>
+					<DatasetExpression>  
+						<Title><![CDATA[Total]]></Title>
+					<Id>0</Id>
+					<Expression><![CDATA[my_dataset5]]></Expression>
+					<Color>-16777216</Color>
+					<Expression2><![CDATA[main.v_smokers]]></Expression2>
+					<Expression2Flag>true</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.0</LineWidth>
 					</DatasetExpression>
 					<SamplesToKeep>100</SamplesToKeep>
-					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
-					<VerScaleType>HUNDRED_PERCENTS</VerScaleType>
+					<TimeWindowExpression><![CDATA[100]]></TimeWindowExpression>
+					<FillAreaUnderLine>false</FillAreaUnderLine>
 					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
-    			</TimeStackChart>
+    			</TimePlot>
 			</Presentation>
 
 				</Level>
@@ -21043,11 +21063,11 @@ public class IncomeData implements Serializable {
 		<!--   =========   Java Class   ========  -->
 		<JavaClass>
 			<Id>1640086784837</Id>
-			<Name><![CDATA[TransitionProbExposure]]></Name>
+			<Name><![CDATA[Exposure]]></Name>
 			<Text><![CDATA[/**
- * TransitionProbExposure
+ * Exposure
  */	
-public class TransitionProbExposure {
+public class Exposure {
 	int ngroups;
 	double time;
 	double[] quintile;
@@ -21060,11 +21080,11 @@ public class TransitionProbExposure {
 	double countyRankAbsolute;
 	
 
-	public TransitionProbExposure() {
+	public Exposure() {
 		
 	}
 	
-    public TransitionProbExposure(int ngroups, double time, double[] quintile, 
+    public Exposure(int ngroups, double time, double[] quintile, 
     		double[] probs, double[] countyIncomeGroup, 
     		double countyIncome, double countyIncomeZ, 
     		double countyRankSlope, double countyRankCorrelation, double countyAbsoluteMob) {
@@ -21081,7 +21101,7 @@ public class TransitionProbExposure {
     	
    }
     
-    public double[] getAverageExposureTransMob(List<TransitionProbExposure> l, int numgroups, 
+    public double[] getAverageExposureTransMob(List<Exposure> l, int numgroups, 
     		double[] weights) {
     	
     	StatUtils s = new StatUtils();
@@ -21108,7 +21128,7 @@ public class TransitionProbExposure {
     }
     
     
-    public double getAverageExposure(String variable, List<TransitionProbExposure> l) {
+    public double getAverageExposure(String variable, List<Exposure> l) {
     	double value = 0.0;
 
     	// define average income exposure
