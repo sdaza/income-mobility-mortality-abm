@@ -4,7 +4,7 @@
 	         AnyLogic Project File 
 *************************************************	         
 -->
-<AnyLogicWorkspace WorkspaceVersion="1.9" AnyLogicVersion="8.7.6.202107211757" AlpVersion="8.7.2">
+<AnyLogicWorkspace WorkspaceVersion="1.9" AnyLogicVersion="8.7.5.202106081839" AlpVersion="8.7.2">
 <Model>
 	<Id>1516978677334</Id>
 	<Name><![CDATA[MobHealthRecycling]]></Name>
@@ -1160,7 +1160,7 @@ import java.util.stream.Collectors;  ]]></Import>
 				<Variable Class="Parameter">
 					<Id>1606140655343</Id>
 					<Name><![CDATA[p_endogenousIncomeMob]]></Name>
-					<X>50</X><Y>1020</Y>
+					<X>50</X><Y>1000</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1259,8 +1259,8 @@ import java.util.stream.Collectors;  ]]></Import>
 				</Variable>
 				<Variable Class="Parameter">
 					<Id>1597410585018</Id>
-					<Name><![CDATA[p_weightVectorCountyIncExp]]></Name>
-					<X>50</X><Y>1000</Y>
+					<Name><![CDATA[p_weightIncomeGroup]]></Name>
+					<X>50</X><Y>1020</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1274,7 +1274,7 @@ import java.util.stream.Collectors;  ]]></Import>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1597410585016</Id>
-							<Label><![CDATA[p_weightVectorCountyIncExp]]></Label>
+							<Label><![CDATA[p_weightIncomeGroup]]></Label>
 							<EditorContolType>TEXT_BOX</EditorContolType>
 							<MinSliderValue><![CDATA[0]]></MinSliderValue>
 							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
@@ -2240,7 +2240,7 @@ if (col_incomeParentKid.size() > 0) {
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1602749847087</Id>
 					<Name><![CDATA[f_resetDatasets]]></Name>
-					<X>670</X><Y>1160</Y>
+					<X>670</X><Y>1140</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2256,7 +2256,7 @@ dh_incomeExposure.reset();]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1602750111732</Id>
 					<Name><![CDATA[f_averageNumberOfMoves]]></Name>
-					<X>670</X><Y>990</Y>
+					<X>670</X><Y>970</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2394,7 +2394,7 @@ for (County c : counties) {
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1602754587851</Id>
 					<Name><![CDATA[f_lastCompleteGeneration]]></Name>
-					<X>670</X><Y>1080</Y>
+					<X>670</X><Y>1060</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2423,7 +2423,7 @@ if (v_lastCompleteGeneration >= p_lastGeneration) {
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1602755283688</Id>
 					<Name><![CDATA[f_updatePlots]]></Name>
-					<X>670</X><Y>1120</Y>
+					<X>670</X><Y>1100</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2463,7 +2463,7 @@ for (Person p : col_peopleAlive) {
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1602755462989</Id>
 					<Name><![CDATA[f_nsi]]></Name>
-					<X>670</X><Y>930</Y>
+					<X>670</X><Y>910</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2478,7 +2478,7 @@ if (v_incomeSD > 0) {
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1602755574312</Id>
 					<Name><![CDATA[f_dataExport]]></Name>
-					<X>670</X><Y>1140</Y>
+					<X>670</X><Y>1120</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2511,7 +2511,7 @@ if (p_exportData && col_fileSelection.get("environment") && time() > 60
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1604391304064</Id>
 					<Name><![CDATA[f_lifeExpectancy]]></Name>
-					<X>670</X><Y>950</Y>
+					<X>670</X><Y>930</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2527,7 +2527,7 @@ if (p_exportData && col_fileSelection.get("environment") && time() > 60
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1605383853578</Id>
 					<Name><![CDATA[f_incomeMobility]]></Name>
-					<X>670</X><Y>970</Y>
+					<X>670</X><Y>950</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2580,7 +2580,7 @@ if (p_exportData && col_fileSelection.get("environment") && time() > 60
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1605386921383</Id>
 					<Name><![CDATA[f_lastCompleteMobilityCohort]]></Name>
-					<X>670</X><Y>1040</Y>
+					<X>670</X><Y>1020</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2611,7 +2611,7 @@ if (p_exportData && col_fileSelection.get("environment") && time() > 60
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1605686303267</Id>
 					<Name><![CDATA[f_lastCompleteMortalityCohort]]></Name>
-					<X>670</X><Y>1060</Y>
+					<X>670</X><Y>1040</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2955,7 +2955,8 @@ col_fileSelection.put("parameters", true);
 col_fileSelection.put("mortality", true);
 col_fileSelection.put("county", true);
 col_fileSelection.put("environment",true);
-col_fileSelection.put("agents", false);
+col_fileSelection.put("agents", true);
+col_fileSelection.put("migration", true);
 
 // parameter data
 if (p_exportData && col_fileSelection.get("parameters")) {
@@ -3134,30 +3135,41 @@ if (p_exportData && col_fileSelection.get("agents")) {
 			new String[]{"iteration", "replicate",
 					"model_time", "id", "parent_id",
 					"generation", "birthdate", "age",
-					"income_type", "income",
-					"parent_income_type", "parent_income",
-					"county", "smoker", "parent_smoker",
-					"county_mean_income", "county_gini",
-					"county_rank_correlation",
-					"county_rank_slope",
-					"total_rank_slope_exposure",
-					"rank_slope_exposure18",
-					"total_z_income_exposure",
-					"z_income_exposure30"},
+					"income_group", "income",
+					"parent_income_group", "parent_income", 
+					"prob_income_group",
+					"prob_transition", 
+					"time_exposure", 
+					"final_transition_probs"
+					},
 			new String[]{"main.v_iteration",
 					"main.v_replicate", "time()", "p_id",
 					"p_parentId", "p_generation",
-					"p_birthTime", "p_age", "p_incomeType",
-					"p_income", "p_parentIncomeType",
-					"p_parentIncome", "county.getIndex()",
-					"v_smoker", "p_parentSmoker",
-					"county.v_meanIncome", "county.v_gini",
-					"county.v_rankCorrelation",
-					"county.v_rankSlope", "v_rankSlopeExp",
-					"v_rankSlopeExp18", "v_incomeExposureZ",
-					"v_incomeExposureZ30"});
+					"p_birthTime", "p_age", "p_incomeGroup",
+					"p_income", "p_parentIncomeGroup",
+					"p_parentIncome", 
+					"col_tempStrings.get(0)", 
+					"col_tempStrings.get(1)", 
+					"col_tempStrings.get(2)", 
+					"Arrays.toString(v_incomeTransitionProbs)"});
 	a.initiateFile(col_textFiles);
 	col_dataExport.put("agents", a);
+}
+
+
+// migration
+if (p_exportData && col_fileSelection.get("migration")) {
+	ExportOutput mi = new ExportOutput(path, "migration",
+			v_iteration, v_replicate,
+			new String[]{"iteration", "replicate",
+					"model_time", "id", "age", "county", "cz", "time"},
+			new String[]{"main.v_iteration",
+					"main.v_replicate", "time()", "p_id", 
+					"p_age", "county.getIndex()",
+					"county.p_cz", "time() - p_birthTime"}
+			);
+	mi.initiateFile(col_textFiles);
+	col_dataExport.put("migration", mi);
 }]]></Body>
 				</Function>
 			</Functions>
@@ -3614,6 +3626,9 @@ if (p_exportData && col_fileSelection.get("agents")) {
 					<Parameters>
 						<Parameter>
 							<Name><![CDATA[p_cz]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[p_weightIncomeGroup]]></Name>
 						</Parameter>
 					</Parameters>
 					<ReplicationFlag>true</ReplicationFlag>
@@ -5026,7 +5041,7 @@ if (p_exportData && col_fileSelection.get("agents")) {
 				<Variable Class="PlainVariable">
 					<Id>1566808702969</Id>
 					<Name><![CDATA[v_gini]]></Name>
-					<X>290</X><Y>230</Y>
+					<X>290</X><Y>290</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5041,7 +5056,7 @@ if (p_exportData && col_fileSelection.get("agents")) {
 				<Variable Class="PlainVariable">
 					<Id>1566895283885</Id>
 					<Name><![CDATA[v_rankCorrelation]]></Name>
-					<X>430</X><Y>130</Y>
+					<X>600</X><Y>280</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5056,7 +5071,7 @@ if (p_exportData && col_fileSelection.get("agents")) {
 				<Variable Class="PlainVariable">
 					<Id>1566895483362</Id>
 					<Name><![CDATA[v_meanIncome]]></Name>
-					<X>290</X><Y>330</Y>
+					<X>290</X><Y>390</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5071,7 +5086,7 @@ if (p_exportData && col_fileSelection.get("agents")) {
 				<Variable Class="PlainVariable">
 					<Id>1598002587694</Id>
 					<Name><![CDATA[v_meanIncomeZ]]></Name>
-					<X>290</X><Y>350</Y>
+					<X>290</X><Y>410</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5086,7 +5101,7 @@ if (p_exportData && col_fileSelection.get("agents")) {
 				<Variable Class="PlainVariable">
 					<Id>1602763329310</Id>
 					<Name><![CDATA[v_activePeople]]></Name>
-					<X>290</X><Y>450</Y>
+					<X>290</X><Y>510</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5101,7 +5116,7 @@ if (p_exportData && col_fileSelection.get("agents")) {
 				<Variable Class="PlainVariable">
 					<Id>1604393365394</Id>
 					<Name><![CDATA[v_lifeExpectancy]]></Name>
-					<X>290</X><Y>250</Y>
+					<X>290</X><Y>310</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5116,7 +5131,7 @@ if (p_exportData && col_fileSelection.get("agents")) {
 				<Variable Class="PlainVariable">
 					<Id>1604393511844</Id>
 					<Name><![CDATA[v_age]]></Name>
-					<X>290</X><Y>270</Y>
+					<X>290</X><Y>330</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5131,7 +5146,7 @@ if (p_exportData && col_fileSelection.get("agents")) {
 				<Variable Class="PlainVariable">
 					<Id>1605082547818</Id>
 					<Name><![CDATA[v_incomeSD]]></Name>
-					<X>290</X><Y>370</Y>
+					<X>290</X><Y>430</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5143,7 +5158,7 @@ if (p_exportData && col_fileSelection.get("agents")) {
 				<Variable Class="PlainVariable">
 					<Id>1605117221537</Id>
 					<Name><![CDATA[v_medianIncome]]></Name>
-					<X>290</X><Y>390</Y>
+					<X>290</X><Y>450</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5158,7 +5173,7 @@ if (p_exportData && col_fileSelection.get("agents")) {
 				<Variable Class="PlainVariable">
 					<Id>1605383759451</Id>
 					<Name><![CDATA[v_rankSlope]]></Name>
-					<X>430</X><Y>150</Y>
+					<X>600</X><Y>300</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5173,7 +5188,7 @@ if (p_exportData && col_fileSelection.get("agents")) {
 				<Variable Class="PlainVariable">
 					<Id>1605383770644</Id>
 					<Name><![CDATA[v_rankAbsolute]]></Name>
-					<X>430</X><Y>170</Y>
+					<X>600</X><Y>320</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5189,7 +5204,7 @@ if (p_exportData && col_fileSelection.get("agents")) {
 					<Id>1605384121715</Id>
 					<Name><![CDATA[v_cohortIM]]></Name>
 					<Description><![CDATA[Cohort size when computing IM (rank-rank slope)]]></Description>
-					<X>430</X><Y>190</Y>
+					<X>600</X><Y>340</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5201,7 +5216,7 @@ if (p_exportData && col_fileSelection.get("agents")) {
 				<Variable Class="PlainVariable">
 					<Id>1605389427728</Id>
 					<Name><![CDATA[v_cohortMortality]]></Name>
-					<X>430</X><Y>210</Y>
+					<X>600</X><Y>360</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5213,7 +5228,7 @@ if (p_exportData && col_fileSelection.get("agents")) {
 				<Variable Class="PlainVariable">
 					<Id>1605703397963</Id>
 					<Name><![CDATA[v_smokers]]></Name>
-					<X>290</X><Y>430</Y>
+					<X>290</X><Y>490</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5264,10 +5279,36 @@ if (p_exportData && col_fileSelection.get("agents")) {
 						</ParameterEditor>
 					</Properties>                 
 				</Variable>
+				<Variable Class="Parameter">
+					<Id>1641824835191</Id>
+					<Name><![CDATA[p_weightIncomeGroup]]></Name>
+					<X>290</X><Y>170</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double[]]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[new StatUtils().repeatValuesArray(0.0, main.p_numIncomeGroups)]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1641824835189</Id>
+							<Label><![CDATA[p_weightVectorCountyIncExp]]></Label>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+							<StartSection><![CDATA[Coefficients]]></StartSection>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
 				<Variable Class="CollectionVariable">
 					<Id>1596631263018</Id>
 					<Name><![CDATA[col_peopleAlive]]></Name>
-					<X>290</X><Y>170</Y>
+					<X>290</X><Y>230</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5282,7 +5323,7 @@ if (p_exportData && col_fileSelection.get("agents")) {
 				<Variable Class="CollectionVariable">
 					<Id>1597932300261</Id>
 					<Name><![CDATA[col_income]]></Name>
-					<X>290</X><Y>190</Y>
+					<X>290</X><Y>250</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5340,7 +5381,7 @@ if (p_exportData && col_fileSelection.get("agents")) {
 						</RecurrenceCode>
 						<Condition><![CDATA[false]]></Condition>
 					</Properties>
-					<Action><![CDATA[f_updateTransitionMatrix();
+					<Action><![CDATA[//f_updateTransitionMatrix();
 f_updatePropIncomeGroup();]]></Action>
 				</Event>
 			</Events>
@@ -5357,7 +5398,6 @@ f_updatePropIncomeGroup();]]></Action>
 					<ShowLabel>true</ShowLabel>
 					<Body><![CDATA[StatUtils s = new StatUtils();
 
-
 ArrayList<TransitionMatrixData> temp = 
 	new ArrayList<TransitionMatrixData>();
 
@@ -5367,17 +5407,17 @@ for (int i = 0; i < main.p_numIncomeGroups; i++) {
 		double vv = (double) h;
 		double tprop = col_transitionMatrixData.stream()
 			.filter(p -> p.parent == v+1 && p.kid == vv+1)
-			.mapToDouble(p -> p.prop).sum();
+			.mapToDouble(p -> p.prop).findFirst().orElse(0.20);
 		double cz = col_transitionMatrixData.stream()
 			.filter(p -> p.parent == v+1 && p.kid == vv+1)
-			.mapToDouble(p -> p.cz).sum();
+			.mapToDouble(p -> p.cz).findFirst().orElse(0.0);
 		//traceln("County ", this.getIndex(), " :::::::::::");
 		//traceln("Proportion income :" + v_proportionIncomeGroup[(int) v]);
 		//traceln("Weight :" + main.p_weightVectorCountyIncExp[(int) v]);
 		//traceln("first value: " + cz + "," +  (v+1) +  "," + (vv+1) + ","+ prop);
 		double value = s.weigthedAverage(v_proportionIncomeGroup[(int) vv], 
 			tprop,
-	   		main.p_weightVectorCountyIncExp[(int) v]);
+	   		p_weightIncomeGroup[(int) v]);
 		//traceln("second value: " + cz + "," +  (v+1) +  "," + (vv+1) + ","+ prop);
 	   	TransitionMatrixData d = new TransitionMatrixData(cz, v+1, 
 	   		vv+1, value);
@@ -5547,6 +5587,9 @@ v_proportionIncomeGroup = c;]]></Body>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[p_fertilityControl]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[p_trackAgent]]></Name>
 						</Parameter>
 					</Parameters>
 					<ReplicationFlag>true</ReplicationFlag>
@@ -6389,7 +6432,7 @@ import java.util.stream.Collectors;
 				<Variable Class="Parameter">
 					<Id>1516979080855</Id>
 					<Name><![CDATA[p_income]]></Name>
-					<X>50</X><Y>1010</Y>
+					<X>50</X><Y>1000</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6478,7 +6521,7 @@ import java.util.stream.Collectors;
 				<Variable Class="Parameter">
 					<Id>1566900437051</Id>
 					<Name><![CDATA[p_incomeGroup]]></Name>
-					<X>50</X><Y>990</Y>
+					<X>50</X><Y>980</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6499,7 +6542,7 @@ import java.util.stream.Collectors;
 				<Variable Class="Parameter">
 					<Id>1567340868861</Id>
 					<Name><![CDATA[p_parentIncomeGroup]]></Name>
-					<X>50</X><Y>950</Y>
+					<X>50</X><Y>940</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6520,7 +6563,7 @@ import java.util.stream.Collectors;
 				<Variable Class="Parameter">
 					<Id>1567342017953</Id>
 					<Name><![CDATA[p_parentIncome]]></Name>
-					<X>50</X><Y>970</Y>
+					<X>50</X><Y>960</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6634,7 +6677,7 @@ import java.util.stream.Collectors;
 				<Variable Class="Parameter">
 					<Id>1596795421908</Id>
 					<Name><![CDATA[p_parentIncomeMobExp]]></Name>
-					<X>50</X><Y>1120</Y>
+					<X>50</X><Y>1100</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6655,7 +6698,7 @@ import java.util.stream.Collectors;
 				<Variable Class="Parameter">
 					<Id>1596795634808</Id>
 					<Name><![CDATA[p_parentId]]></Name>
-					<X>50</X><Y>1040</Y>
+					<X>50</X><Y>1020</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6700,7 +6743,7 @@ import java.util.stream.Collectors;
 				<Variable Class="Parameter">
 					<Id>1597050077702</Id>
 					<Name><![CDATA[p_parentAge]]></Name>
-					<X>50</X><Y>1060</Y>
+					<X>50</X><Y>1040</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6721,7 +6764,7 @@ import java.util.stream.Collectors;
 				<Variable Class="Parameter">
 					<Id>1597051969927</Id>
 					<Name><![CDATA[p_parentAlive]]></Name>
-					<X>50</X><Y>1080</Y>
+					<X>50</X><Y>1060</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6769,7 +6812,7 @@ import java.util.stream.Collectors;
 				<Variable Class="Parameter">
 					<Id>1605278945777</Id>
 					<Name><![CDATA[p_parentAbsoluteMobClass]]></Name>
-					<X>50</X><Y>1100</Y>
+					<X>50</X><Y>1080</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6790,7 +6833,7 @@ import java.util.stream.Collectors;
 				<Variable Class="Parameter">
 					<Id>1605791191997</Id>
 					<Name><![CDATA[p_parentIncomeGroupExp]]></Name>
-					<X>50</X><Y>1140</Y>
+					<X>50</X><Y>1120</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6811,7 +6854,7 @@ import java.util.stream.Collectors;
 				<Variable Class="Parameter">
 					<Id>1605793493358</Id>
 					<Name><![CDATA[p_parentSmoker]]></Name>
-					<X>50</X><Y>1160</Y>
+					<X>50</X><Y>1140</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6835,7 +6878,7 @@ import java.util.stream.Collectors;
 				<Variable Class="Parameter">
 					<Id>1640516994452</Id>
 					<Name><![CDATA[p_fertilityControl]]></Name>
-					<X>50</X><Y>1180</Y>
+					<X>50</X><Y>1160</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6849,6 +6892,30 @@ import java.util.stream.Collectors;
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1640516994450</Id>
+							<EditorContolType>CHECK_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1641406935439</Id>
+					<Name><![CDATA[p_trackAgent]]></Name>
+					<X>50</X><Y>1180</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[boolean]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[false]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1641406935437</Id>
 							<EditorContolType>CHECK_BOX</EditorContolType>
 							<MinSliderValue><![CDATA[0]]></MinSliderValue>
 							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
@@ -6882,6 +6949,21 @@ import java.util.stream.Collectors;
 					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
 						<CollectionClass><![CDATA[ArrayList]]></CollectionClass>
 						<ElementClass><![CDATA[Exposure]]></ElementClass>
+						<ValueElementClass><![CDATA[String]]></ValueElementClass>
+					</Properties>
+
+				</Variable>
+				<Variable Class="CollectionVariable">
+					<Id>1641495202678</Id>
+					<Name><![CDATA[col_tempStrings]]></Name>
+					<X>740</X><Y>750</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
+						<CollectionClass><![CDATA[ArrayList]]></CollectionClass>
+						<ElementClass><![CDATA[String]]></ElementClass>
 						<ValueElementClass><![CDATA[String]]></ValueElementClass>
 					</Properties>
 
@@ -6927,7 +7009,7 @@ import java.util.stream.Collectors;
 					</Points>
 					<Properties Target="1566676405826">
 						<Action><![CDATA[if (p_generation > 0 && time() > 0) {
-	f_estimteExposure();
+	f_estimateExposure();
 	ev_computeAge.restart();
 }]]></Action>
 					</Properties>	
@@ -7009,7 +7091,7 @@ import java.util.stream.Collectors;
 					</Points>
 					<IconOffset>40.0</IconOffset>
 					<Properties Source="1596626508124" Target="1566676405826" Trigger="message">
-						<Action><![CDATA[f_estimteExposure();
+						<Action><![CDATA[f_estimateExposure();
 ev_computeAge.restart();]]></Action>
 						<Timeout Class="CodeUnitValue">
 							<Code><![CDATA[1]]></Code>
@@ -7191,13 +7273,13 @@ f_moveKids();]]></Action>
 					<Action><![CDATA[p_age = floor(f_currentAge());
 
 // record exposure 
-if (p_generation > 0 & time() > 0)  {
+if (p_generation > 0 & time() > 0 & p_age <= 18)  {
 	f_recordExposure();
-	f_estimteExposure();
+	f_estimateExposure();
 }
 
 // start working
-if (Math.floor(p_age) == 18 && p_economicallyActive == false) {
+if (p_age == 18 && p_economicallyActive == false) {
 	send("time to work", this);
 }
 
@@ -7205,7 +7287,7 @@ if (Math.floor(p_age) == 18 && p_economicallyActive == false) {
 if (p_age > 110) send("you should die", this);
 
 // start smoking
-if (Math.floor(p_age) == 30 & v_smoker == false) {
+if (p_age == 30 & v_smoker == false) {
 	send("start smoking?", this);
 }
 
@@ -7276,7 +7358,10 @@ if (Math.floor(p_age) == 30 & v_smoker == false) {
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Body><![CDATA[// reproduction function
-// traceln("Reproducing at age " + round(p_age) +  " generation " + p_generation + " recycled " + p_recycled);
+if (p_trackAgent) {
+	traceln("Reproducing at age " + round(p_age) +  
+	" generation " + p_generation + " recycled " + p_recycled);
+}
 
 // recycle an agent
 if (main.col_deadPeople.size() > 0) {
@@ -7318,6 +7403,9 @@ v_numberKids++;
 					<Body><![CDATA[//traceln("This agent is moving...");
 //traceln("County origin: " + county.getIndex());
 
+// update exposure
+if (p_age < 18) f_recordExposure();
+
 // move target agent
 origin.col_peopleAlive.remove(this);
 
@@ -7329,6 +7417,14 @@ Income i = findFirst(origin.col_income, p -> p.id == p_id);
 if (i != null) { origin.col_income.remove(i); }
 v_numberMoves++;
 
+// register before moving 
+if (main.p_exportData && p_trackAgent &&
+	main.col_fileSelection.get("migration")) {
+	ExportOutput m = main.col_dataExport.get("migration");
+	m.writeFile(main.col_textFiles.get("migration"),
+			m.getValues(this));
+}
+
 // move agents
 goToPopulation(destination.people);
 setXY(main.f_randomPositionX(this), main.f_randomPositionY(this));
@@ -7337,9 +7433,6 @@ destination.col_peopleAlive.add(this);
 // update income classes
 //if (pair != null) { destination.col_incomeParentKid.add(pair); }
 if (i != null) { destination.col_income.add(i); }
-
-// save migration data (target agent)
-//if (main.p_exportMigrationData) { main.f_exportMigrationData(this); }
 
 /// move kids
 if (col_kids.size() > 0) f_moveKids();]]></Body>
@@ -7361,34 +7454,42 @@ StatUtils st = new StatUtils();
 main.col_deadPeople.add(this);
 
 if (p_fertilityControl == false) {
-	main.col_deaths.add(new Death(this.p_id, this.county.getIndex(), this.p_generation,
-		this.p_incomeGroup, this.p_birthTime, this.p_age, 
-		new Exposure().getAverageExposure("countyRankSlope", col_exposure), 
-		new Exposure().getAverageExposure("countyRankCorrelation", col_exposure)));
+	main.col_deaths.add(new Death(this.p_id,
+			this.county.getIndex(), this.p_generation,
+			this.p_incomeGroup, this.p_birthTime,
+			this.p_age,
+			new Exposure().getAverageExposure(
+					"countyRankSlope", col_exposure),
+			new Exposure().getAverageExposure(
+					"countyRankCorrelation",
+					col_exposure)));
 }
 
-//county.col_deaths.add(new Deaths(this.p_id, this.county.getIndex(), this.p_generation, 
-//	this.p_birthTime, this.p_age));
+// county.col_deaths.add(new Deaths(this.p_id,
+// this.county.getIndex(), this.p_generation,
+// this.p_birthTime, this.p_age));
 
 // export mortality data
-boolean selectedGeneration = Arrays.stream(main.p_selectedGenerations)
-	.anyMatch(x -> x == p_generation);
-if (main.p_exportData && selectedGeneration && !p_fertilityControl &&
-		main.col_fileSelection.get("mortality")) {
+boolean selectedGeneration = Arrays
+		.stream(main.p_selectedGenerations)
+		.anyMatch(x -> x == p_generation);
+if (main.p_exportData && selectedGeneration
+		&& !p_fertilityControl
+		&& main.col_fileSelection.get("mortality")) {
 	ExportOutput m = main.col_dataExport.get("mortality");
-	m.writeFile(main.col_textFiles.get("mortality"), m.getValues(this));
+	m.writeFile(main.col_textFiles.get("mortality"),
+			m.getValues(this));
 }
 
-//trace 
-//traceln("dying id " + p_id);
+// traceln("dying id " + p_id);
 
 // clear exposure collections
-//col_countyIncomeExp.clear();
-//col_countyRankSlopeExp.clear();
-//col_countyRankCorrelationExp.clear();
-//col_incomeMobility.clear();
-//col_countyIncomeExpZ.clear();
-//col_countyIncomeGroupExp.clear();
+// col_countyIncomeExp.clear();
+// col_countyRankSlopeExp.clear();
+// col_countyRankCorrelationExp.clear();
+// col_incomeMobility.clear();
+// col_countyIncomeExpZ.clear();
+// col_countyIncomeGroupExp.clear();
 col_exposure.clear();
 
 // reset exposure variables
@@ -7400,9 +7501,15 @@ v_incomeExposureZ = 0.0;
 v_incomeExposureZ30 = 0.0;
 v_absoluteMobClass = 0;
 
-v_incomeTransitionProbs = st.repeatValuesArray(1.0/main.p_numIncomeGroups, main.p_numIncomeGroups);
-//v_incomeExposureIncomeGroup = st.repeatValuesArray(1.0/main.p_numIncomeGroups, main.p_numIncomeGroups);
-//v_incomeExposureIncomeGroup18 = st.repeatValuesArray(1.0/main.p_numIncomeGroups, main.p_numIncomeGroups);
+v_incomeTransitionProbs = st.repeatValuesArray(
+		1.0 / main.p_numIncomeGroups,
+		main.p_numIncomeGroups);
+// v_incomeExposureIncomeGroup =
+// st.repeatValuesArray(1.0/main.p_numIncomeGroups,
+// main.p_numIncomeGroups);
+// v_incomeExposureIncomeGroup18 =
+// st.repeatValuesArray(1.0/main.p_numIncomeGroups,
+// main.p_numIncomeGroups);
 
 // other variables
 v_numberKids = 0;
@@ -7412,8 +7519,11 @@ v_numberMovesKid = 0;
 v_smoker = false;
 p_parentSmoker = false;
 v_timeCounty = 0;
+//p_showCalculations = false;
 
-p_parentIncomeGroupExp = st.repeatValuesArray(1.0/main.p_numIncomeGroups, main.p_numIncomeGroups);
+p_parentIncomeGroupExp = st.repeatValuesArray(
+		1.0 / main.p_numIncomeGroups,
+		main.p_numIncomeGroups);
 p_parentIncomeGroup = 0;
 p_parentIncome = 0.0;
 p_parentId = 0;
@@ -7442,8 +7552,10 @@ col_kids.clear();
 
 // remove agent as a kid
 if (p_parentAlive) {
-	Person parent = findFirst(main.col_peopleAlive, p -> p.p_id == this.p_parentId);
-	if (parent != null) parent.col_kids.remove(this);
+	Person parent = findFirst(main.col_peopleAlive,
+			p -> p.p_id == this.p_parentId);
+	if (parent != null)
+		parent.col_kids.remove(this);
 }
 
 // remove agent from collections
@@ -7451,12 +7563,14 @@ county.col_peopleAlive.remove(this);
 main.col_peopleAlive.remove(this);
 
 if (main.col_income.size() > 0) {
-	Income i = findFirst(main.col_income, p -> p.id == this.p_id);
+	Income i = findFirst(main.col_income,
+			p -> p.id == this.p_id);
 	main.col_income.remove(i);
 }
 
 if (county.col_income.size() > 0) {
-	Income i = findFirst(county.col_income, p -> p.id == this.p_id);
+	Income i = findFirst(county.col_income,
+			p -> p.id == this.p_id);
 	county.col_income.remove(i);
 }
 
@@ -7567,8 +7681,7 @@ if (main.v_lastGeneration != newKid.p_generation && main.v_lastGeneration < newK
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Body><![CDATA[//traceln(main.p_mortalityCoeffSmoking);
-//traceln(main.p_mortalityCoeffIncType[p_incomeType-1]);
-// v_everSmoker ? 1.0 : (0.0 * main.p_mortalityCoeffSmoking) + 
+//traceln(main.p_mortalityCoeffIncType[p_incomeGroup-1]);
 
 double value = 
 	(main.f_baselineMortalityRate(p_age) / 100000.0) *	
@@ -7640,7 +7753,7 @@ double rankSlopeCoeff = main.f_getCoefficient(
 		main.p_smokingCoeffRankSlope/main.p_countyRankSlopeSD, 
 	 	main.p_uncertaintyCoeffs ? main.p_smokingCoeffRankSlopeSE/main.p_countyRankSlopeSD : 0.0);
 	
-//traceln(rankSlopeCoeff);
+if (p_trackAgent) traceln("Rank Slope: " + rankSlopeCoeff);
 	
 double odds = exp(
 	main.p_smokingCoeffIncType[p_incomeGroup-1] 
@@ -7651,7 +7764,7 @@ double odds = exp(
 
 double prob = odds / (1.0 + odds);
 boolean smoker = randomTrue(prob);
-//traceln(smoker);
+if (p_trackAgent) traceln("Smoker: " + smoker);
 if (col_kids.size() > 0) {
 	for (Person p : col_kids) {
 		p.p_parentSmoker = smoker;
@@ -7672,8 +7785,6 @@ return smoker;]]></Body>
 					<Body><![CDATA[double thistime = time();
 double timediff = thistime - v_timeCounty;
 
-//traceln("time :::::");
-//traceln(timediff);
 // extract values from transition matrix
 double[] values = county.col_transitionMatrixData.stream()
 	.filter(p -> p.parent == (double) p_parentIncomeGroup)
@@ -7681,17 +7792,35 @@ double[] values = county.col_transitionMatrixData.stream()
 double[] probs = county.col_transitionMatrixData.stream()
 	.filter(p -> p.parent == (double) p_parentIncomeGroup)
 	.mapToDouble(p -> p.prop).toArray();
-//traceln(values);
-//traceln(probs);
-
+	
 col_exposure.add(new Exposure(main.p_numIncomeGroups, 
 	timediff, values, probs, county.v_proportionIncomeGroup, 
-	 county.v_meanIncome, county.v_meanIncomeZ, 
-	 county.v_rankSlope,  
-	 county.v_rankCorrelation,
-	 county.v_rankAbsolute));
+	county.v_meanIncome, county.v_meanIncomeZ, 
+	county.v_rankSlope,  
+	county.v_rankCorrelation,
+	county.v_rankAbsolute));
 	
-v_timeCounty = thistime;]]></Body>
+v_timeCounty = thistime;
+
+// export values
+if (p_generation > 0 && p_age < 19 && p_trackAgent && main.p_exportData 
+	&& main.col_fileSelection.get("agents")) {
+	
+	col_tempStrings.add(
+		Arrays.toString(col_exposure
+			.get(col_exposure.size()-1).countyIncomeGroup));			
+	col_tempStrings.add(
+		Arrays.toString(col_exposure
+			.get(col_exposure.size()-1).probs));
+	col_tempStrings.add(Double.toString(col_exposure
+			.get(col_exposure.size()-1).time));
+	
+	ExportOutput a = main.col_dataExport.get("agents");
+	a.writeFile(main.col_textFiles.get("agents"),
+			a.getValues(this));
+			
+	col_tempStrings.clear();
+}]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
@@ -7745,7 +7874,15 @@ return randomWhere(main.counties, c -> c != county & c.col_peopleAlive.size() <=
 	   	//traceln(":::::::::: this kid is moving...");
 	   	
 		kidCounty.col_peopleAlive.remove(k);
-	
+		
+		// register before moving
+		if (main.p_exportData && k.p_trackAgent &&
+			main.col_fileSelection.get("migration")) {
+			ExportOutput m = main.col_dataExport.get("migration");
+			m.writeFile(main.col_textFiles.get("migration"),
+				m.getValues(k));
+		}
+		
 		// move target agent
 		k.goToPopulation(parentCounty.people);
 		k.setXY(main.f_randomPositionX(k), main.f_randomPositionY(k));
@@ -7769,60 +7906,65 @@ return randomWhere(main.counties, c -> c != county & c.col_peopleAlive.size() <=
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[// traceln("start working");
-
-//traceln("total time: " + (time() - p_birthTime));
+					<Body><![CDATA[if (p_trackAgent) {
+	traceln("start working :::::::::::");
+	traceln("total time: " + (time() - p_birthTime));
+}
 
 // estimate average exposures
 if (p_generation > 0) {
 	f_recordExposure();
-	f_estimteExposure();
+	// if (p_showCalculations) f_showCalculations();
+	f_estimateExposure();
 	// update income type probabilities
 	Exposure t = new Exposure();
-	v_incomeTransitionProbs = t.getAverageExposureTransMob(col_exposure, 
-		main.p_numIncomeGroups, main.p_weightVectorCountyIncExp);
-	double[] quintile ={1,2,3,4,5};
+	v_incomeTransitionProbs = t.getAverageExposureTransMob(
+			col_exposure, 
+			main.p_numIncomeGroups,
+			main.p_weightIncomeGroup);
+	double[] quintile = {1, 2, 3, 4, 5};
 	p_incomeGroup = (int) new StatUtils().weightedSampling(
-		quintile, v_incomeTransitionProbs);
-	//traceln(p_incomeGroup);
-		
-    p_income = f_assignIncomeValues(p_incomeGroup);
+			quintile, v_incomeTransitionProbs);
+	p_income = f_assignIncomeValues(p_incomeGroup);
+	f_recordExposure();
 }
 
 p_economicallyActive = true;
 
-// individual absolute mobility 
+// individual absolute mobility
 v_absoluteMobClass = p_incomeGroup - p_parentIncomeGroup;
 
 if (col_kids.size() > 0) {
-	for(Person k : col_kids) {
+	for (Person k : col_kids) {
 		k.p_parentAbsoluteMobClass = v_absoluteMobClass;
 	}
-} 
+}
 
 // update agent color
 oval.setFillColor(f_fillColor());
 oval.setLineColor(f_fillColor());
 
-// income 
+// income
 Income i = new Income(p_id, p_income);
 main.col_income.add(i);
 county.col_income.add(i);
 
 // add income mobility data
-IncomeParentKid t = new IncomeParentKid(p_id, county.getIndex(), p_generation, 
-	p_birthTime, p_parentIncome, p_income, p_parentIncomeGroup, p_incomeGroup);
+IncomeParentKid t = new IncomeParentKid(p_id,
+		county.getIndex(), p_generation, p_birthTime,
+		p_parentIncome, p_income, p_parentIncomeGroup,
+		p_incomeGroup);
 main.col_incomeParentKid.add(t);
 
 // exposure at age 18
-v_rankSlopeExp18 = new Exposure()
-	.getAverageExposure("countyRankSlope", col_exposure);]]></Body>
+v_rankSlopeExp18 = new Exposure().getAverageExposure(
+		"countyRankSlope", col_exposure);]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1606921997508</Id>
-					<Name><![CDATA[f_estimteExposure]]></Name>
+					<Name><![CDATA[f_estimateExposure]]></Name>
 					<X>490</X><Y>1000</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -7851,6 +7993,24 @@ v_rankCorrelationExp = t.getAverageExposure("countyRankCorrelation", col_exposur
 					<Body><![CDATA[return 
 	(main.f_baselineFertilityRate(p_age) / 1000.0 ) / (main.p_fertilityAdjustment *
 	exp(main.p_fertilityCoeffIncType[p_incomeGroup-1]));]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1641412920360</Id>
+					<Name><![CDATA[f_showCalculations]]></Name>
+					<X>740</X><Y>910</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[for (int i = 0; i < col_exposure.size(); i++) {
+	Exposure e = col_exposure.get(i);
+	traceln("Record " + (i+1) + " ::::::::::");
+	traceln("Income group: " + Arrays.toString(e.countyIncomeGroup));
+	traceln("Transition probs: " + Arrays.toString(e.probs));
+	traceln("Time: " + e.time);
+}]]></Body>
 				</Function>
 			</Functions>
 			<AgentLinks>
@@ -8503,6 +8663,28 @@ v_rankCorrelationExp = t.getAverageExposure("countyRankCorrelation", col_exposur
 					</Font>
 					<Alignment>LEFT</Alignment>
 				</Text>
+				<Control Type="Button">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1641406994435</Id>
+					<Name><![CDATA[button]]></Name>
+					<X>350</X><Y>20</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="110" Height="30">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<TextColor>-16777216</TextColor>
+						<Enabled>true</Enabled>
+						<ActionCode><![CDATA[if (p_trackAgent) p_trackAgent = false;
+else p_trackAgent = true;]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<LabelText><![CDATA[Track agent]]></LabelText>
+					</ExtendedProperties>
+				</Control>
 			</Presentation>
 
 				</Level>
@@ -11698,7 +11880,7 @@ getExperimentHost().setPresentable( getEngine().getRoot() );]]></ActionCode>
 					<ParameterName><![CDATA[p_incomeExposureTransMat]]></ParameterName>
 				</Parameter>
 				<Parameter>
-					<ParameterName><![CDATA[p_weightVectorCountyIncExp]]></ParameterName>
+					<ParameterName><![CDATA[p_weightIncomeGroup]]></ParameterName>
 					<ParameterValue Class="CodeValue">
 						<Code><![CDATA[v_weightIncTypeProb]]></Code>
 					</ParameterValue>
@@ -13315,7 +13497,7 @@ getExperimentHost().setPresentable( getEngine().getRoot() );]]></ActionCode>
 					<ParameterName><![CDATA[p_incomeExposureTransMat]]></ParameterName>
 				</Parameter>
 				<Parameter>
-					<ParameterName><![CDATA[p_weightVectorCountyIncExp]]></ParameterName>
+					<ParameterName><![CDATA[p_weightIncomeGroup]]></ParameterName>
 					<ParameterValue Class="CodeValue">
 						<Code><![CDATA[{0.8, 0.7, 0.5,  0.3, 0.1}]]></Code>
 					</ParameterValue>
@@ -13484,7 +13666,7 @@ root.v_replicate = 1;]]></BeforeSimulationRunCode>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double[]]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[new StatUtils().repeatValuesArray(0.10, 5);
+							<Code><![CDATA[new StatUtils().repeatValuesArray(0.0, 5);
 //{0.01, 0.05, 0.10, 0.15, 0.3}]]></Code>
 						</InitialValue>
 					</Properties>
@@ -14826,7 +15008,7 @@ getExperimentHost().setPresentable( getEngine().getRoot() );]]></ActionCode>
 					</ParameterValue>
 				</Parameter>
 				<Parameter>
-					<ParameterName><![CDATA[p_weightVectorCountyIncExp]]></ParameterName>
+					<ParameterName><![CDATA[p_weightIncomeGroup]]></ParameterName>
 					<ParameterValue Class="CodeValue">
 						<Code><![CDATA[v_weightIncTypeProb]]></Code>
 					</ParameterValue>
@@ -20636,7 +20818,7 @@ public class StatUtils {
 	}
 	
 	public double weigthedAverage(double v1, double v2, double w) {
-		return (v1 * w) + (v2* (1.0 - w));
+		return (double) (v1 * w) + (v2 * (1.0 - w));
 	}
 	
 	public double[] computeRanks(double[] values) {
@@ -21087,7 +21269,8 @@ public class Exposure {
     public Exposure(int ngroups, double time, double[] quintile, 
     		double[] probs, double[] countyIncomeGroup, 
     		double countyIncome, double countyIncomeZ, 
-    		double countyRankSlope, double countyRankCorrelation, double countyAbsoluteMob) {
+    		double countyRankSlope, double countyRankCorrelation, 
+    		double countyRankAbsolute) {
     	this.ngroups = ngroups;
     	this.time = time;
     	this.quintile = quintile;
@@ -21111,15 +21294,11 @@ public class Exposure {
 
     	if (l.size() > 0) {
     		double tt = l.stream().mapToDouble(p -> p.time).sum();
-    		// traceln(tt);
     		for (int i = 0; i < numgroups; i++) {
     			int v = i;
-    			//traceln(v);
     			tprop[v] = l.stream().mapToDouble(p -> p.probs[v] * p.time).sum() / tt;
     			iprop[v] = l.stream().mapToDouble(p -> p.countyIncomeGroup[v] * p.time).sum() / tt;
-    		}
-    		for (int i = 0; i < numgroups; i++) {
-    			output[i] = s.weigthedAverage(iprop[i], tprop[i], weights[i]);
+    			output[v] = s.weigthedAverage(iprop[v], tprop[v], weights[v]);
     		}
     	return output;
     	} else {
@@ -21136,7 +21315,6 @@ public class Exposure {
     		double sv = l.stream().mapToDouble(p -> p.get(variable)).sum();
     		double vv = l.stream().mapToDouble(p -> p.get(variable) * p.time).sum();
     		double tt = l.stream().mapToDouble(p -> p.time).sum();
-    		//traceln(tt);
     		if (tt > 0) value = vv/tt;
     		else value = sv;
     	} else {
@@ -21150,8 +21328,14 @@ public class Exposure {
     	else if (variable == "countyIncomeZ" ) return this.countyIncomeZ;
     	else if (variable == "countyRankSlope" ) return this.counytRankSlope;
     	else if (variable == "countyRankCorrelation" ) return this.countyRankCorrelation;
-    	else if (variable == "countyRankAbsolut" ) return this.countyRankAbsolute;
+    	else if (variable == "countyRankAbsolute" ) return this.countyRankAbsolute;
     	else return 0;
+    }
+    
+    public double[] getArray(String variable) {
+    	if (variable == "probs" ) return this.probs;
+    	else if (variable == "countyIncomeGroup" ) return this.countyIncomeGroup;
+    	else return new double[5];	
     }
 }
 
