@@ -2,3 +2,4 @@
 /data
 /models/MobHealthRecycling/output/*.csv
 /models/MobHealthRecycling/slack.txt
+/output/data/
