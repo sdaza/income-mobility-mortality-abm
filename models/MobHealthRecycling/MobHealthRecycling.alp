@@ -1032,30 +1032,6 @@ import java.util.stream.Collectors;  ]]></Import>
 					</Properties>                 
 				</Variable>
 				<Variable Class="Parameter">
-					<Id>1640074511221</Id>
-					<Name><![CDATA[p_outputPath]]></Name>
-					<X>50</X><Y>1330</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[String]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<DefaultValue Class="CodeValue">
-							<Code><![CDATA["output/"]]></Code>
-						</DefaultValue>
-						<ParameterEditor>
-							<Id>1640074511219</Id>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
-				</Variable>
-				<Variable Class="Parameter">
 					<Id>1640074062287</Id>
 					<Name><![CDATA[p_exportData]]></Name>
 					<X>50</X><Y>1350</Y>
@@ -1073,6 +1049,54 @@ import java.util.stream.Collectors;  ]]></Import>
 						<ParameterEditor>
 							<Id>1640074062285</Id>
 							<EditorContolType>CHECK_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1642079492484</Id>
+					<Name><![CDATA[p_filesToExport]]></Name>
+					<X>50</X><Y>1450</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[String[]]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[{"parameters"}]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1642079492482</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1640074511221</Id>
+					<Name><![CDATA[p_outputPath]]></Name>
+					<X>50</X><Y>1330</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[String]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA["output/"]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1640074511219</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
 							<MinSliderValue><![CDATA[0]]></MinSliderValue>
 							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
 							<DelimeterType>NO_DELIMETER</DelimeterType>
@@ -1403,7 +1427,7 @@ These coefficients were  estimated using the National Health Interview Survey 20
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[{-0.9103386 ,-1.2483597, -1.6892769, -2.1046334, -2.8605010}]]></Code>
+							<Code><![CDATA[{-1.17434,-1.54797,-1.92578,-2.3151,-3.11795}]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1597523476578</Id>
@@ -1711,30 +1735,6 @@ The standard error was computed usingthe  formula: (log(3.1) - log(2.4))/(qnorm(
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1606149445572</Id>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
-				</Variable>
-				<Variable Class="Parameter">
-					<Id>1642079492484</Id>
-					<Name><![CDATA[p_filesToExport]]></Name>
-					<X>50</X><Y>1450</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[String[]]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[{"parameters"}]]></Code>
-						</DefaultValue>
-						<ParameterEditor>
-							<Id>1642079492482</Id>
 							<EditorContolType>TEXT_BOX</EditorContolType>
 							<MinSliderValue><![CDATA[0]]></MinSliderValue>
 							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
@@ -12412,10 +12412,13 @@ getExperimentHost().setPresentable( getEngine().getRoot() );]]></ActionCode>
 					<ParameterName><![CDATA[p_inputDataPath]]></ParameterName>
 				</Parameter>
 				<Parameter>
-					<ParameterName><![CDATA[p_outputPath]]></ParameterName>
+					<ParameterName><![CDATA[p_exportData]]></ParameterName>
 				</Parameter>
 				<Parameter>
-					<ParameterName><![CDATA[p_exportData]]></ParameterName>
+					<ParameterName><![CDATA[p_filesToExport]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_outputPath]]></ParameterName>
 				</Parameter>
 				<Parameter>
 					<ParameterName><![CDATA[p_movingDecisionRate]]></ParameterName>
@@ -12528,9 +12531,6 @@ getExperimentHost().setPresentable( getEngine().getRoot() );]]></ActionCode>
 					<ParameterValue Class="CodeValue">
 						<Code><![CDATA[v_mortalityFakeCoeffRankSlope]]></Code>
 					</ParameterValue>
-				</Parameter>
-				<Parameter>
-					<ParameterName><![CDATA[p_filesToExport]]></ParameterName>
 				</Parameter>
 			</Parameters>			
 			<PresentationProperties>
@@ -14029,10 +14029,13 @@ getExperimentHost().setPresentable( getEngine().getRoot() );]]></ActionCode>
 					<ParameterName><![CDATA[p_inputDataPath]]></ParameterName>
 				</Parameter>
 				<Parameter>
-					<ParameterName><![CDATA[p_outputPath]]></ParameterName>
+					<ParameterName><![CDATA[p_exportData]]></ParameterName>
 				</Parameter>
 				<Parameter>
-					<ParameterName><![CDATA[p_exportData]]></ParameterName>
+					<ParameterName><![CDATA[p_filesToExport]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_outputPath]]></ParameterName>
 				</Parameter>
 				<Parameter>
 					<ParameterName><![CDATA[p_movingDecisionRate]]></ParameterName>
@@ -14147,9 +14150,6 @@ getExperimentHost().setPresentable( getEngine().getRoot() );]]></ActionCode>
 					<ParameterValue Class="CodeValue">
 						<Code><![CDATA[0.0]]></Code>
 					</ParameterValue>
-				</Parameter>
-				<Parameter>
-					<ParameterName><![CDATA[p_filesToExport]]></ParameterName>
 				</Parameter>
 			</Parameters>			
 			<PresentationProperties>
@@ -15569,15 +15569,18 @@ getExperimentHost().setPresentable( getEngine().getRoot() );]]></ActionCode>
 					<ParameterName><![CDATA[p_inputDataPath]]></ParameterName>
 				</Parameter>
 				<Parameter>
-					<ParameterName><![CDATA[p_outputPath]]></ParameterName>
-					<ParameterValue Class="CodeValue">
-						<Code><![CDATA[v_filePath]]></Code>
-					</ParameterValue>
-				</Parameter>
-				<Parameter>
 					<ParameterName><![CDATA[p_exportData]]></ParameterName>
 					<ParameterValue Class="CodeValue">
 						<Code><![CDATA[v_exportData]]></Code>
+					</ParameterValue>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_filesToExport]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_outputPath]]></ParameterName>
+					<ParameterValue Class="CodeValue">
+						<Code><![CDATA[v_filePath]]></Code>
 					</ParameterValue>
 				</Parameter>
 				<Parameter>
@@ -15698,9 +15701,6 @@ getExperimentHost().setPresentable( getEngine().getRoot() );]]></ActionCode>
 					<ParameterValue Class="CodeValue">
 						<Code><![CDATA[v_mortalityFakeCoeffRankSlope]]></Code>
 					</ParameterValue>
-				</Parameter>
-				<Parameter>
-					<ParameterName><![CDATA[p_filesToExport]]></ParameterName>
 				</Parameter>
 			</Parameters>			
 			<PresentationProperties>
@@ -18289,7 +18289,7 @@ s.sendMessage();]]></AfterExperimentCode>
 			<FreeformParamValue>	
 				<Id>1597523476580</Id>
 				<Expression Class="CodeValue">
-					<Code><![CDATA[{-1.274,-1.648,-2.128,-2.505,-3.29}]]></Code>
+					<Code><![CDATA[{-1.17434,-1.54797,-1.92578,-2.3151,-3.11795}]]></Code>
 				</Expression>
 			</FreeformParamValue>
 			<FreeformParamValue>	
@@ -19541,7 +19541,6 @@ traceln(":::::: end simulation ::::::");]]></AfterExperimentCode>
 		<ParamVariationExperiment ActiveObjectClassId="1516978677339">
 			<Id>1609592355657</Id>
 			<Name><![CDATA[VerificationSegregation]]></Name>
-			<ExcludeFromBuild>true</ExcludeFromBuild>
 			<ClientAreaTopLeft><X>0</X><Y>0</Y></ClientAreaTopLeft>
 			<Import><![CDATA[import java.io.BufferedWriter;
 import java.io.File;
@@ -19558,75 +19557,51 @@ import com.slack.api.methods.response.chat.ChatPostMessageResponse;
 import com.slack.api.methods.SlackApiException;
 import com.slack.api.model.Message;]]></Import>
 			<CommandLineArguments><![CDATA[]]></CommandLineArguments>
+			<InitialSetupCode><![CDATA[// read parameter file
+TextFileUtilities f = new TextFileUtilities("experiments/", v_paramName + ".csv", v_outputPath);
+col_experimentLines = f.fromFileToCollection(true);
+/// remove temporary output files
+f.removeOutputFiles();
+v_filesToExport = col_experimentLines.get(0)[0].split(";", 0);]]></InitialSetupCode>
 			<MaximumMemory>16384</MaximumMemory>
 			<RandomNumberGenerationType>randomSeed</RandomNumberGenerationType>
 			<CustomGeneratorCode>new Random()</CustomGeneratorCode>
 			<BeforeEachExperimentRunCode><![CDATA[
 ]]></BeforeEachExperimentRunCode>
 			<BeforeSimulationRunCode><![CDATA[//getEngine().setSimultaneousEventsSelectionMode(Engine.EVENT_SELECTION_RANDOM);
+StatUtils s = new StatUtils();
+
 root.p_numRows = (int) round(root.p_numCounties / root.p_numColumns);
 root.p_countyPopLimit = root.p_populationMaxRatio * root.p_peoplePerCounty;
 
 root.v_iteration = getCurrentIteration();
 root.v_replicate = getCurrentReplication();
 
-int[] v_index = new int[] {
-	0, 1, 2, 3,
-	0, 1, 2, 3,
-	0, 1, 2, 3, 
-	0, 1, 2, 3,
-	0, 1, 2, 3,
-	0, 1, 2, 3,
-};
+// define replicates
+setUseReplications(true);
 
-int currentIteration = v_index[getCurrentIteration()-1];
-root.p_randomMobilityProb = v_randomMobilityProb[currentIteration];
-root.p_movingThreshold = root.f_arrayRepeatedValues(v_movingThreshold[currentIteration], 
-	root.p_numIncomeTypes);]]></BeforeSimulationRunCode>
-			<AfterSimulationRunCode><![CDATA[vr_replicates++;
+// get iteration and replicate values
+root.v_iteration = getCurrentIteration();
+root.v_replicate = getCurrentReplication();
 
-if (vr_replicates % 10 == 0) {
-	traceln("Number of replicates: " + vr_replicates);
-}]]></AfterSimulationRunCode>
+// update parameters
+if (getCurrentIteration() <= col_experimentLines.size()) {
+	String[] line = col_experimentLines.get(root.v_iteration-1);
+	root.p_filesToExport = v_filesToExport;
+	root.p_randomMobilityProb = Double.parseDouble(line[1]);
+	root.p_movingThreshold = s.repeatValuesArray(Double.parseDouble(line[2]), 5);
+	setFixedReplicationsNumber((int) Double.parseDouble(line[3]));
+}]]></BeforeSimulationRunCode>
+			<AfterSimulationRunCode><![CDATA[vr_replicates++;]]></AfterSimulationRunCode>
 			<SeedValue>1</SeedValue>
 			<SelectionModeForSimultaneousEvents>LIFO</SelectionModeForSimultaneousEvents>
 			<VmArgs><![CDATA[]]></VmArgs>
 			<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
 			<Variables>
 				<Variable Class="PlainVariable">
-					<Id>1609592355675</Id>
-					<Name><![CDATA[v_filePath]]></Name>
-					<X>60</X><Y>60</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[String]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA["output/verification/segregation/"]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1609592355677</Id>
-					<Name><![CDATA[v_slack]]></Name>
-					<X>60</X><Y>80</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[boolean]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[true]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1609592355679</Id>
+					<Id>1642291583613</Id>
 					<Name><![CDATA[vr_replicates]]></Name>
-					<X>60</X><Y>140</Y>
+					<X>60</X><Y>70</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -19636,9 +19611,39 @@ if (vr_replicates % 10 == 0) {
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
-					<Id>1609592355681</Id>
-					<Name><![CDATA[v_dataToExport]]></Name>
-					<X>60</X><Y>100</Y>
+					<Id>1642291583615</Id>
+					<Name><![CDATA[v_paramName]]></Name>
+					<X>60</X><Y>130</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[String]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA["verification-segregation"]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1642291583617</Id>
+					<Name><![CDATA[v_outputPath]]></Name>
+					<X>60</X><Y>90</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[String]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA["output/"]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1642291583619</Id>
+					<Name><![CDATA[v_filesToExport]]></Name>
+					<X>60</X><Y>110</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -19646,109 +19651,42 @@ if (vr_replicates % 10 == 0) {
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[String[]]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[{"parameters", "mortality", "environment"}]]></Code>
+							<Code><![CDATA[{}]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1609592632038</Id>
-					<Name><![CDATA[v_randomMobilityProb]]></Name>
-					<X>60</X><Y>160</Y>
+				<Variable Class="CollectionVariable">
+					<Id>1642291583611</Id>
+					<Name><![CDATA[col_experimentLines]]></Name>
+					<X>60</X><Y>150</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double[]]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[{1.0, 0.01, 0.01, 0.01}]]></Code>
-						</InitialValue>
+					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
+						<CollectionClass><![CDATA[ArrayList]]></CollectionClass>
+						<ElementClass><![CDATA[String[]]]></ElementClass>
+						<ValueElementClass><![CDATA[String]]></ValueElementClass>
 					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1609592632040</Id>
-					<Name><![CDATA[v_movingThreshold]]></Name>
-					<X>60</X><Y>180</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double[]]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[{0.10, 0.15, 0.22, 0.28}]]></Code>
-						</InitialValue>
-					</Properties>
+
 				</Variable>
 			</Variables>
-			<Functions>
-				<Function AccessType="default" StaticFunction="false">
-					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
-					<ReturnType><![CDATA[String]]></ReturnType>
-					<Id>1609592355659</Id>
-					<Name><![CDATA[f_systemDate]]></Name>
-					<X>190</X><Y>60</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
-Date date = new Date(System.currentTimeMillis());
-return formatter.format(date);]]></Body>
-				</Function>
-				<Function AccessType="default" StaticFunction="false">
-					<ReturnModificator>VOID</ReturnModificator>
-					<ReturnType><![CDATA[double]]></ReturnType>
-					<Id>1609592355661</Id>
-					<Name><![CDATA[f_sendSlackMessage]]></Name>
-					<X>190</X><Y>80</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[Slack slack = Slack.getInstance();
-String token = f_readSlackFile();;
-MethodsClient methods = slack.methods(token);
-try {
-  ChatPostMessageResponse response = slack.methods(token).chatPostMessage(req -> req
-    .channel("#slack-from-simulations")
-    .text("Anylogic simulation experiment " + vr_replicates + " replicates, finished at " + f_systemDate() + " :wink:"));
-  if (response.isOk()) {
-    Message postedMessage = response.getMessage();
-  } else {
-    String errorCode = response.getError(); // e.g., "invalid_auth", "channel_not_found"
-  }
-} catch (SlackApiException requestFailure) {
-} catch (IOException connectivityIssue) {
-}]]></Body>
-				</Function>
-				<Function AccessType="default" StaticFunction="false">
-					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
-					<ReturnType><![CDATA[String]]></ReturnType>
-					<Id>1609592355663</Id>
-					<Name><![CDATA[f_readSlackFile]]></Name>
-					<X>190</X><Y>100</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[String filePath = "slack.txt";
-String token = "";
-try (BufferedReader reader = new BufferedReader(new FileReader(new File(filePath)))) {
-	token = reader.readLine();
-} catch (IOException e) {
-	e.printStackTrace();
+
+
+			<AfterExperimentCode><![CDATA[// append files and remove temporary ones
+TextFileUtilities f = new TextFileUtilities("data/", "param-" + v_paramName + ".csv", "output");
+for (int i = 0;i < v_filesToExport.length;i++) {
+	f.appendOutputFiles(v_outputPath, v_filesToExport[i] + "*.csv", v_filesToExport[i] + "-" +
+		v_paramName + ".csv", "../../output/data/");
 }
-return token;]]></Body>
-				</Function>
-			</Functions>
+f.removeOutputFiles();
 
-
-			<AfterExperimentCode><![CDATA[if (v_slack) f_sendSlackMessage();
-traceln(":::::: end simulation ::::::");]]></AfterExperimentCode>
+// send slack message
+SlackMessage s = new SlackMessage();
+s.sendMessage();]]></AfterExperimentCode>
 			<AllowParallelEvaluations>true</AllowParallelEvaluations>
 			<UseFreeformParameters>true</UseFreeformParameters>
-			<NumberOfRuns>24</NumberOfRuns>
+			<NumberOfRuns>54</NumberOfRuns>
 			<FreeformParamValue>	
 				<Id>1516978903254</Id>
 			</FreeformParamValue>
@@ -19817,9 +19755,6 @@ traceln(":::::: end simulation ::::::");]]></AfterExperimentCode>
 			</FreeformParamValue>
 			<FreeformParamValue>	
 				<Id>1597523476580</Id>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[{-1.274,-1.648,-2.128,-2.505,-3.29}]]></Code>
-				</Expression>
 			</FreeformParamValue>
 			<FreeformParamValue>	
 				<Id>1598619156839</Id>
@@ -19928,6 +19863,9 @@ traceln(":::::: end simulation ::::::");]]></AfterExperimentCode>
 			</FreeformParamValue>
 			<FreeformParamValue>	
 				<Id>1640074062287</Id>
+				<Expression Class="CodeValue">
+					<Code><![CDATA[true]]></Code>
+				</Expression>
 			</FreeformParamValue>
 			<FreeformParamValue>	
 				<Id>1640074511221</Id>
