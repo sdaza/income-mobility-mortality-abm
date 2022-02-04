@@ -4,3 +4,4 @@
 /models/MobHealthRecycling/slack.txt
 /output/data/
 .vscode
+*.log

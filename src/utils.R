@@ -30,6 +30,18 @@ logIncome = function(x, center = TRUE) {
     return(a)
 }
 
+
+varyingParameters = function(data, remove_columns = NULL) {
+    sel = data[, apply(.SD, 2, 
+        function(x) ifelse(length(unique(x)) > 1, 1, 0))]
+    vars = names(sel[sel == 1])
+    if (!is.null(remove_columns)) { vars = vars[!vars %in% remove_columns] }
+    tab = data[, ..vars]
+    setorder(tab, iteration)
+    setnames(tab, names(tab), tolower(names(tab)))
+    tab
+}
+
 readMultipleFiles = function(pattern, path, remove_files = FALSE, save_rds = TRUE,
     extension = "csv", rds_extension = "rds") {
     files = list.files(path, paste0(pattern, ".+", extension))
