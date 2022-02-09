@@ -6,4 +6,4 @@
 .vscode
 *.log
 ~$*.*
-.push.setting.jsonc
+.push.settings.jsonc
