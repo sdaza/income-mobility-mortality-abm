@@ -4,7 +4,7 @@
 	         AnyLogic Project File 
 *************************************************	         
 -->
-<AnyLogicWorkspace WorkspaceVersion="1.9" AnyLogicVersion="8.7.5.202106081839" AlpVersion="8.7.2">
+<AnyLogicWorkspace WorkspaceVersion="1.9" AnyLogicVersion="8.7.6.202107211757" AlpVersion="8.7.2">
 <Model>
 	<Id>1516978677334</Id>
 	<Name><![CDATA[MobHealthRecycling]]></Name>
@@ -591,7 +591,7 @@ import java.util.stream.Collectors;  ]]></Import>
 				<Variable Class="Parameter">
 					<Id>1606218125252</Id>
 					<Name><![CDATA[p_colorRankSlope]]></Name>
-					<X>250</X><Y>930</Y>
+					<X>250</X><Y>910</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -714,7 +714,7 @@ import java.util.stream.Collectors;  ]]></Import>
 					<Id>1567149540086</Id>
 					<Name><![CDATA[p_lastGeneration]]></Name>
 					<Description><![CDATA[Last generation allowed before finishing the simulation]]></Description>
-					<X>250</X><Y>720</Y>
+					<X>250</X><Y>700</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -740,7 +740,7 @@ import java.util.stream.Collectors;  ]]></Import>
 					<Id>1597044700978</Id>
 					<Name><![CDATA[p_fertilityAdjustment]]></Name>
 					<Description><![CDATA[Adjustment of fertility rates as the simulation is using no-sex agents]]></Description>
-					<X>250</X><Y>740</Y>
+					<X>250</X><Y>720</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -765,7 +765,7 @@ import java.util.stream.Collectors;  ]]></Import>
 					<Id>1641913275119</Id>
 					<Name><![CDATA[p_fertilityFactor]]></Name>
 					<Description><![CDATA[Proportion of fertility rate to be increased by income group]]></Description>
-					<X>250</X><Y>760</Y>
+					<X>250</X><Y>740</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -866,7 +866,7 @@ import java.util.stream.Collectors;  ]]></Import>
 
 - p_smokingCoeffRankSlope
 - p_mortalityCoeffSmoking]]></Description>
-					<X>250</X><Y>950</Y>
+					<X>250</X><Y>930</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -936,7 +936,7 @@ import java.util.stream.Collectors;  ]]></Import>
 				<Variable Class="Parameter">
 					<Id>1606299749930</Id>
 					<Name><![CDATA[p_measurementCohortWindow]]></Name>
-					<X>250</X><Y>840</Y>
+					<X>250</X><Y>820</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1259,7 +1259,7 @@ import java.util.stream.Collectors;  ]]></Import>
 				<Variable Class="Parameter">
 					<Id>1605638325750</Id>
 					<Name><![CDATA[p_mobilityCohortSize]]></Name>
-					<X>250</X><Y>800</Y>
+					<X>250</X><Y>780</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1337,7 +1337,7 @@ import java.util.stream.Collectors;  ]]></Import>
 					<Id>1607955820402</Id>
 					<Name><![CDATA[p_empiricalDistributionTransMob]]></Name>
 					<Description><![CDATA[To use empirical proportions to compute the remaining probabilities of being in an income group]]></Description>
-					<X>250</X><Y>870</Y>
+					<X>250</X><Y>850</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1389,7 +1389,7 @@ import java.util.stream.Collectors;  ]]></Import>
 					<Id>1642071969298</Id>
 					<Name><![CDATA[p_countyDitributionForRanks]]></Name>
 					<Description><![CDATA[The rank of income is computed using the distribution of the whole (false) or county (true) population]]></Description>
-					<X>250</X><Y>890</Y>
+					<X>250</X><Y>870</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1417,7 +1417,7 @@ import java.util.stream.Collectors;  ]]></Import>
 					<Description><![CDATA[Coefficients of income group on smoking.
 
 These coefficients were  estimated using the National Health Interview Survey 2019 (NHIS) using income quintiles.]]></Description>
-					<X>50</X><Y>1060</Y>
+					<X>50</X><Y>1080</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1443,7 +1443,7 @@ These coefficients were  estimated using the National Health Interview Survey 20
 					<Id>1599596275483</Id>
 					<Name><![CDATA[p_smokingCoeffIncExpZ]]></Name>
 					<Description><![CDATA[Made up coefficient of the effect of standardized county income exposure (at age 30) on smoking status]]></Description>
-					<X>50</X><Y>1080</Y>
+					<X>50</X><Y>1100</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1475,7 +1475,7 @@ SE = 0.05
 
 Non-residualized cofficient: 0.11
 SE = 0.05]]></Description>
-					<X>250</X><Y>1020</Y>
+					<X>250</X><Y>1000</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1507,7 +1507,7 @@ SE = 0.05
 
 Non-residualized cofficient: 0.11
 SE = 0.05]]></Description>
-					<X>250</X><Y>1040</Y>
+					<X>250</X><Y>1020</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1535,7 +1535,7 @@ SE = 0.05]]></Description>
 
 Odds ratio = 1.72 (95%  CI  1.59to 1.86).  
 The standard error was computed using: (log(1.86) - log(1.59))/(qnorm(0.975)*2]]></Description>
-					<X>50</X><Y>1100</Y>
+					<X>50</X><Y>1120</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1560,7 +1560,7 @@ The standard error was computed using: (log(1.86) - log(1.59))/(qnorm(0.975)*2]]
 					<Id>1607705843134</Id>
 					<Name><![CDATA[p_countyRankSlopeSD]]></Name>
 					<Description><![CDATA[Empirical standard devitaion of  county rank-rank slopes estimated by Chetty et al. (2015)]]></Description>
-					<X>250</X><Y>980</Y>
+					<X>250</X><Y>960</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1584,7 +1584,7 @@ The standard error was computed using: (log(1.86) - log(1.59))/(qnorm(0.975)*2]]
 				<Variable Class="Parameter">
 					<Id>1605777545955</Id>
 					<Name><![CDATA[p_mortalityCohortSize]]></Name>
-					<X>250</X><Y>820</Y>
+					<X>250</X><Y>800</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1612,7 +1612,7 @@ The standard error was computed using: (log(1.86) - log(1.59))/(qnorm(0.975)*2]]
 					<Description><![CDATA[Made up coefficients of the effect of agent's income group on mortality (individual effect). 
 
 Initial coefficients = {0.1, 0.05, 0.0, -0.05, -0.1}]]></Description>
-					<X>50</X><Y>1140</Y>
+					<X>250</X><Y>1140</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1639,7 +1639,7 @@ Initial coefficients = {0.1, 0.05, 0.0, -0.05, -0.1}]]></Description>
 					<Id>1607695381501</Id>
 					<Name><![CDATA[p_mortalityCoeffIncExpZ]]></Name>
 					<Description><![CDATA[Made up coefficient of the effect of standardized county income exposure on mortality]]></Description>
-					<X>50</X><Y>1200</Y>
+					<X>250</X><Y>1200</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1669,7 +1669,7 @@ Hazard  Ratio  2.8  (99%  CI=  2.4  to  3.1) .
 The coefficient comes from male models adjusting for age, educational level, alcohol consumption, and BMI. 
 Coefficient = 1.029619 = Ln(2.8) = Hazard for men all cause of death
 The standard error was computed usingthe  formula: (log(3.1) - log(2.4))/(qnorm(0.995)*2)]]></Description>
-					<X>50</X><Y>1160</Y>
+					<X>250</X><Y>1160</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1696,7 +1696,7 @@ The standard error was computed usingthe  formula: (log(3.1) - log(2.4))/(qnorm(
 					<Description><![CDATA[Standard error of the coefficient p_mortalityCoeffSmoking
 
 (log(3.1) - log(2.4))/ (qnorm(0.995)*2) = 0.0496798]]></Description>
-					<X>50</X><Y>1180</Y>
+					<X>250</X><Y>1180</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1721,7 +1721,7 @@ The standard error was computed usingthe  formula: (log(3.1) - log(2.4))/(qnorm(
 					<Id>1606149445574</Id>
 					<Name><![CDATA[p_mortalityFakeCoeffRankSlope]]></Name>
 					<Description><![CDATA[Made up coefficient of the effect between exposure to county income mobility and mortality]]></Description>
-					<X>50</X><Y>1120</Y>
+					<X>250</X><Y>1120</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1746,7 +1746,7 @@ The standard error was computed usingthe  formula: (log(3.1) - log(2.4))/(qnorm(
 					<Id>1643362784933</Id>
 					<Name><![CDATA[p_useRankSlope]]></Name>
 					<Description><![CDATA[To use rank-rank slope exposure or absolute mobility.]]></Description>
-					<X>250</X><Y>1070</Y>
+					<X>250</X><Y>1050</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1772,7 +1772,7 @@ The standard error was computed usingthe  formula: (log(3.1) - log(2.4))/(qnorm(
 					<Id>1643362824329</Id>
 					<Name><![CDATA[p_useAllExposure]]></Name>
 					<Description><![CDATA[To use all exposure (all years) versus exposure unti age 18.]]></Description>
-					<X>250</X><Y>1090</Y>
+					<X>250</X><Y>1070</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1786,6 +1786,30 @@ The standard error was computed usingthe  formula: (log(3.1) - log(2.4))/(qnorm(
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1643362824327</Id>
+							<EditorContolType>CHECK_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1644418511075</Id>
+					<Name><![CDATA[p_updateCountyTransitionMatrix]]></Name>
+					<X>50</X><Y>1040</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[boolean]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[false]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1644418511073</Id>
 							<EditorContolType>CHECK_BOX</EditorContolType>
 							<MinSliderValue><![CDATA[0]]></MinSliderValue>
 							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
@@ -2166,6 +2190,7 @@ for (County c : counties) {
 		.collect(Collectors.toList())
 	);
 	
+	c.p_weightIncomeGroup = new double[] {0.2, 0.2, 0.2, 0.2, 0.2};
 	//traceln(c.col_transitionMatrixData.get(1).cz);
 	
 	for (Person p : c.people) {	
@@ -5620,7 +5645,9 @@ if (p_exportData && col_fileSelection.getOrDefault("income", false)) {
 						</RecurrenceCode>
 						<Condition><![CDATA[false]]></Condition>
 					</Properties>
-					<Action><![CDATA[//f_updateTransitionMatrix();
+					<Action><![CDATA[if (main.p_updateCountyTransitionMatrix && main.v_lastCompleteGeneration > 0) {
+	f_updateTransitionMatrix();
+}
 // check population 
 //if (col_peopleAlive.size() < 50) {
 //	traceln("County population is too small ::::::");
@@ -6158,7 +6185,7 @@ v_proportionIncomeGroup = c;]]></Body>
 				<Group>
 					<Id>1603830479596</Id>
 					<Name><![CDATA[group3]]></Name>
-					<X>760</X><Y>40</Y>
+					<X>770</X><Y>40</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -12928,6 +12955,9 @@ getExperimentHost().setPresentable( getEngine().getRoot() );]]></ActionCode>
 				<Parameter>
 					<ParameterName><![CDATA[p_useAllExposure]]></ParameterName>
 				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_updateCountyTransitionMatrix]]></ParameterName>
+				</Parameter>
 			</Parameters>			
 			<PresentationProperties>
 				<EnableZoomAndPanning>false</EnableZoomAndPanning>
@@ -14553,6 +14583,9 @@ getExperimentHost().setPresentable( getEngine().getRoot() );]]></ActionCode>
 				<Parameter>
 					<ParameterName><![CDATA[p_useAllExposure]]></ParameterName>
 				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_updateCountyTransitionMatrix]]></ParameterName>
+				</Parameter>
 			</Parameters>			
 			<PresentationProperties>
 				<EnableZoomAndPanning>true</EnableZoomAndPanning>
@@ -14651,7 +14684,7 @@ root.v_replicate = 1;]]></BeforeSimulationRunCode>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double[]]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[new StatUtils().repeatValuesArray(0.0, 5);
+							<Code><![CDATA[new StatUtils().repeatValuesArray(0.1, 5);
 //{0.01, 0.05, 0.10, 0.15, 0.3}]]></Code>
 						</InitialValue>
 					</Properties>
@@ -14715,8 +14748,8 @@ root.v_replicate = 1;]]></BeforeSimulationRunCode>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double[]]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[//new StatUtils().repeatValuesArray(0.0, 5);
-{0.8, 0.6, 0.4, 0.2, 0.1}]]></Code>
+							<Code><![CDATA[new StatUtils().repeatValuesArray(0.0, 5);
+//{0.8, 0.6, 0.4, 0.2, 0.1}]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -14792,7 +14825,7 @@ root.v_replicate = 1;]]></BeforeSimulationRunCode>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double[]]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[new StatUtils().repeatValuesArray(0.25, 5);]]></Code>
+							<Code><![CDATA[new StatUtils().repeatValuesArray(0.28, 5);]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -16101,14 +16134,26 @@ getExperimentHost().setPresentable( getEngine().getRoot() );]]></ActionCode>
 				<Parameter>
 					<ParameterName><![CDATA[p_mortalityFakeCoeffRankSlope]]></ParameterName>
 					<ParameterValue Class="CodeValue">
-						<Code><![CDATA[0.5]]></Code>
+						<Code><![CDATA[-0.5]]></Code>
 					</ParameterValue>
 				</Parameter>
 				<Parameter>
 					<ParameterName><![CDATA[p_useRankSlope]]></ParameterName>
+					<ParameterValue Class="CodeValue">
+						<Code><![CDATA[false]]></Code>
+					</ParameterValue>
 				</Parameter>
 				<Parameter>
 					<ParameterName><![CDATA[p_useAllExposure]]></ParameterName>
+					<ParameterValue Class="CodeValue">
+						<Code><![CDATA[false]]></Code>
+					</ParameterValue>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[p_updateCountyTransitionMatrix]]></ParameterName>
+					<ParameterValue Class="CodeValue">
+						<Code><![CDATA[true]]></Code>
+					</ParameterValue>
 				</Parameter>
 			</Parameters>			
 			<PresentationProperties>
@@ -16677,6 +16722,9 @@ traceln(":::::: end simulation ::::::");]]></AfterExperimentCode>
 			<FreeformParamValue>	
 				<Id>1643362824329</Id>
 			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1644418511075</Id>
+			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1516978903254</Id>
 				<Type>FIXED</Type>
@@ -16921,6 +16969,10 @@ traceln(":::::: end simulation ::::::");]]></AfterExperimentCode>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1643362824329</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1644418511075</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<ModelTimeProperties>
@@ -17560,6 +17612,9 @@ traceln(":::::: end simulation ::::::");]]></AfterExperimentCode>
 			<FreeformParamValue>	
 				<Id>1643362824329</Id>
 			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1644418511075</Id>
+			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1516978903254</Id>
 				<Type>FIXED</Type>
@@ -17804,6 +17859,10 @@ traceln(":::::: end simulation ::::::");]]></AfterExperimentCode>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1643362824329</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1644418511075</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<ModelTimeProperties>
@@ -18270,6 +18329,9 @@ traceln(":::::: end simulation ::::::");]]></AfterExperimentCode>
 			<FreeformParamValue>	
 				<Id>1643362824329</Id>
 			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1644418511075</Id>
+			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1516978903254</Id>
 				<Type>FIXED</Type>
@@ -18514,6 +18576,10 @@ traceln(":::::: end simulation ::::::");]]></AfterExperimentCode>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1643362824329</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1644418511075</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<ModelTimeProperties>
@@ -18880,6 +18946,9 @@ s.sendMessage();]]></AfterExperimentCode>
 			<FreeformParamValue>	
 				<Id>1643362824329</Id>
 			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1644418511075</Id>
+			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1516978903254</Id>
 				<Type>FIXED</Type>
@@ -19124,6 +19193,10 @@ s.sendMessage();]]></AfterExperimentCode>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1643362824329</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1644418511075</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<ModelTimeProperties>
@@ -19745,6 +19818,9 @@ traceln(":::::: end simulation ::::::");]]></AfterExperimentCode>
 			<FreeformParamValue>	
 				<Id>1643362824329</Id>
 			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1644418511075</Id>
+			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1516978903254</Id>
 				<Type>FIXED</Type>
@@ -19989,6 +20065,10 @@ traceln(":::::: end simulation ::::::");]]></AfterExperimentCode>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1643362824329</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1644418511075</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<ModelTimeProperties>
@@ -20369,6 +20449,9 @@ s.sendMessage();]]></AfterExperimentCode>
 			<FreeformParamValue>	
 				<Id>1643362824329</Id>
 			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1644418511075</Id>
+			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1516978903254</Id>
 				<Type>FIXED</Type>
@@ -20613,6 +20696,10 @@ s.sendMessage();]]></AfterExperimentCode>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1643362824329</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1644418511075</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<ModelTimeProperties>
@@ -21148,6 +21235,9 @@ traceln(":::::: end simulation ::::::");]]></AfterExperimentCode>
 			<FreeformParamValue>	
 				<Id>1643362824329</Id>
 			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1644418511075</Id>
+			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1516978903254</Id>
 				<Type>FIXED</Type>
@@ -21392,6 +21482,10 @@ traceln(":::::: end simulation ::::::");]]></AfterExperimentCode>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1643362824329</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1644418511075</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<ModelTimeProperties>
@@ -21785,6 +21879,9 @@ s.sendMessage();]]></AfterExperimentCode>
 					<Code><![CDATA[false]]></Code>
 				</Expression>
 			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1644418511075</Id>
+			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1516978903254</Id>
 				<Type>FIXED</Type>
@@ -22029,6 +22126,10 @@ s.sendMessage();]]></AfterExperimentCode>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1643362824329</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1644418511075</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<ModelTimeProperties>
