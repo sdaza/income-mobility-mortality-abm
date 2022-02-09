@@ -5,3 +5,5 @@
 /output/data/
 .vscode
 *.log
+~$*.*
+.push.setting.jsonc
