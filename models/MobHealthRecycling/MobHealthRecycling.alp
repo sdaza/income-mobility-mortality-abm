@@ -14715,8 +14715,8 @@ root.v_replicate = 1;]]></BeforeSimulationRunCode>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double[]]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[new StatUtils().repeatValuesArray(0.0, 5);
-//{0.6, 0.5, 0.4, 0.3, 0.1}]]></Code>
+							<Code><![CDATA[//new StatUtils().repeatValuesArray(0.0, 5);
+{0.8, 0.6, 0.4, 0.2, 0.1}]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -14792,7 +14792,7 @@ root.v_replicate = 1;]]></BeforeSimulationRunCode>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double[]]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[new StatUtils().repeatValuesArray(0.22, 5);]]></Code>
+							<Code><![CDATA[new StatUtils().repeatValuesArray(0.25, 5);]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -21449,15 +21449,21 @@ setUseReplications(true);
 root.v_iteration = getCurrentIteration();
 root.v_replicate = getCurrentReplication();
 
+double[] weights = {0.8, 0.6, 0.4, 0.2, 0.05};
+
+
 // update parameters
 if (getCurrentIteration() <= col_experimentLines.size()) {
 	String[] line = col_experimentLines.get(root.v_iteration-1);
 	root.p_filesToExport = line[0].split(";",  0);
 	root.p_mortalityFakeCoeffRankSlope = Double.parseDouble(line[1]);
-	root.p_movingDecisionRate = new StatUtils().repeatValuesArray(Double.parseDouble(line[2]), 5);
-	root.p_randomMobilityProb = Double.parseDouble(line[3]);
-	root.p_useRankSlope = Boolean.parseBoolean(line[4]);
-	setFixedReplicationsNumber((int) Double.parseDouble(line[5]));
+	root.p_mortalityCoeffIncExpZ = Double.parseDouble(line[2]);
+	root.p_movingDecisionRate = new StatUtils().repeatValuesArray(Double.parseDouble(line[3]), 5);
+	root.p_weightIncomeGroup = Boolean.parseBoolean(line[4]) ? weights : 
+		new StatUtils().repeatValuesArray(0.0, 5);
+	root.p_randomMobilityProb = Double.parseDouble(line[5]);
+	root.p_useRankSlope = Boolean.parseBoolean(line[6]);
+	setFixedReplicationsNumber((int) Double.parseDouble(line[7]));
 }]]></BeforeSimulationRunCode>
 			<AfterSimulationRunCode><![CDATA[vr_replicates++;]]></AfterSimulationRunCode>
 			<SeedValue>1</SeedValue>
@@ -21553,7 +21559,7 @@ SlackMessage s = new SlackMessage();
 s.sendMessage();]]></AfterExperimentCode>
 			<AllowParallelEvaluations>true</AllowParallelEvaluations>
 			<UseFreeformParameters>true</UseFreeformParameters>
-			<NumberOfRuns>6</NumberOfRuns>
+			<NumberOfRuns>12</NumberOfRuns>
 			<FreeformParamValue>	
 				<Id>1516978903254</Id>
 			</FreeformParamValue>
@@ -21734,7 +21740,7 @@ s.sendMessage();]]></AfterExperimentCode>
 			<FreeformParamValue>	
 				<Id>1607774842600</Id>
 				<Expression Class="CodeValue">
-					<Code><![CDATA[0.04]]></Code>
+					<Code><![CDATA[0.0]]></Code>
 				</Expression>
 			</FreeformParamValue>
 			<FreeformParamValue>	
