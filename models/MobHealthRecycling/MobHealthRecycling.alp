@@ -4,7 +4,7 @@
 	         AnyLogic Project File 
 *************************************************	         
 -->
-<AnyLogicWorkspace WorkspaceVersion="1.9" AnyLogicVersion="8.7.6.202107211757" AlpVersion="8.7.2">
+<AnyLogicWorkspace WorkspaceVersion="1.9" AnyLogicVersion="8.7.5.202106081839" AlpVersion="8.7.2">
 <Model>
 	<Id>1516978677334</Id>
 	<Name><![CDATA[MobHealthRecycling]]></Name>
@@ -2190,7 +2190,7 @@ for (County c : counties) {
 		.collect(Collectors.toList())
 	);
 	
-	c.p_weightIncomeGroup = new double[] {0.2, 0.2, 0.2, 0.2, 0.2};
+	c.p_weightIncomeGroup = new double[] {0.1, 0.1, 0.1, 0.05, 0.05};
 	//traceln(c.col_transitionMatrixData.get(1).cz);
 	
 	for (Person p : c.people) {	
@@ -8574,10 +8574,18 @@ if (p_generation > 0) {
 	f_estimateExposure();
 	// update income group probabilities
 	Exposure t = new Exposure();
-	v_incomeTransitionProbs = t.getAverageExposureTransMob(
+	if (main.p_lastGeneration > 1) {
+			v_incomeTransitionProbs = t.getAverageExposureTransMob(
+				col_exposure, 
+				main.p_numIncomeGroups,
+				main.p_weightIncomeGroup); 
+	} else {
+		v_incomeTransitionProbs = t.getAverageExposureTransMob(
 			col_exposure, 
 			main.p_numIncomeGroups,
-			main.p_weightIncomeGroup);
+			new StatUtils().repeatValuesArray(0.0, main.p_numIncomeGroups)); 
+	}
+	
 	double[] quintile = {1, 2, 3, 4, 5};
 	p_incomeGroup = (int) new StatUtils().weightedSampling(
 			quintile, v_incomeTransitionProbs);
@@ -8623,6 +8631,9 @@ IncomeParentKid t = new IncomeParentKid(p_id,
 		p_parentIncome, p_income, p_parentIncomeGroup,
 		p_incomeGroup);
 main.col_incomeParentKid.add(t);
+
+
+traceln(lognormal(11, 0.4, 0));
 
 // exposure at age 18
 //v_rankSlopeExp18 = new Exposure().getAverageExposure(
@@ -14748,8 +14759,8 @@ root.v_replicate = 1;]]></BeforeSimulationRunCode>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double[]]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[new StatUtils().repeatValuesArray(0.0, 5);
-//{0.8, 0.6, 0.4, 0.2, 0.1}]]></Code>
+							<Code><![CDATA[//new StatUtils().repeatValuesArray(0.0, 5);
+{0.8, 0.3, 0.05, 0.025, 0.01}]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -16134,7 +16145,7 @@ getExperimentHost().setPresentable( getEngine().getRoot() );]]></ActionCode>
 				<Parameter>
 					<ParameterName><![CDATA[p_mortalityFakeCoeffRankSlope]]></ParameterName>
 					<ParameterValue Class="CodeValue">
-						<Code><![CDATA[-0.5]]></Code>
+						<Code><![CDATA[-0.0]]></Code>
 					</ParameterValue>
 				</Parameter>
 				<Parameter>
@@ -16151,9 +16162,6 @@ getExperimentHost().setPresentable( getEngine().getRoot() );]]></ActionCode>
 				</Parameter>
 				<Parameter>
 					<ParameterName><![CDATA[p_updateCountyTransitionMatrix]]></ParameterName>
-					<ParameterValue Class="CodeValue">
-						<Code><![CDATA[true]]></Code>
-					</ParameterValue>
 				</Parameter>
 			</Parameters>			
 			<PresentationProperties>
