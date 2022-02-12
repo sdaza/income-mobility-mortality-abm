@@ -7,3 +7,4 @@
 *.log
 ~$*.*
 .push.settings.jsonc
+slack.txt
