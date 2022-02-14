@@ -7,7 +7,7 @@
 <AnyLogicWorkspace WorkspaceVersion="1.9" AnyLogicVersion="8.7.5.202106081839" AlpVersion="8.7.2">
 <Model>
 	<Id>1516978677334</Id>
-	<Name><![CDATA[MobHealthRecycling]]></Name>
+	<Name><![CDATA[MobMortality]]></Name>
 	<EngineVersion>6</EngineVersion>
 	<JavaPackageName><![CDATA[mobHealthRecycling]]></JavaPackageName>
 	<ModelTimeUnit><![CDATA[Year]]></ModelTimeUnit>
@@ -437,7 +437,7 @@ import java.util.stream.Collectors;  ]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1644595447661</Id>
 					<Name><![CDATA[v_meanLogIncome]]></Name>
-					<X>250</X><Y>1020</Y>
+					<X>250</X><Y>920</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -449,31 +449,7 @@ import java.util.stream.Collectors;  ]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1644595460227</Id>
 					<Name><![CDATA[v_SDLogIncome]]></Name>
-					<X>250</X><Y>1040</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1644595646349</Id>
-					<Name><![CDATA[v_SDLogPersonalTrait]]></Name>
-					<X>250</X><Y>1100</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1644595649053</Id>
-					<Name><![CDATA[v_meanLogPersonalTrait]]></Name>
-					<X>250</X><Y>1080</Y>
+					<X>250</X><Y>940</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -485,7 +461,7 @@ import java.util.stream.Collectors;  ]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1644602055281</Id>
 					<Name><![CDATA[v_SDLogCountyIncome]]></Name>
-					<X>250</X><Y>1160</Y>
+					<X>250</X><Y>1010</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -497,7 +473,7 @@ import java.util.stream.Collectors;  ]]></Import>
 				<Variable Class="PlainVariable">
 					<Id>1644602055283</Id>
 					<Name><![CDATA[v_meanLogCountyIncome]]></Name>
-					<X>250</X><Y>1140</Y>
+					<X>250</X><Y>990</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1837,9 +1813,6 @@ p_countyPopLimit = totalPopulation / p_numCounties;
 for (County c : counties) {
 	
 	c.p_countyTrait = normal(0.1, 0);
-	double mu = 0.22 - 0.7 * c.p_countyTrait;
-	traceln(mu);
-	c.p_parentChildrenIncomeCoeff = normal(0.03, mu);
 	//traceln(c.p_parentChildrenIncomeCoeff);
 	for (Person p : c.people) {	
 		// initial  income group (random)
@@ -1996,14 +1969,9 @@ double[] ltotalIncome = col_income.stream().mapToDouble(p -> Math.log(p.income))
 v_meanLogIncome = s.getMean(ltotalIncome);
 v_SDLogIncome = s.getStandardDeviation(ltotalIncome);
 
-double[] lpersonalTrait = col_peopleAlive.stream().mapToDouble(p -> Math.log(p.p_personalTrait)).toArray();
-v_meanLogPersonalTrait = s.getMean(lpersonalTrait);
-v_SDLogPersonalTrait = s.getStandardDeviation(lpersonalTrait);
-
 double[] lcountyIncome = counties.stream().mapToDouble(c -> Math.log(c.v_meanIncome)).toArray();
 v_meanLogCountyIncome = s.getMean(lcountyIncome);
 v_SDLogCountyIncome = s.getStandardDeviation(lcountyIncome);
-
 
 dh_income.reset();
 for (int i=0; i < totalIncome.length; i++) {
@@ -2015,11 +1983,7 @@ if (time() % p_recurrentTimeHeavyComp == 0) {
 	if (p_computeGiniCoeff && v_lastGeneration >= p_exportSinceGeneration) {
 	   v_gini = s.getGini(totalIncome);
 	  }
-}
-
-
-
-]]></Body>
+}]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
@@ -2195,7 +2159,7 @@ if (p_exportData && col_fileSelection.getOrDefault("county", false) &&
 
 
 //export environment data every year
-if (p_exportData && col_fileSelection.getOrDefault("environment", false) && time() > 60
+if (p_exportData && p_lastGeneration > p_exportSinceGeneration && col_fileSelection.getOrDefault("environment", false)
 	&& (round(time()) % p_recurrentTimeCountyData == 0)) { 
 	ExportOutput e = col_dataExport.get("environment");
 	e.writeFile(col_textFiles.get("environment"),
@@ -2721,6 +2685,7 @@ if (p_exportData && col_fileSelection.getOrDefault("mortality", false)) {
 					"generation", "birthdate", "age_death", 
 					"personal_trait",
 					"income", "parent_income",
+					"parent_children_coeff",
 					"county", "nkids", "nmoves",
 					"nmoves_kid",
 					"county_trait",
@@ -2744,7 +2709,8 @@ if (p_exportData && col_fileSelection.getOrDefault("mortality", false)) {
 					"p_birthTime", "p_age", 
 					"p_personalTrait",
 					"p_income",
-					"p_parentIncome", 
+					"p_parentIncome",
+				 	"p_parentChildrenIncome",
 					"county.getIndex()",
 					"v_numberKids", "v_numberMoves",
 					"v_numberMovesKid",
@@ -2796,7 +2762,9 @@ if (p_exportData && col_fileSelection.getOrDefault("environment", false)) {
 	ExportOutput e = new ExportOutput(path, "environment",
 			v_iteration, v_replicate,
 			new String[]{"iteration", "replicate",
-					"model_time", "gini", "rank_slope",
+					"model_time", 
+					"gini", 
+					"rank_slope",
 					"county_rank_slope_avg",
 					"rank_correlation", 
 					"rank_absolute",
@@ -3391,9 +3359,6 @@ for (int i=0;i < col_income.size();i++) {
 					<Parameters>
 						<Parameter>
 							<Name><![CDATA[p_trackCounty]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[p_parentChildrenIncomeCoeff]]></Name>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[p_countyTrait]]></Name>
@@ -4948,33 +4913,9 @@ for (int i=0;i < col_income.size();i++) {
 					</Properties>                 
 				</Variable>
 				<Variable Class="Parameter">
-					<Id>1644488307516</Id>
-					<Name><![CDATA[p_parentChildrenIncomeCoeff]]></Name>
-					<X>240</X><Y>170</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[double]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[0.2]]></Code>
-						</DefaultValue>
-						<ParameterEditor>
-							<Id>1644488307514</Id>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
-				</Variable>
-				<Variable Class="Parameter">
 					<Id>1644587726536</Id>
 					<Name><![CDATA[p_countyTrait]]></Name>
-					<X>240</X><Y>190</Y>
+					<X>240</X><Y>170</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5275,6 +5216,9 @@ return new StatUtils().getMean(ranks);
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[p_personalTrait]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[p_parentChildrenIncome]]></Name>
 						</Parameter>
 					</Parameters>
 					<ReplicationFlag>true</ReplicationFlag>
@@ -5934,30 +5878,6 @@ else p_trackCounty = true;]]></ActionCode>
 					<FillAreaUnderLine>false</FillAreaUnderLine>
 					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
     			</TimePlot>
-				<Text>
-					<Id>1644589659379</Id>
-					<Name><![CDATA[textIncome1]]></Name>
-					<X>55</X><Y>210</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>false</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<VisibleCode><![CDATA[main.showCountyStats.isSelected()]]></VisibleCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[text]]></Text>
-					<TextCode><![CDATA["PC coeff: " + (Math.round(p_parentChildrenIncomeCoeff * 100.0) / 100.0)
-]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>8</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
 			</Presentation>
 
 				</Level>
@@ -6274,6 +6194,18 @@ import java.util.stream.Collectors;
 					<Id>1643369449748</Id>
 					<Name><![CDATA[v_rank]]></Name>
 					<X>260</X><Y>1040</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1644836857307</Id>
+					<Name><![CDATA[v_countyTraitExp]]></Name>
+					<X>260</X><Y>1100</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6704,8 +6636,35 @@ import java.util.stream.Collectors;
 						<Type><![CDATA[double]]></Type>
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</DefaultValue>
 						<ParameterEditor>
 							<Id>1644481315349</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1644836901505</Id>
+					<Name><![CDATA[p_parentChildrenIncome]]></Name>
+					<X>50</X><Y>1170</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[0.2]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1644836901503</Id>
 							<EditorContolType>TEXT_BOX</EditorContolType>
 							<MinSliderValue><![CDATA[0]]></MinSliderValue>
 							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
@@ -7231,7 +7190,7 @@ if (col_kids.size() > 0) f_moveKids();]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1567231713206</Id>
 					<Name><![CDATA[f_dying]]></Name>
-					<X>490</X><Y>810</Y>
+					<X>490</X><Y>800</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -7273,6 +7232,7 @@ v_rankAbsoluteExp18 = 0.0;
 v_incomeExposure = 0.0;
 v_incomeExposureZ = 0.0;
 v_rank = 0;
+v_countyTraitExp = 0.0;
 
 
 // other variables
@@ -7296,6 +7256,7 @@ p_age = 0.0;
 p_birthTime = 0.0;
 p_generation = 0;
 p_parentGeneration = 0;
+p_parentChildrenIncome = 0.0;
 oval.setVisible(false);
 
 // remove intergenerational links
@@ -7363,8 +7324,7 @@ newKid.p_generation = p_generation + 1;
 newKid.p_economicallyActive = false;
 
 // personal traits
-//double mu = p_personalTrait * 0.3;
-newKid.p_personalTrait = normal(1, 6);
+newKid.p_personalTrait = normal(1, 0);
 
 // assign parent variables
 newKid.p_parentIncome = p_income;
@@ -7429,12 +7389,8 @@ if (main.v_lastGeneration != newKid.p_generation && main.v_lastGeneration < newK
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[//traceln(main.p_mortalityCoeffSmoking);
-//traceln(main.p_mortalityCoeffIncType[p_incomeGroup-1]);
-
-
-// define income mobility exposure
+					<ShowLabel>false</ShowLabel>
+					<Body><![CDATA[// define income mobility exposure
 double incomeMobilityExp = 0.0;
 if (main.p_useAllExposure) {
 	if (main.p_useRankSlope) incomeMobilityExp = v_rankSlopeExp;
@@ -7446,33 +7402,40 @@ if (main.p_useAllExposure) {
 
 double rawrate = main.f_baselineMortalityRate(p_age);
 
-double zincome = (Math.log(p_income) - main.v_meanLogIncome) / main.v_SDLogIncome;
-double zpersonalTrait = (Math.log(p_personalTrait) - main.v_meanLogPersonalTrait) / main.v_SDLogPersonalTrait;
-double zcountyIncome = (Math.log(county.v_meanIncome) - main.v_meanLogCountyIncome)/main.v_SDLogCountyIncome;
+double zincome = 0;
+if (main.v_meanLogIncome != 0) { 
+	zincome = (Math.log(p_income) - main.v_meanLogIncome) / main.v_SDLogIncome; 
+}
+// double zcountyIncome = (Math.log(county.v_meanIncome) - main.v_meanLogCountyIncome)/main.v_SDLogCountyIncome;
 
 double ratio = 1.0;
 ratio = exp(
 	// income individual differences 
-	-0.3 * zincome + 
-	-0.5 * zpersonalTrait + 
-	-0.3 * county.p_countyTrait + 
-	-0.2 * zcountyIncome);
+	-0.2 * zincome + 
+	-0.4 * p_personalTrait +
+	-0.2 * v_incomeExposureZ + 
+	-0.5 * county.p_countyTrait);
 
 //traceln(ratio);
 
-double finalrate = rawrate * ratio * 1.0;
+double finalrate = rawrate * ratio;
 
-if (p_age == 0 && false) {
+if ((Double.isInfinite(ratio) | ratio == 0) && true) {
 	traceln("new agent:::::::::::");
+	traceln("agent id:" + p_id);
 	traceln("generation: " + p_generation);
     traceln("time: " + time());
 	traceln("age :" + p_age);
 	traceln("rawrate: " + rawrate);
 	traceln("ratio: " + ratio);
-	traceln("final rate :" + finalrate);
+	traceln("zincome: " + zincome);
+	traceln("income: " + p_income);
+	traceln("county trait: " + county.p_countyTrait);
+	traceln("personal trait: " + p_personalTrait);
+	traceln("income exposure: " + v_incomeExposureZ);
 }
 
-if (Double.isNaN(finalrate) | finalrate < 0 | Double.isInfinite(finalrate)) return 0.0;
+if (Double.isNaN(finalrate) | finalrate < 0) return 0.0;
 else return finalrate;]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
@@ -7511,7 +7474,8 @@ col_exposure.add(new Exposure(
 	county.v_meanIncome, county.v_meanIncomeZ, 
 	county.v_rankSlope,  
 	county.v_rankCorrelation,
-	county.v_rankAbsolute));
+	county.v_rankAbsolute, 
+	county.p_countyTrait));
 	
 v_timeCounty = thistime;
 
@@ -7624,13 +7588,10 @@ return randomWhere(main.counties, c -> c != county & c.col_peopleAlive.size() <=
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[// estimate average exposures
-if (p_generation > 0) {
+					<Body><![CDATA[ if (p_generation > 0) {
 	f_recordExposure();
 	f_estimateExposure();
-
 	p_income = f_income();
-	//traceln(p_income);
 	f_recordExposure();
 }
 
@@ -7650,7 +7611,6 @@ IncomeParentKid t = new IncomeParentKid(p_id,
 		county.getIndex(), p_generation, p_birthTime,
 		p_parentIncome, p_income);
 main.col_incomeParentKid.add(t);
-
 
 // exposure at age 18
 //v_rankSlopeExp18 = new Exposure().getAverageExposure(
@@ -7677,6 +7637,7 @@ if (!p_economicallyActive) {
 	v_rankSlopeExp18 = t.getAverageExposure("countyRankSlope", col_exposure);
 	v_rankCorrelationExp18 = t.getAverageExposure("countyRankCorrelation", col_exposure);
 	v_rankAbsoluteExp18 = t.getAverageExposure("countyRankAbsolute", col_exposure);
+	v_countyTraitExp = t.getAverageExposure("countyTrait", col_exposure);
 }]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
@@ -7705,26 +7666,24 @@ return baseline + factor;
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[// linear model lognormal(3, 0.5, 3)
-double value = 0.0;
-//double s = 0.6;
-
-//traceln("parent income effect:  "  + Math.log(p_parentIncome) * 0.2);
-//traceln("personal trait effect:  " + p_personalTrait * 0.1);
-//traceln("income exposure: " + Math.log(v_incomeExposure) * 0.2);
+					<Body><![CDATA[double value = 0.0;
+// baseline association parent-childre = 0.2
+p_parentChildrenIncome = 0.4 + -0.2 * v_incomeExposureZ + 0.2 * v_countyTraitExp;
 
 double mu = 10;
-double s = 0.6;
-
+double s = 0.3;
+double zparentIncome = 0;
 
 if (p_generation == 0) {
 	value = exp(normal(s, mu));
 } else {
-	double zparentIncome = (Math.log(p_parentIncome) - main.v_meanLogIncome)/main.v_SDLogIncome;
-	double zpersonalTrait =  (Math.log(p_personalTrait) - main.v_meanLogPersonalTrait)/main.v_SDLogPersonalTrait;
-	double zcountyIncome = (Math.log(county.v_meanIncome) - main.v_meanLogCountyIncome)/main.v_SDLogCountyIncome;
-	double v = mu + zparentIncome * county.p_parentChildrenIncomeCoeff + 
-		zpersonalTrait * 0.3 + zcountyIncome * 0.2;
+	if (main.v_meanLogIncome != 0) {
+		zparentIncome = (Math.log(p_parentIncome)
+				- main.v_meanLogIncome)
+				/ main.v_SDLogIncome;
+	}
+	double v = mu + zparentIncome * p_parentChildrenIncome
+			+ p_personalTrait * 0.9;
 	value = exp(normal(s, v));
 }
 return value;]]></Body>
@@ -14663,9 +14622,6 @@ getExperimentHost().setPresentable( getEngine().getRoot() );]]></ActionCode>
 				</Parameter>
 				<Parameter>
 					<ParameterName><![CDATA[p_movingDecisionRate]]></ParameterName>
-					<ParameterValue Class="CodeValue">
-						<Code><![CDATA[v_decisionMovementRate]]></Code>
-					</ParameterValue>
 				</Parameter>
 				<Parameter>
 					<ParameterName><![CDATA[p_movingThreshold]]></ParameterName>
@@ -14673,7 +14629,7 @@ getExperimentHost().setPresentable( getEngine().getRoot() );]]></ActionCode>
 				<Parameter>
 					<ParameterName><![CDATA[p_randomMobilityProb]]></ParameterName>
 					<ParameterValue Class="CodeValue">
-						<Code><![CDATA[0.30]]></Code>
+						<Code><![CDATA[0.1]]></Code>
 					</ParameterValue>
 				</Parameter>
 				<Parameter>
@@ -19827,7 +19783,7 @@ s.sendMessage();]]></AfterExperimentCode>
 			<InitialSetupCode><![CDATA[/// remove temporary output files
 TextFileUtilities f = new TextFileUtilities();
 f.removeOutputFiles();]]></InitialSetupCode>
-			<MaximumMemory>24000</MaximumMemory>
+			<MaximumMemory>16384</MaximumMemory>
 			<RandomNumberGenerationType>randomSeed</RandomNumberGenerationType>
 			<CustomGeneratorCode>new Random()</CustomGeneratorCode>
 			<BeforeEachExperimentRunCode><![CDATA[
@@ -19917,7 +19873,7 @@ SlackMessage s = new SlackMessage();
 s.sendMessage();]]></AfterExperimentCode>
 			<AllowParallelEvaluations>true</AllowParallelEvaluations>
 			<UseFreeformParameters>true</UseFreeformParameters>
-			<NumberOfRuns>30</NumberOfRuns>
+			<NumberOfRuns>10</NumberOfRuns>
 			<FreeformParamValue>	
 				<Id>1516978903254</Id>
 			</FreeformParamValue>
@@ -19941,9 +19897,6 @@ s.sendMessage();]]></AfterExperimentCode>
 			</FreeformParamValue>
 			<FreeformParamValue>	
 				<Id>1517448794202</Id>
-				<Expression Class="CodeValue">
-					<Code><![CDATA[0.25]]></Code>
-				</Expression>
 			</FreeformParamValue>
 			<FreeformParamValue>	
 				<Id>1567149540086</Id>
@@ -21042,6 +20995,7 @@ public class Exposure {
 	double counytRankSlope;
 	double countyRankCorrelation;
 	double countyRankAbsolute;
+	double countyTrait;
 	
 
 	public Exposure() {
@@ -21051,13 +21005,14 @@ public class Exposure {
     public Exposure(double time,
     		double countyIncome, double countyIncomeZ, 
     		double countyRankSlope, double countyRankCorrelation, 
-    		double countyRankAbsolute) {
+    		double countyRankAbsolute, double countyTrait) {
     	this.time = time;
     	this.countyIncome = countyIncome;
     	this.countyIncomeZ = countyIncomeZ;
     	this.counytRankSlope = countyRankSlope;
     	this.countyRankCorrelation = countyRankCorrelation;
     	this.countyRankAbsolute = countyRankAbsolute;
+    	this.countyTrait = countyTrait;
     	
    }
     
@@ -21088,6 +21043,7 @@ public class Exposure {
     	else if (variable == "countyRankSlope" ) return this.counytRankSlope;
     	else if (variable == "countyRankCorrelation" ) return this.countyRankCorrelation;
     	else if (variable == "countyRankAbsolute" ) return this.countyRankAbsolute;
+    	else if (variable == "countyTrait" ) return this.countyTrait;
     	else return 0;
     }
     
