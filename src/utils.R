@@ -1,8 +1,6 @@
-#################################
 # generative model of income mobility and mortality
 # auxiliary functions
 # author: sebastian daza
-################################
 
 
 library(texreg)

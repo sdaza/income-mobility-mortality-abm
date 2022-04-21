@@ -1,0 +1,12 @@
+.DS_Store
+/data
+/models/MobHealthRecycling/output/*.csv
+/models/MobHealthRecycling/slack.txt
+/output/data/
+.vscode
+*.log
+~$*.*
+.push.settings.jsonc
+slack.txt
+/models/MobMortalityTransitionMatrices/temp-output
+/models/MobMortalityTransitionMatrices/output

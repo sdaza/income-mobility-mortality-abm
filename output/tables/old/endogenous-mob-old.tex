@@ -1,0 +1,31 @@
+
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{0.95}
+\begin{table}[htp]
+\scriptsize
+\caption{Estimates IM effect on mortality}
+\label{ch04:endogenous_01}
+\begin{center}
+\begin{tabular}{l D{.}{.}{3.9} D{.}{.}{3.9} D{.}{.}{3.8}}
+\toprule
+& \multicolumn{1}{c}{$w_k = 0.0$} & \multicolumn{1}{c}{$w_k = 0.5$} & \multicolumn{1}{c}{$w_k$} \\
+\midrule
+
+Individual Mortaltiy on total IM exposure (Cox) & 0.04          & 0.04          & 0.15^{*}     \\
+                                                & [-0.05; 0.13] & [-0.04; 0.12] & [0.10; 0.21] \\
+\addlinespace[10pt]
+
+Individual Mortality on county IM (Cox) & 0.04          & 0.02          & 0.10^{*}     \\
+                                        & [-0.02; 0.10] & [-0.03; 0.07] & [0.05; 0.14] \\
+\addlinespace[10pt]
+
+Aggregate county LE on IM (GLM) & -0.19         & -0.08         & -1.50^{*}      \\
+                                & [-0.40; 0.02] & [-0.31; 0.14] & [-1.73; -1.27] \\
+\midrule
+Replicates                      & 60            & 60            & 60             \\
+
+\bottomrule
+\multicolumn{4}{l}{\tiny{$^*$ Null hypothesis value outside the confidence interval.}}
+\end{tabular}
+\end{center}
+\end{table}
