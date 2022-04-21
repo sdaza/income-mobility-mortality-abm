@@ -94,7 +94,38 @@ savepdf = function(file, width = 16, height = 10) {
 }
 
 # metafor functions
-# functions
+
+metaResults = function(iterations, datasets, 
+    predictors = c("total_rank_slope_exposure", "county_rank_slope", "rank_slope")) {
+    
+    cox_models = list()
+    cox_models_c = list()
+    county_models = list()
+
+    for (h in iterations) {
+
+        # model 1
+        d = copy(datasets[["mortality"]][iteration %in% h])
+        replicates = sort(unique(d$replicate))
+        f = formula(paste0("Surv(age_death, status) ~ " , predictors[1], " + lincome + total_z_income_exposure"))
+        cox_models[[as.character(h)]] = coxModel(replicates, data = d, f = f, predictor = predictors[1])
+
+        # model 2
+        f = formula(paste0("Surv(age_death, status) ~ ", predictors[2], " + lincome + county_lincome"))
+        cox_models_c[[as.character(h)]] = coxModel(replicates, data = d, f = f, predictor = predictors[2])
+
+        # model 3
+        d = copy(datasets[["county"]][iteration %in% h])
+        f = formula(paste0("le ~ " , predictors[3], " + lincome + lpopulation"))
+        replicates = sort(unique(d$replicate))
+        county_models[[as.character(h)]] = linearModel(replicates, data = d, f = f, predictor = predictors[3])
+    }
+    return(list(cox_models, cox_models_c, county_models))
+}
+
+models
+
+
 coxModel = function(replicates, data,
     f = formula("Surv(age, status) ~ total_rank_slope_exposure + lincome + county_lincome"),
     predictor = "total_rank_slope_exposure") {
@@ -181,7 +212,7 @@ select_tab_coeff = function(tab_list, header, bottom) {
         r = gsub(".+midrule", "", a)
         a = gsub("\\\\midrule.+", "", a)
         if (i < length(tab_list)) { a = paste0(a, "\\addlinespace[10pt]\n") }
-        if (i == length(tab_list)) { a = paste0(a, "\\midrule")  }
+        if (i == length(tab_list)) { a = paste0(a, "\\hline")  }
         t[[i]] = a
     }
     t[[length(tab_list)+1]] = r

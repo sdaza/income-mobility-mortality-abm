@@ -7389,7 +7389,7 @@ if (main.v_lastGeneration != newKid.p_generation && main.v_lastGeneration < newK
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
+					<ShowLabel>true</ShowLabel>
 					<Body><![CDATA[// define income mobility exposure
 double incomeMobilityExp = 0.0;
 if (main.p_useAllExposure) {
@@ -7414,7 +7414,7 @@ ratio = exp(
 	-0.2 * zincome + 
 	-0.4 * p_personalTrait +
 	-0.2 * v_incomeExposureZ + 
-	-0.5 * county.p_countyTrait);
+	-0.8 * county.p_countyTrait);
 
 //traceln(ratio);
 
@@ -7668,7 +7668,7 @@ return baseline + factor;
 					<ShowLabel>true</ShowLabel>
 					<Body><![CDATA[double value = 0.0;
 // baseline association parent-childre = 0.2
-p_parentChildrenIncome = 0.4 + -0.2 * v_incomeExposureZ + 0.2 * v_countyTraitExp;
+p_parentChildrenIncome = 0.4 + -0.2 * v_incomeExposureZ + 0.6 * v_countyTraitExp;
 
 double mu = 10;
 double s = 0.3;
