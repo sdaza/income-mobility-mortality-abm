@@ -121,7 +121,6 @@ metaResults = function(iterations, datasets,
     return(list(cox_models, cox_models_c, county_models))
 }
 
-models
 
 
 coxModel = function(replicates, data,
