@@ -15519,7 +15519,7 @@ s.sendMessage();]]></AfterExperimentCode>
 			<FreeformParamValue>	
 				<Id>1601479356164</Id>
 				<Expression Class="CodeValue">
-					<Code><![CDATA[{20, 25, 30}]]></Code>
+					<Code><![CDATA[{25, 30}]]></Code>
 				</Expression>
 			</FreeformParamValue>
 			<FreeformParamValue>	
@@ -15600,7 +15600,7 @@ s.sendMessage();]]></AfterExperimentCode>
 			<FreeformParamValue>	
 				<Id>1642079492484</Id>
 				<Expression Class="CodeValue">
-					<Code><![CDATA[{"parameters", "mortality", "environment", "county"}]]></Code>
+					<Code><![CDATA[{"parameters", "mortality", "county"}]]></Code>
 				</Expression>
 			</FreeformParamValue>
 			<FreeformParamValue>	
@@ -21216,7 +21216,7 @@ s.sendMessage();]]></AfterExperimentCode>
 			<FreeformParamValue>	
 				<Id>1601479356164</Id>
 				<Expression Class="CodeValue">
-					<Code><![CDATA[{20, 25, 30}]]></Code>
+					<Code><![CDATA[{25, 30}]]></Code>
 				</Expression>
 			</FreeformParamValue>
 			<FreeformParamValue>	
@@ -21294,7 +21294,7 @@ s.sendMessage();]]></AfterExperimentCode>
 			<FreeformParamValue>	
 				<Id>1642079492484</Id>
 				<Expression Class="CodeValue">
-					<Code><![CDATA[{"parameters", "mortality", "environment", "county"}]]></Code>
+					<Code><![CDATA[{"parameters", "mortality", "county"}]]></Code>
 				</Expression>
 			</FreeformParamValue>
 			<FreeformParamValue>	
