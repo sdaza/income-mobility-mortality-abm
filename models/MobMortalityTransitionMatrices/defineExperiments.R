@@ -15,7 +15,9 @@ exo[, iteration := 1:nrow(exo)]
 exo = exo[, .(iteration, im_coef, rank_slope, moving_rate, move_random)]
 rexo = rbindlist = rbindlist(replicate(n = 10, exp = exo,simplify = FALSE))
 
-fwrite(exo, "models/MobMortalityTransitionMatrices/data/param-exo.csv", 
+nrow(rexo)
+
+fwrite(rexo, "models/MobMortalityTransitionMatrices/data/param-exo.csv", 
     row.names = FALSE)
 
 # endogenous income transition matrices

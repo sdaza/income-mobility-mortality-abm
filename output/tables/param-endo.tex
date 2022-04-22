@@ -10,21 +10,21 @@
 \begin{tabular}{l D{.}{.}{3.9} D{.}{.}{3.9}}
 \hline
 \addlinespace
-& \multicolumn{1}{c}{Rank-rank slope} & \multicolumn{1}{c}{Upward mobility} \\
-\addlinespace
+ & \multicolumn{1}{c}{Rank-rank slope} & \multicolumn{1}{c}{Upward mobility} \\
+ \addlinespace
 \hline
 \addlinespace
 
 Individual risk of dying \& Total IM exposure (Cox) & 0.01          & -0.01         \\
-                                                    & [-0.04; 0.07] & [-0.05; 0.04] \\
+                                                    & [-0.05; 0.07] & [-0.07; 0.04] \\
 \addlinespace[10pt]
 
-Individual risk of dying \& County income mobility (Cox) & -0.07^{*}      & -0.05         \\
-                                                         & [-0.11; -0.02] & [-0.09; 0.00] \\
+Individual risk of dying \& County income mobility (Cox) & -0.03         & -0.05^{*}      \\
+                                                         & [-0.07; 0.01] & [-0.10; -0.01] \\
 \addlinespace[10pt]
 
-County LE \& County IM (GLM) & 0.31^{*}     & 0.32^{*}     \\
-                             & [0.09; 0.53] & [0.06; 0.57] \\
+County LE \& County IM (GLM) & 0.59^{*}     & 0.32^{*}     \\
+                             & [0.37; 0.81] & [0.09; 0.56] \\
 \hline
 Replicates                   & 100          & 100          \\
 
@@ -32,9 +32,11 @@ Replicates                   & 100          & 100          \\
 \hline
 \addlinespace
 \end{tabular}
-\begin{tablenotes}
-\scriptsize
-\item $^*$ Null hypothesis value outside the 95\% confidence interval.
-\item Each coefficient comes from random-effects model pooling 100 replicate estimates.
-\item GLM = generalized linear model. LE = Life expectancy.
+    \begin{tablenotes}
+      \scriptsize
+      \item $^*$ Null hypothesis value outside the 95\% confidence interval.
+      \item Each coefficient comes from random-effects model pooling 100 replicate estimates.
+      \item GLM = generalized linear model. LE = Life expectancy.
+    \end{tablenotes}
+\end{threeparttable}
 \end{table}
