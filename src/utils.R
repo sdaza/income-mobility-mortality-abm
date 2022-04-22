@@ -202,13 +202,19 @@ setMethod("extract",
           definition = extract.metafor)
 
 
-select_tab_coeff = function(tab_list, header, bottom) {
+
+select_tab_coeff = function(tab_list, header, bottom, every = NULL, subheaders = NULL) {
     t = list()
     r = NULL
+    if (!is.null(every)) {
+        s = seq(1, length(tab_list), by = every)
+    }
+    si = 1
     for (i in seq_along(tab_list)) {
         a = gsub("(.+midrule)(.+midrule)|\\\\bottomrule.+", "\\2", tab_list[[i]])
         r = gsub(".+midrule", "", a)
         a = gsub("\\\\midrule.+", "", a)
+        if (i %in% s & !is.null(every)) { a = paste0(subheaders[[si]], a); ; si = si + 1}
         if (i < length(tab_list)) { a = paste0(a, "\\addlinespace[10pt]\n") }
         if (i == length(tab_list)) { a = paste0(a, "\\hline")  }
         t[[i]] = a

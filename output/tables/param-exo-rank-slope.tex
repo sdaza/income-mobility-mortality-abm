@@ -4,8 +4,8 @@
 \begin{table}[htp]
 \scriptsize
 \centering
-\caption{Retrieving income mobility (upward) direct effect $\beta$ on mortality}
-\label{tab:param-exo}
+\caption{Retrieving income mobility (rank-rank slope) direct effect $\beta$ on mortality}
+\label{tab:param-exo-slope}
 \begin{threeparttable}
 \begin{tabular}{l D{.}{.}{3.9} D{.}{.}{3.9} D{.}{.}{3.8}}
 \hline
@@ -13,44 +13,49 @@
  & \multicolumn{1}{c}{$\beta$ = 0.0} & \multicolumn{1}{c}{$\beta$ = 0.3} & \multicolumn{1}{c}{$\beta$ = 0.5} \\
  \addlinespace
 \hline
-\addlinespace
-
-Individual risk of dying \& Total IM exposure (Cox) & -0.10         & 0.34^{*}     & 0.62^{*}     \\
-                                                    & [-0.29; 0.09] & [0.07; 0.61] & [0.47; 0.77] \\
+\addlinespace[10pt]
+\multicolumn{4}{l}{\emph{\textbf{No residential mobility}}} \\
+         \addlinespace[10pt]
+         
+Individual risk of dying \& Total IM exposure (Cox) & 0.00          & 0.26^{*}     & 0.49^{*}     \\
+                                                    & [-0.03; 0.03] & [0.23; 0.30] & [0.45; 0.53] \\
 \addlinespace[10pt]
 
-Individual risk of dying \& County income mobility (Cox) & -0.00         & 0.39^{*}     & 0.51^{*}     \\
-                                                         & [-0.20; 0.20] & [0.26; 0.51] & [0.30; 0.72] \\
+Individual risk of dying \& County income mobility (Cox) & 0.04          & 0.18^{*}     & 0.33^{*}     \\
+                                                         & [-0.00; 0.08] & [0.14; 0.23] & [0.29; 0.37] \\
 \addlinespace[10pt]
 
-County LE \& County IM (GLM) & -1.72^{*}      & -2.46^{*}      & -1.36^{*}      \\
-                             & [-2.96; -0.48] & [-3.33; -1.59] & [-2.56; -0.15] \\
+County LE \& County IM (GLM) & -1.25^{*}      & -2.61^{*}      & -3.09^{*}      \\
+                             & [-1.53; -0.96] & [-2.88; -2.34] & [-3.37; -2.80] \\
+\addlinespace[10pt]
+\multicolumn{4}{l}{\emph{\textbf{Random residential mobility}}} \\
+         \addlinespace[10pt]
+         
+Individual risk of dying \& Total IM exposure (Cox) & -0.01         & 0.41^{*}     & 0.59^{*}     \\
+                                                    & [-0.13; 0.11] & [0.27; 0.54] & [0.48; 0.70] \\
 \addlinespace[10pt]
 
-Individual risk of dying \& Total IM exposure (Cox) & 0.06          & -0.23         & 0.41          \\
-                                                    & [-0.55; 0.68] & [-0.59; 0.12] & [-0.06; 0.87] \\
+Individual risk of dying \& County income mobility (Cox) & -0.00         & -0.01         & 0.03          \\
+                                                         & [-0.04; 0.04] & [-0.06; 0.04] & [-0.02; 0.07] \\
 \addlinespace[10pt]
 
-Individual risk of dying \& County income mobility (Cox) & 0.06          & -0.05         & 0.04          \\
-                                                         & [-0.16; 0.29] & [-0.30; 0.20] & [-0.31; 0.39] \\
+County LE \& County IM (GLM) & 0.05          & -0.12         & 0.08          \\
+                             & [-0.22; 0.31] & [-0.39; 0.16] & [-0.18; 0.34] \\
+\addlinespace[10pt]
+\multicolumn{4}{l}{\emph{\textbf{Segregation}}} \\
+         \addlinespace[10pt]
+Individual risk of dying \& Total IM exposure (Cox) & -0.03         & 0.30^{*}     & 0.52^{*}     \\
+                                                    & [-0.08; 0.01] & [0.25; 0.36] & [0.47; 0.57] \\
 \addlinespace[10pt]
 
-County LE \& County IM (GLM) & -0.34         & 0.34          & -0.19         \\
-                             & [-1.15; 0.48] & [-1.10; 1.79] & [-2.45; 2.08] \\
+Individual risk of dying \& County income mobility (Cox) & -0.02         & 0.08^{*}     & 0.16^{*}     \\
+                                                         & [-0.06; 0.02] & [0.04; 0.12] & [0.12; 0.20] \\
 \addlinespace[10pt]
 
-Individual risk of dying \& Total IM exposure (Cox) & 0.20          & 0.00          & 0.42^{*}     \\
-                                                    & [-0.01; 0.41] & [-0.18; 0.18] & [0.17; 0.66] \\
-\addlinespace[10pt]
-
-Individual risk of dying \& County income mobility (Cox) & 0.21^{*}     & -0.11         & 0.13^{*}     \\
-                                                         & [0.06; 0.36] & [-0.36; 0.15] & [0.02; 0.24] \\
-\addlinespace[10pt]
-
-County LE \& County IM (GLM) & 0.32          & -1.42^{*}      & -0.45         \\
-                             & [-0.52; 1.16] & [-2.25; -0.59] & [-1.62; 0.73] \\
+County LE \& County IM (GLM) & -0.12         & -0.68^{*}      & -0.96^{*}      \\
+                             & [-0.41; 0.17] & [-0.94; -0.41] & [-1.26; -0.65] \\
 \hline
-Replicates                   & 5             & 5              & 5             \\
+Replicates                   & 100           & 100            & 100            \\
 
 \addlinespace
 \hline

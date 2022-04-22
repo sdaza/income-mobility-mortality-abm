@@ -30,8 +30,6 @@ experiments[rank_slope == TRUE,]
 
 max_time = 800
 
-
-
 # county data adjustments 
 cty[, lincome := logIncome(mean_income)]
 cty[, lpopulation := logIncome(population)]
@@ -56,7 +54,7 @@ header = "
 \\scriptsize
 \\centering
 \\caption{Retrieving income mobility (rank-rank slope) direct effect $\\beta$ on mortality}
-\\label{tab:param-exo}
+\\label{tab:param-exo-slope}
 \\begin{threeparttable}
 \\begin{tabular}{l D{.}{.}{3.9} D{.}{.}{3.9} D{.}{.}{3.8}}
 \\hline
@@ -64,7 +62,7 @@ header = "
  & \\multicolumn{1}{c}{$\\beta$ = 0.0} & \\multicolumn{1}{c}{$\\beta$ = 0.3} & \\multicolumn{1}{c}{$\\beta$ = 0.5} \\\\
  \\addlinespace
 \\hline
-\\addlinespace
+\\addlinespace[10pt]
 "
 
 bottom = "
@@ -108,7 +106,17 @@ for (i in index_models) {
             booktabs = TRUE,
             float.pos = "htp")
 }
-tab = select_tab_coeff(tab_list, header, bottom)
+subheaders = list(
+        "\\multicolumn{4}{l}{\\emph{\\textbf{No residential mobility}}} \\\\
+         \\addlinespace[10pt]
+         ", 
+        "\\multicolumn{4}{l}{\\emph{\\textbf{Random residential mobility}}} \\\\
+         \\addlinespace[10pt]
+         ", 
+        "\\multicolumn{4}{l}{\\emph{\\textbf{Segregation}}} \\\\
+         \\addlinespace[10pt]"
+        )
+tab = select_tab_coeff(tab_list, header, bottom, every = 3, subheaders = subheaders)
 cat(tab, file = paste0("output/tables/", "param-exo-rank-slope.tex"))
 
 # upward mobility
@@ -133,15 +141,15 @@ header = "
 \\scriptsize
 \\centering
 \\caption{Retrieving income (upward) mobility direct effect $\\beta_{m_g}$ on mortality}
-\\label{tab:param-exo}
+\\label{tab:param-exo-absolute}
 \\begin{threeparttable}
 \\begin{tabular}{l D{.}{.}{3.9} D{.}{.}{3.9} D{.}{.}{3.8}}
 \\hline
 \\addlinespace
- & \\multicolumn{1}{c}{$\\beta$ = 0.0} & \\multicolumn{1}{c}{$\\beta$ = 0.3} & \\multicolumn{1}{c}{$\\beta$ = 0.5} \\\\
+ & \\multicolumn{1}{c}{$\\beta$ = 0.0} & \\multicolumn{1}{c}{$\\beta$ = -0.3} & \\multicolumn{1}{c}{$\\beta$ = -0.5} \\\\
  \\addlinespace
 \\hline
-\\addlinespace
+\\addlinespace[10pt]
 "
 
 h = 0
@@ -153,6 +161,9 @@ for (i in index_models) {
             booktabs = TRUE,
             float.pos = "htp")
 }
-tab = select_tab_coeff(tab_list, header, bottom)
+tab = select_tab_coeff(tab_list, header, bottom, every = 3, subheaders = subheaders)
 cat(tab, file = paste0("output/tables/", "param-exo-rank-absolute.tex"))
 
+# move files to manuscript
+file.copy("output/tables/param-exo-rank-slope.tex", "manuscript/tables/", recursive = TRUE)
+file.copy("output/tables/param-exo-rank-absolute.tex", "manuscript/tables/", recursive = TRUE)
