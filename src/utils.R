@@ -121,7 +121,6 @@ metaResults = function(iterations, datasets,
     return(list(cox_models, cox_models_c, county_models))
 }
 
-models
 
 
 coxModel = function(replicates, data,
@@ -208,7 +207,7 @@ select_tab_coeff = function(tab_list, header, bottom, every = NULL, subheaders =
     r = NULL
     if (!is.null(every)) {
         s = seq(1, length(tab_list), by = every)
-    }
+    } else { s = 0 }
     si = 1
     for (i in seq_along(tab_list)) {
         a = gsub("(.+midrule)(.+midrule)|\\\\bottomrule.+", "\\2", tab_list[[i]])

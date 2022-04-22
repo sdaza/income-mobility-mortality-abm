@@ -33,6 +33,11 @@ cty[, lincome := logIncome(mean_income)]
 cty[, lpopulation := logIncome(population)]
 cor(cty[, .(lincome, rank_slope, rank_absolute)])
 
+table(cty$replicate)
+table(cty$iteration)
+cty[, replicate := paste0(titeration, replicate)]
+
+
 # mortality data adjustments 
 names(m)
 table(m$fertility_control)
@@ -41,6 +46,7 @@ table(m$age_death)
 m[, status := 1]
 m[, lincome := ifelse(income == 0, log(1), log(income))]
 m[, county_lincome := log(county_mean_income)]
+m[, replicate := paste0(titeration, replicate)]
 summary(m$county_lincome)
 summary(m$lincome)
 summary(m$total_z_income_exposure)
@@ -104,3 +110,7 @@ for (i in index_models) {
 }
 tab = select_tab_coeff(tab_list, header, bottom)
 cat(tab, file = paste0("output/tables/", "param-endo.tex"))
+
+# move files to manuscript
+file.copy("output/tables/param-endo.tex", "manuscript/tables/", recursive = TRUE)
+

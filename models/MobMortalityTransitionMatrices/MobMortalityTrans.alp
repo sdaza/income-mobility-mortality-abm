@@ -2801,7 +2801,7 @@ if (p_exportData && col_fileSelection.getOrDefault("mortality", false)) {
 	ExportOutput m = new ExportOutput(path, "mortality",
 			v_iteration, v_replicate,
 			new String[]{"iteration", 
-					"replicate",
+					"replicate", "titeration", 
 					"model_time", 
 					"id", 
 					"fertility_control", 
@@ -2833,7 +2833,8 @@ if (p_exportData && col_fileSelection.getOrDefault("mortality", false)) {
 					"rank_cor_exposure18",
 					"total_z_income_exposure"},
 			new String[]{"main.v_iteration",
-					"main.v_replicate", 
+					"main.v_replicate",
+					"main.v_tempIteration", 
 					"time()", 
 					"p_id",
 					"p_fertilityControl",
@@ -2874,6 +2875,7 @@ if (p_exportData && col_fileSelection.getOrDefault("county", false)) {
 			v_iteration, v_replicate,
 			new String[]{"iteration",
 				 	"replicate",
+				 	"titeration",
 					"model_time", 
 					"cz",
 					"county", 
@@ -2893,6 +2895,7 @@ if (p_exportData && col_fileSelection.getOrDefault("county", false)) {
 					"prop_income_groups"},
 			new String[]{"main.v_iteration",
 					"main.v_replicate", 
+					"main.v_tempIteration",
 					"time()", 
 					"p_cz",
 					"getIndex()", 
@@ -2920,6 +2923,7 @@ if (p_exportData && col_fileSelection.getOrDefault("environment", false)) {
 			v_iteration, v_replicate,
 			new String[]{"iteration", 
 					"replicate",
+					"titeration",
 					"model_time", 
 					"gini", 
 					"rank_slope",
@@ -2935,7 +2939,9 @@ if (p_exportData && col_fileSelection.getOrDefault("environment", false)) {
 					"population",
 					"prop_income_group",
 					"le_income_group"},
-			new String[]{"v_iteration", "v_replicate",
+			new String[]{"v_iteration", 
+					"v_replicate",
+					"v_tempIteration",
 					"time()", 
 					"v_gini",
 					"v_rankSlope",
@@ -2959,8 +2965,8 @@ if (p_exportData && col_fileSelection.getOrDefault("environment", false)) {
 // agents
 if (p_exportData && col_fileSelection.getOrDefault("agents", false)) {
 	ExportOutput a = new ExportOutput(path, "agents",
-			v_iteration, v_replicate,
-			new String[]{"iteration", "replicate",
+			v_tempIteration, v_replicate,
+			new String[]{"iteration", "replicate", "titeration",
 					"model_time", "id", "parent_id",
 					"generation", "birthdate", "age",
 					"income_group", "income",
@@ -2971,7 +2977,9 @@ if (p_exportData && col_fileSelection.getOrDefault("agents", false)) {
 					"final_transition_probs"
 					},
 			new String[]{"main.v_iteration",
-					"main.v_replicate", "time()", "p_id",
+					"main.v_replicate", 
+					"main.v_tempIteration", 
+					"time()", "p_id",
 					"p_parentId", "p_generation",
 					"p_birthTime", "p_age", "p_incomeGroup",
 					"p_income", "p_parentIncomeGroup",
@@ -15346,7 +15354,7 @@ if (getCurrentIteration() <= col_experimentLines.size()) {
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[int]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[100]]></Code>
+							<Code><![CDATA[20]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -15426,7 +15434,7 @@ SlackMessage s = new SlackMessage();
 s.sendMessage();]]></AfterExperimentCode>
 			<AllowParallelEvaluations>true</AllowParallelEvaluations>
 			<UseFreeformParameters>true</UseFreeformParameters>
-			<NumberOfRuns>18</NumberOfRuns>
+			<NumberOfRuns>180</NumberOfRuns>
 			<FreeformParamValue>	
 				<Id>1516978903254</Id>
 				<Expression Class="CodeValue">
@@ -21043,7 +21051,7 @@ if (getCurrentIteration() <= col_experimentLines.size()) {
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[int]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[100]]></Code>
+							<Code><![CDATA[10]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
