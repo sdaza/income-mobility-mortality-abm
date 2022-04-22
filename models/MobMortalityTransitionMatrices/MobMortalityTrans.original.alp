@@ -2133,7 +2133,6 @@ if (v_lastCompleteGeneration >= p_lastGeneration) {
 			+ " by year " + round(time()));
 	// traceln("Income groups: " +
 	// Arrays.toString(v_proportionIncomeType));
-	// traceln("Smokers: " + v_smokers);
 	if (p_exportData
 			&& col_fileSelection.getOrDefault("parameters", false)) {
 		ExportOutput p = col_dataExport.get("parameters");
@@ -2201,7 +2200,6 @@ if (v_incomeSD > 0) {
 					<ShowLabel>true</ShowLabel>
 					<Body><![CDATA[// export county data
 // traceln(round(time()) % p_recurrentTimeCountyData);
-
 if (p_exportData && col_fileSelection.getOrDefault("county", false) &&
 		v_lastGeneration >= p_exportSinceGeneration
 		&& (round(time()) % p_recurrentTimeCountyData == 0)) {
@@ -2750,7 +2748,8 @@ if (p_exportData && col_fileSelection.getOrDefault("parameters", false)) {
 					"income_mobility_cohort_size",
 					"measurement_cohort_window",
 					"move_decision_rate",
-					"prob_move_random", "move_threshold",
+					"prob_move_random", 
+					"move_threshold",
 					"population_max_ratio",
 					"number_income_groups",
 					"use_rank_slope", 
@@ -2758,13 +2757,8 @@ if (p_exportData && col_fileSelection.getOrDefault("parameters", false)) {
 					"endogenous_income_generation",
 					"base_prob_same_income",
 					"empirical_trans_mob",
-					"weight_income_exp",
-					"coeff_uncertainty",
-					"county_rank_slope_sd",
-					"mortality_income_coeff",
-					"mortality_smoking_coeff",
-					"mortality_smoking_coeff_se",
-					"mortality_fake_exp_coeff",
+					"weight_income_exposure",
+					"mortality_income_coefs",
 					"selected_generations",
 					"county_export_since_generation",
 					"recurrent_time_county_data",
@@ -2789,12 +2783,7 @@ if (p_exportData && col_fileSelection.getOrDefault("parameters", false)) {
 					"p_baselineSameIncomeProb",
 					"p_empiricalDistributionTransMob",
 					"Arrays.toString(p_weightIncomeGroup)",
-					"p_uncertaintyCoeffs",
-					"p_countyRankSlopeSD",
 					"Arrays.toString(p_mortalityCoeffIncGroup)",
-					"Arrays.toString(p_smokingCoeffIncGroup)",
-					"p_smokingCoeffIncExpZ",
-					"p_smokingCoeffSmkParent",
 					"Arrays.toString(p_selectedGenerations)",
 					"p_exportSinceGeneration",
 					"p_recurrentTimeCountyData",
@@ -2807,18 +2796,25 @@ if (p_exportData && col_fileSelection.getOrDefault("parameters", false)) {
 if (p_exportData && col_fileSelection.getOrDefault("mortality", false)) {
 	ExportOutput m = new ExportOutput(path, "mortality",
 			v_iteration, v_replicate,
-			new String[]{"iteration", "replicate",
-					"model_time", "id", 
+			new String[]{"iteration", 
+					"replicate",
+					"model_time", 
+					"id", 
 					"fertility_control", 
 					"parent_id",
-					"generation", "birthdate", "age_death",
-					"income_group", "income",
-					"parent_income_group", "parent_income",
+					"generation", 
+					"birthdate", 
+					"age_death",
+					"income_group", 
+					"income",
+					"parent_income_group", 
+					"parent_income",
 					"rank", 
 					"parent_rank_difference",
-					"income_group_mobility",
-					"county", "nkids", "nmoves",
-					"nmoves_kid", "smoker", "parent_smoker",
+					"county", 
+					"nkids", 
+					"nmoves",
+					"nmoves_kid",
 					"county_mean_income",
 					"county_median_income", 
 					"county_gini",
@@ -2833,19 +2829,25 @@ if (p_exportData && col_fileSelection.getOrDefault("mortality", false)) {
 					"rank_cor_exposure18",
 					"total_z_income_exposure"},
 			new String[]{"main.v_iteration",
-					"main.v_replicate", "time()", "p_id",
+					"main.v_replicate", 
+					"time()", 
+					"p_id",
 					"p_fertilityControl",
-					"p_parentId", "p_generation",
-					"p_birthTime", "p_age", "p_incomeGroup",
-					"p_income", "p_parentIncomeGroup",
+					"p_parentId", 
+					"p_generation",
+					"p_birthTime", 
+					"p_age", 
+					"p_incomeGroup",
+					"p_income", 
+					"p_parentIncomeGroup",
 					"p_parentIncome", 
-					"v_incomeGroupMobility",
 					"v_rank", 
 					"v_parentRankDifference",
 					"county.getIndex()",
-					"v_numberKids", "v_numberMoves",
-					"v_numberMovesKid", "v_smoker",
-					"p_parentSmoker", "county.v_meanIncome",
+					"v_numberKids", 
+					"v_numberMoves",
+					"v_numberMovesKid",
+					"county.v_meanIncome",
 					"county.v_medianIncome",
 					"county.v_gini",
 					"county.v_rankCorrelation",
@@ -2866,22 +2868,42 @@ if (p_exportData && col_fileSelection.getOrDefault("mortality", false)) {
 if (p_exportData && col_fileSelection.getOrDefault("county", false)) {
 	ExportOutput c = new ExportOutput(path, "county",
 			v_iteration, v_replicate,
-			new String[]{"iteration", "replicate",
-					"model_time", "cz",
-					"county", "population", "mean_income",
-					"median_income", "income_sd",
-					"rank_slope", "rank_correlation",
-					"rank_absolute", "gini", "le",
-					"age", "nsi", "mortality_cohort_size",
-					"im_cohort_size", "prop_income_groups"},
+			new String[]{"iteration",
+				 	"replicate",
+					"model_time", 
+					"cz",
+					"county", 
+					"population", 
+					"mean_income",
+					"median_income", 
+					"income_sd",
+					"rank_slope", 
+					"rank_correlation",
+					"rank_absolute", 
+					"gini", 
+					"le",
+					"age", 
+					"nsi", 
+					"mortality_cohort_size",
+					"im_cohort_size", 
+					"prop_income_groups"},
 			new String[]{"main.v_iteration",
-					"main.v_replicate", "time()", "p_cz",
-					"getIndex()", "col_peopleAlive.size()",
-					"v_meanIncome", "v_medianIncome",
-					"v_incomeSD", "v_rankSlope",
-					"v_rankCorrelation", "v_rankAbsolute",
-					"v_gini", "v_lifeExpectancy", "v_age",
-					"main.v_NSI", "v_cohortMortality",
+					"main.v_replicate", 
+					"time()", 
+					"p_cz",
+					"getIndex()", 
+					"col_peopleAlive.size()",
+					"v_meanIncome", 
+					"v_medianIncome",
+					"v_incomeSD", 
+					"v_rankSlope",
+					"v_rankCorrelation", 
+					"v_rankAbsolute",
+					"v_gini", 
+					"v_lifeExpectancy", 
+					"v_age",
+					"main.v_NSI", 
+					"v_cohortMortality",
 					"v_cohortIM",
 					"Arrays.toString(v_proportionIncomeGroup)"});
 	c.initiateFile(col_textFiles);
@@ -2892,17 +2914,23 @@ if (p_exportData && col_fileSelection.getOrDefault("county", false)) {
 if (p_exportData && col_fileSelection.getOrDefault("environment", false)) {
 	ExportOutput e = new ExportOutput(path, "environment",
 			v_iteration, v_replicate,
-			new String[]{"iteration", "replicate",
-					"model_time", "gini", "rank_slope",
+			new String[]{"iteration", 
+					"replicate",
+					"model_time", 
+					"gini", 
+					"rank_slope",
 					"county_rank_slope_avg",
 					"rank_correlation", 
 					"rank_absolute",
-					"income_mean", "le",
-					"nsi", "moves", "moves_kid",
-					"last_generation", "population",
-					"smokers", "prop_income_group",
-					"le_income_group",
-					"smoking_income_group"},
+					"income_mean", 
+					"le",
+					"nsi", 
+					"moves", 
+					"moves_kid",
+					"last_generation", 
+					"population",
+					"prop_income_group",
+					"le_income_group"},
 			new String[]{"v_iteration", "v_replicate",
 					"time()", 
 					"v_gini",
@@ -2911,17 +2939,18 @@ if (p_exportData && col_fileSelection.getOrDefault("environment", false)) {
 					"v_rankCorrelation", 
 					"v_rankAbsolute",
 					"v_meanIncome",
-					"v_lifeExpectancy", "v_NSI",
+					"v_lifeExpectancy", 
+					"v_NSI",
 					"v_averageNumberMoves",
 					"v_averageNumberMovesKid",
 					"v_lastGeneration",
-					"col_peopleAlive.size()", "v_smokers",
+					"col_peopleAlive.size()", 
 					"Arrays.toString(v_propIncomeGroup)",
-					"Arrays.toString(v_lifeExpectancyIncomeGroup)",
-					"Arrays.toString(v_propSmokersIncomeGroup)"});
+					"Arrays.toString(v_lifeExpectancyIncomeGroup)"});
 	e.initiateFile(col_textFiles);
 	col_dataExport.put("environment", e);
 }
+
 
 // agents
 if (p_exportData && col_fileSelection.getOrDefault("agents", false)) {
@@ -5554,9 +5583,6 @@ v_proportionIncomeGroup = c;]]></Body>
 							<Name><![CDATA[p_parentIncomeGroupExp]]></Name>
 						</Parameter>
 						<Parameter>
-							<Name><![CDATA[p_parentSmoker]]></Name>
-						</Parameter>
-						<Parameter>
 							<Name><![CDATA[p_fertilityControl]]></Name>
 						</Parameter>
 						<Parameter>
@@ -6415,21 +6441,6 @@ import java.util.stream.Collectors;
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
-					<Id>1597519964194</Id>
-					<Name><![CDATA[v_smoker]]></Name>
-					<X>450</X><Y>1180</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[boolean]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[false]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
 					<Id>1597909992530</Id>
 					<Name><![CDATA[v_incomeExposure]]></Name>
 					<X>450</X><Y>1040</Y>
@@ -6891,7 +6902,7 @@ import java.util.stream.Collectors;
 				<Variable Class="Parameter">
 					<Id>1596795407612</Id>
 					<Name><![CDATA[p_parentGeneration]]></Name>
-					<X>258.182</X><Y>1026.23</Y>
+					<X>260</X><Y>1000</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -7080,30 +7091,6 @@ import java.util.stream.Collectors;
 						<ParameterEditor>
 							<Id>1605791191995</Id>
 							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
-				</Variable>
-				<Variable Class="Parameter">
-					<Id>1605793493358</Id>
-					<Name><![CDATA[p_parentSmoker]]></Name>
-					<X>258.182</X><Y>1003.279</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[boolean]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[false]]></Code>
-						</DefaultValue>
-						<ParameterEditor>
-							<Id>1605793493356</Id>
-							<EditorContolType>CHECK_BOX</EditorContolType>
 							<MinSliderValue><![CDATA[0]]></MinSliderValue>
 							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
 							<DelimeterType>NO_DELIMETER</DelimeterType>
@@ -7567,11 +7554,6 @@ if (p_age == 18 && p_economicallyActive == false) {
 
 // force to people die after 110 years old
 if (p_age > 110) send("you should die", this);
-
-// start smoking
-if (p_age == 30 & v_smoker == false) {
-	send("start smoking?", this);
-}
 ]]></Action>
 				</Event>
 			</Events>
@@ -7773,8 +7755,6 @@ v_numberKids = 0;
 v_numberMoves = 0;
 v_numberMovesKid = 0;
 
-v_smoker = false;
-p_parentSmoker = false;
 v_timeCounty = 0;
 
 // parent parameters
@@ -7862,7 +7842,6 @@ newKid.p_age = 0.0;
 newKid.p_birthTime = time();
 newKid.p_generation = p_generation + 1;
 
-newKid.v_smoker = false;
 newKid.p_economicallyActive = false;
 
 // assign parent variables
@@ -7872,7 +7851,6 @@ newKid.p_parentGeneration = p_generation;
 newKid.p_parentIncomeMobExp = v_incomeExposure; 
 newKid.p_parentAge = p_age;
 newKid.p_parentAlive = true;
-newKid.p_parentSmoker = v_smoker;
 newKid.p_parentAbsoluteMobClass = v_incomeGroupMobility;
 newKid.p_parentRank = v_rank;
 
@@ -15271,7 +15249,7 @@ getExperimentHost().setPresentable( getEngine().getRoot() );]]></ActionCode>
 			<Import><![CDATA[import com.fasterxml.jackson.databind.ser.std.StdArraySerializers.BooleanArraySerializer;]]></Import>
 			<CommandLineArguments><![CDATA[]]></CommandLineArguments>
 			<InitialSetupCode><![CDATA[// read parameter file
-TextFileUtilities f = new TextFileUtilities("data/", "param-" + v_paramName+ ".csv", "output");
+TextFileUtilities f = new TextFileUtilities("data/", "param-" + v_paramName+ ".csv", "temp-output");
 col_experimentLines = f.fromFileToCollection(true);
 /// remove temporary output files
 f.removeOutputFiles();]]></InitialSetupCode>
@@ -15283,6 +15261,7 @@ f.removeOutputFiles();]]></InitialSetupCode>
 			<BeforeSimulationRunCode><![CDATA[//getEngine().setSimultaneousEventsSelectionMode(Engine.EVENT_SELECTION_RANDOM);
 root.p_numRows = (int) round(root.p_numCounties / root.p_numColumns);
 root.p_countyPopLimit = root.p_populationMaxRatio * root.p_peoplePerCounty;
+root.p_outputPath = v_outputPath;
 
 // define replicates
 setUseReplications(true);
@@ -15293,7 +15272,7 @@ root.v_iteration = getCurrentIteration();
 root.v_replicate = getCurrentReplication();
 
 StatUtils s = new StatUtils();
- 
+
 // update parameters
 if (getCurrentIteration() <= col_experimentLines.size()) {
 	String[] line = col_experimentLines.get(root.v_iteration-1);
@@ -15349,7 +15328,7 @@ if (getCurrentIteration() <= col_experimentLines.size()) {
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[String]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA["output/"]]></Code>
+							<Code><![CDATA["temp-output/"]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -15364,7 +15343,7 @@ if (getCurrentIteration() <= col_experimentLines.size()) {
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[int]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[30]]></Code>
+							<Code><![CDATA[10]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -15410,7 +15389,7 @@ if (getCurrentIteration() <= col_experimentLines.size()) {
 				<Text>
 					<Id>1649768625318</Id>
 					<Name><![CDATA[progress]]></Name>
-					<X>270</X><Y>60</Y>
+					<X>330</X><Y>60</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -15432,9 +15411,11 @@ if (getCurrentIteration() <= col_experimentLines.size()) {
 			</Presentation>
 
 			<AfterExperimentCode><![CDATA[// append files and remove temporary ones
-TextFileUtilities f = new TextFileUtilities("data/", "param-" + v_paramName+ ".csv", "output");
-f.appendOutputFiles(v_outputPath, "prev*.csv", "results-" + v_paramName + ".csv", "../../output/data/");
-f.appendOutputFiles(v_outputPath, "par*.csv", "param-" + v_paramName + ".csv", "../../output/data/");
+TextFileUtilities f = new TextFileUtilities("data/", "param-" + v_paramName+ ".csv", "temp-output");
+f.appendOutputFiles(v_outputPath, "mort*.csv", "mortality-" + v_paramName + ".csv", "output/");
+f.appendOutputFiles(v_outputPath, "par*.csv", "param-" + v_paramName + ".csv", "output/");
+f.appendOutputFiles(v_outputPath, "env*.csv", "environment-" + v_paramName + ".csv", "output/");
+f.appendOutputFiles(v_outputPath, "count*.csv", "county-" + v_paramName + ".csv", "output/");
 f.removeOutputFiles();
 
 // send slack message
@@ -15608,7 +15589,7 @@ s.sendMessage();]]></AfterExperimentCode>
 			<FreeformParamValue>	
 				<Id>1642079492484</Id>
 				<Expression Class="CodeValue">
-					<Code><![CDATA[{"parameters", "mortality", "environment", "county" }]]></Code>
+					<Code><![CDATA[{"parameters", "mortality", "environment", "county"}]]></Code>
 				</Expression>
 			</FreeformParamValue>
 			<FreeformParamValue>	
@@ -15828,7 +15809,7 @@ s.sendMessage();]]></AfterExperimentCode>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<ModelTimeProperties>
-				<StopOption><![CDATA[Stop at specified time]]></StopOption>
+				<StopOption><![CDATA[Never]]></StopOption>
 				<InitialDate><![CDATA[1516924800000]]></InitialDate>	
 				<InitialTime><![CDATA[0.0]]></InitialTime>	
 				<FinalDate><![CDATA[159196924800000]]></FinalDate>	
