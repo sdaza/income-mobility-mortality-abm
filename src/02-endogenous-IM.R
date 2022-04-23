@@ -1,5 +1,5 @@
 # generative model income mobility and mortality
-# exogenous IM 
+# endogenous IM 
 # author: sebastian daza
 
 
@@ -14,12 +14,10 @@ path = "models/MobMortalityTransitionMatrices/output/"
 p = fread(paste0(path, "param-endo.csv"))
 cty = fread(paste0(path, "county-endo.csv"))
 m = fread(paste0(path, "mortality-endo.csv"))
-e = fread(paste0(path, "environment-endo.csv"))
 
 # max time to consider
 max_time = 800
 
-summary(e[model_time > 100, nsi])
 np = p[, .(iteration, use_rank_slope, use_all_exposure, move_decision_rate, prob_move_random)]
 np = unique(np)
 setorder(np, iteration)
@@ -42,7 +40,7 @@ cty[, replicate := paste0(titeration, replicate)]
 names(m)
 table(m$fertility_control)
 
-table(m$age_death)
+summary(m$age_death)
 m[, status := 1]
 m[, lincome := ifelse(income == 0, log(1), log(income))]
 m[, county_lincome := log(county_mean_income)]
@@ -86,10 +84,11 @@ bottom = "
 "
 
 # run models over iterations
-setorder(experiments, -iteration)
+setorder(experiments, -iteration)experiments
 
 datasets = list("mortality" = m[age_death > 18], "county" = cty[model_time <= max_time])
 models = metaResults(iterations = 2:1, datasets)
+length(models)
 
 # create table
 tab_list = list()
@@ -98,7 +97,6 @@ coeff_names = c("Individual risk of dying \\& Total IM exposure (Cox)",
         "County LE \\& County IM (GLM)")
 
 index_models = 1:3
-
 h = 0
 for (i in index_models) {
     h = h + 1
@@ -113,4 +111,3 @@ cat(tab, file = paste0("output/tables/", "param-endo.tex"))
 
 # move files to manuscript
 file.copy("output/tables/param-endo.tex", "manuscript/tables/", recursive = TRUE)
-

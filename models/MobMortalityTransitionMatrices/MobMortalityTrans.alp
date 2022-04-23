@@ -4,7 +4,7 @@
 	         AnyLogic Project File 
 *************************************************	         
 -->
-<AnyLogicWorkspace WorkspaceVersion="1.9" AnyLogicVersion="8.7.6.202107211757" AlpVersion="8.7.2">
+<AnyLogicWorkspace WorkspaceVersion="1.9" AnyLogicVersion="8.7.5.202106081839" AlpVersion="8.7.2">
 <Model>
 	<Id>1516978677334</Id>
 	<Name><![CDATA[MobMortalityTrans]]></Name>
@@ -1239,10 +1239,34 @@ import java.util.stream.Collectors;  ]]></Import>
 					</Properties>                 
 				</Variable>
 				<Variable Class="Parameter">
+					<Id>1650716318434</Id>
+					<Name><![CDATA[p_randomCommutingZones]]></Name>
+					<X>50</X><Y>1000</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[boolean]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[false]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1650716318432</Id>
+							<EditorContolType>CHECK_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
 					<Id>1606140655343</Id>
 					<Name><![CDATA[p_endogenousIncomeMob]]></Name>
 					<Description><![CDATA[The defintion of the income transition matrix is defined in the model (endogenous)]]></Description>
-					<X>50</X><Y>1000</Y>
+					<X>50</X><Y>1020</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1319,7 +1343,7 @@ import java.util.stream.Collectors;  ]]></Import>
 					<Id>1597410585018</Id>
 					<Name><![CDATA[p_weightIncomeGroup]]></Name>
 					<Description><![CDATA[Weight of the exposure to county income groups to define individual income transition matrix]]></Description>
-					<X>50</X><Y>1020</Y>
+					<X>50</X><Y>1040</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1399,7 +1423,7 @@ import java.util.stream.Collectors;  ]]></Import>
 					<Description><![CDATA[Made up coefficients of the effect of agent's income group on mortality (individual effect). 
 
 Initial coefficients = {0.1, 0.05, 0.0, -0.05, -0.1}]]></Description>
-					<X>50</X><Y>1080</Y>
+					<X>50</X><Y>1110</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1426,7 +1450,7 @@ Initial coefficients = {0.1, 0.05, 0.0, -0.05, -0.1}]]></Description>
 					<Id>1607695381501</Id>
 					<Name><![CDATA[p_mortalityCoeffIncExpZ]]></Name>
 					<Description><![CDATA[Made up coefficient of the effect of standardized county income exposure on mortality]]></Description>
-					<X>50</X><Y>1100</Y>
+					<X>50</X><Y>1130</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1451,7 +1475,7 @@ Initial coefficients = {0.1, 0.05, 0.0, -0.05, -0.1}]]></Description>
 					<Id>1606149445574</Id>
 					<Name><![CDATA[p_mortalityCoeffIncomeMobility]]></Name>
 					<Description><![CDATA[Made up coefficient of the effect between exposure to county income mobility and mortality]]></Description>
-					<X>50</X><Y>1060</Y>
+					<X>50</X><Y>1090</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1885,12 +1909,15 @@ double totalPopulation = (p_numCounties * p_peoplePerCounty) * 3 * 1.10;
 p_countyPopLimit = totalPopulation / p_numCounties;
 
 // initiate income values
+
 for (County c : counties) {
-	if (p_endogenousIncomeMob) { c.p_cz = 0; }
-	else { c.p_cz = new StatUtils().sample(v_commutingZones); }
+	if (p_endogenousIncomeMob) c.p_cz = 0;
 	
+	if (!p_endogenousIncomeMob && p_randomCommutingZones) {
+		c.p_cz = new StatUtils().sample(v_commutingZones); 
+	} else c.p_cz = v_commutingZones[c.getIndex()];
+
 	//traceln(c.p_cz);
-	
 	c.col_transitionMatrixData.addAll(
 		col_transitionMatrixData.stream()
 		.filter(p -> p.cz == c.p_cz)
@@ -1925,7 +1952,7 @@ for (County c : counties) {
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1567592807886</Id>
 					<Name><![CDATA[f_randomPositionX]]></Name>
-					<X>50</X><Y>1670</Y>
+					<X>50</X><Y>1700</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1942,7 +1969,7 @@ return uniform(x, (x + p_sizeRectangle));]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1567592998611</Id>
 					<Name><![CDATA[f_randomPositionY]]></Name>
-					<X>50</X><Y>1650</Y>
+					<X>50</X><Y>1680</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2522,7 +2549,7 @@ if (peopleInCohort == 0 & col_deaths.size() > 100) {
 					<Name><![CDATA[f_getCoefficient]]></Name>
 					<Description><![CDATA[Scale SD for standardized coefficients
 It could be set to 1 if there is no standardization]]></Description>
-					<X>50</X><Y>1690</Y>
+					<X>50</X><Y>1720</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2616,9 +2643,7 @@ for (int i = 0; i < ir.size(); i++) {
 	rates.add(hh);
 }
 
-// define table funciont
-
-
+// define table function
 double[] age = rates.stream().mapToDouble(p -> p.age).toArray();
 f_baselineMortalityRate.setArgumentsAndValues(age, rates.stream().mapToDouble(p -> p.mortality / 100000.0).toArray());
 f_baselineMortalityRate.setInterpolationType(TableFunction.INTERPOLATION_STEP);
@@ -4407,7 +4432,7 @@ if (p_exportData && col_fileSelection.getOrDefault("income", false)) {
 				<Text>
 					<Id>1606204298407</Id>
 					<Name><![CDATA[text5]]></Name>
-					<X>40</X><Y>1610</Y>
+					<X>40</X><Y>1640</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -12463,6 +12488,9 @@ getExperimentHost().setPresentable( getEngine().getRoot() );]]></ActionCode>
 					</ParameterValue>
 				</Parameter>
 				<Parameter>
+					<ParameterName><![CDATA[p_randomCommutingZones]]></ParameterName>
+				</Parameter>
+				<Parameter>
 					<ParameterName><![CDATA[p_endogenousIncomeMob]]></ParameterName>
 					<ParameterValue Class="CodeValue">
 						<Code><![CDATA[v_endogenousIncomeMob]]></Code>
@@ -14049,6 +14077,9 @@ getExperimentHost().setPresentable( getEngine().getRoot() );]]></ActionCode>
 					<ParameterName><![CDATA[p_mobilityCohortSize]]></ParameterName>
 				</Parameter>
 				<Parameter>
+					<ParameterName><![CDATA[p_randomCommutingZones]]></ParameterName>
+				</Parameter>
+				<Parameter>
 					<ParameterName><![CDATA[p_endogenousIncomeMob]]></ParameterName>
 				</Parameter>
 				<Parameter>
@@ -15193,6 +15224,9 @@ getExperimentHost().setPresentable( getEngine().getRoot() );]]></ActionCode>
 					</ParameterValue>
 				</Parameter>
 				<Parameter>
+					<ParameterName><![CDATA[p_randomCommutingZones]]></ParameterName>
+				</Parameter>
+				<Parameter>
 					<ParameterName><![CDATA[p_endogenousIncomeMob]]></ParameterName>
 					<ParameterValue Class="CodeValue">
 						<Code><![CDATA[v_endogenousIncomeMob]]></Code>
@@ -15621,6 +15655,9 @@ s.sendMessage();]]></AfterExperimentCode>
 			<FreeformParamValue>	
 				<Id>1643362824329</Id>
 			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1650716318434</Id>
+			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1516978903254</Id>
 				<Type>FIXED</Type>
@@ -15829,6 +15866,10 @@ s.sendMessage();]]></AfterExperimentCode>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1643362824329</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1650716318434</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<ModelTimeProperties>
@@ -16429,6 +16470,9 @@ traceln(":::::: end simulation ::::::");]]></AfterExperimentCode>
 			<FreeformParamValue>	
 				<Id>1643362824329</Id>
 			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1650716318434</Id>
+			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1516978903254</Id>
 				<Type>FIXED</Type>
@@ -16637,6 +16681,10 @@ traceln(":::::: end simulation ::::::");]]></AfterExperimentCode>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1643362824329</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1650716318434</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<ModelTimeProperties>
@@ -17061,6 +17109,9 @@ traceln(":::::: end simulation ::::::");]]></AfterExperimentCode>
 			<FreeformParamValue>	
 				<Id>1643362824329</Id>
 			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1650716318434</Id>
+			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1516978903254</Id>
 				<Type>FIXED</Type>
@@ -17269,6 +17320,10 @@ traceln(":::::: end simulation ::::::");]]></AfterExperimentCode>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1643362824329</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1650716318434</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<ModelTimeProperties>
@@ -17600,6 +17655,9 @@ s.sendMessage();]]></AfterExperimentCode>
 			<FreeformParamValue>	
 				<Id>1643362824329</Id>
 			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1650716318434</Id>
+			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1516978903254</Id>
 				<Type>FIXED</Type>
@@ -17808,6 +17866,10 @@ s.sendMessage();]]></AfterExperimentCode>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1643362824329</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1650716318434</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<ModelTimeProperties>
@@ -18390,6 +18452,9 @@ traceln(":::::: end simulation ::::::");]]></AfterExperimentCode>
 			<FreeformParamValue>	
 				<Id>1643362824329</Id>
 			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1650716318434</Id>
+			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1516978903254</Id>
 				<Type>FIXED</Type>
@@ -18598,6 +18663,10 @@ traceln(":::::: end simulation ::::::");]]></AfterExperimentCode>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1643362824329</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1650716318434</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<ModelTimeProperties>
@@ -18946,6 +19015,9 @@ s.sendMessage();]]></AfterExperimentCode>
 			<FreeformParamValue>	
 				<Id>1643362824329</Id>
 			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1650716318434</Id>
+			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1516978903254</Id>
 				<Type>FIXED</Type>
@@ -19154,6 +19226,10 @@ s.sendMessage();]]></AfterExperimentCode>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1643362824329</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1650716318434</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<ModelTimeProperties>
@@ -19650,6 +19726,9 @@ traceln(":::::: end simulation ::::::");]]></AfterExperimentCode>
 			<FreeformParamValue>	
 				<Id>1643362824329</Id>
 			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1650716318434</Id>
+			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1516978903254</Id>
 				<Type>FIXED</Type>
@@ -19858,6 +19937,10 @@ traceln(":::::: end simulation ::::::");]]></AfterExperimentCode>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1643362824329</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1650716318434</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<ModelTimeProperties>
@@ -20204,6 +20287,9 @@ s.sendMessage();]]></AfterExperimentCode>
 					<Code><![CDATA[false]]></Code>
 				</Expression>
 			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1650716318434</Id>
+			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1516978903254</Id>
 				<Type>FIXED</Type>
@@ -20412,6 +20498,10 @@ s.sendMessage();]]></AfterExperimentCode>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1643362824329</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1650716318434</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<ModelTimeProperties>
@@ -20729,6 +20819,9 @@ s.sendMessage();]]></AfterExperimentCode>
 					<Code><![CDATA[false]]></Code>
 				</Expression>
 			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1650716318434</Id>
+			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1516978903254</Id>
 				<Type>FIXED</Type>
@@ -20939,6 +21032,10 @@ s.sendMessage();]]></AfterExperimentCode>
 				<Id>1643362824329</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1650716318434</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
 			<ModelTimeProperties>
 				<StopOption><![CDATA[Stop at specified time]]></StopOption>
 				<InitialDate><![CDATA[1516924800000]]></InitialDate>	
@@ -20999,6 +21096,7 @@ if (getCurrentIteration() <= col_experimentLines.size()) {
 	String[] line = col_experimentLines.get(root.v_tempIteration-1);
 	root.v_iteration = Integer.parseInt(line[0]);
 	root.p_useRankSlope = Boolean.parseBoolean(line[1]);
+	root.p_useAllExposure = Boolean.parseBoolean(line[2]);
 }]]></BeforeSimulationRunCode>
 			<AfterSimulationRunCode><![CDATA[v_replicates++;]]></AfterSimulationRunCode>
 			<SeedValue>1</SeedValue>
@@ -21062,7 +21160,7 @@ if (getCurrentIteration() <= col_experimentLines.size()) {
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[int]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[20]]></Code>
+							<Code><![CDATA[10]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -21142,7 +21240,7 @@ SlackMessage s = new SlackMessage();
 s.sendMessage();]]></AfterExperimentCode>
 			<AllowParallelEvaluations>true</AllowParallelEvaluations>
 			<UseFreeformParameters>true</UseFreeformParameters>
-			<NumberOfRuns>20</NumberOfRuns>
+			<NumberOfRuns>40</NumberOfRuns>
 			<FreeformParamValue>	
 				<Id>1516978903254</Id>
 				<Expression Class="CodeValue">
@@ -21314,6 +21412,9 @@ s.sendMessage();]]></AfterExperimentCode>
 			<FreeformParamValue>	
 				<Id>1643362824329</Id>
 			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1650716318434</Id>
+			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1516978903254</Id>
 				<Type>FIXED</Type>
@@ -21522,6 +21623,10 @@ s.sendMessage();]]></AfterExperimentCode>
 			</RangeVariationParamValue>
 			<RangeVariationParamValue>	
 				<Id>1643362824329</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1650716318434</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
 			<ModelTimeProperties>
