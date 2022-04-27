@@ -101,7 +101,6 @@ metaResults = function(iterations, datasets,
     county_models = list()
 
     for (h in iterations) {
-
         # model 1
         d = copy(datasets[["mortality"]][iteration %in% h])
         replicates = sort(unique(d$replicate))
@@ -114,8 +113,8 @@ metaResults = function(iterations, datasets,
 
         # model 3
         d = copy(datasets[["county"]][iteration %in% h])
-        f = formula(paste0("le ~ " , predictors[3], " + lincome + lpopulation"))
         replicates = sort(unique(d$replicate))
+        f = formula(paste0("le ~ " , predictors[3], " + lincome + lpopulation"))
         county_models[[as.character(h)]] = linearModel(replicates, data = d, f = f, predictor = predictors[3])
     }
     return(list(cox_models, cox_models_c, county_models))
@@ -140,7 +139,6 @@ coxModel = function(replicates, data,
         #sei = c(sei, AICcmodavg::extractSE(model)[predictor])
     }
     output = metafor::rma(yi = yi, sei = sei)
-
     return(output)
 }
 
