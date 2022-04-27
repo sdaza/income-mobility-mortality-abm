@@ -1,0 +1,42 @@
+
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{0.95}
+\begin{table}[htp]
+\scriptsize
+\centering
+\caption{Retrieving income mobility direct effect $\beta_{m_g} = 0$ on mortality, heterogeneous income transition matrices}
+\label{tab:param-exo}
+\begin{threeparttable}
+\begin{tabular}{l D{.}{.}{3.9} D{.}{.}{3.9}}
+\hline
+\addlinespace
+& \multicolumn{1}{c}{Rank-rank slope} & \multicolumn{1}{c}{Upward mobility} \\
+\addlinespace
+\hline
+\addlinespace
+
+Individual risk of dying \& Total IM exposure (Cox) & -0.32^{*}      & -0.22^{*}      \\
+                                                    & [-0.39; -0.24] & [-0.31; -0.13] \\
+\addlinespace[10pt]
+
+Individual risk of dying \& County income mobility (Cox) & 0.03          & 0.08          \\
+                                                         & [-0.06; 0.11] & [-0.01; 0.16] \\
+\addlinespace[10pt]
+
+County LE \& County IM (GLM) & 1.82^{*}     & 1.53^{*}     \\
+                             & [1.24; 2.40] & [0.95; 2.10] \\
+\hline
+Replicates                   & 100          & 100          \\
+
+\addlinespace
+\hline
+\addlinespace
+\end{tabular}
+\begin{tablenotes}
+\scriptsize
+\item $^*$ Null hypothesis value outside the 95\% confidence interval.
+\item Each coefficient comes from random-effects model pooling 100 replicate estimates.
+\item GLM = generalized linear model. LE = Life expectancy.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
